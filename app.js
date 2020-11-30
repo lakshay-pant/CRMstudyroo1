@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express=require("express")
 const app=express()
 const bodyParser=require("body-parser")
@@ -14,8 +15,32 @@ app.use(helmet())
 //handle cors error
 app.use(cors())
 
-//logger
+//mongodb connection
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
+
+if(process.env.NODE_ENV !== "production"){
+    const mdb=mongoose.connection
+    mdb.on("open",()=>{
+        console.log("mongodb connected")
+    })
+    
+    mdb.on("error",(error)=>{
+        console.log(error)
+    })
+
+    //logger
 app.use(morgan("tiny"))
+}
+
+
+
 
 //set body parser
 app.use(bodyParser.urlencoded({extended:true}))
