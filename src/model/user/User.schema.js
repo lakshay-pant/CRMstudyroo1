@@ -1,6 +1,7 @@
 const mongoose=require("mongoose")
 const Schema=mongoose.Schema
 const bcrypt=require("bcrypt")
+const jwt =require("jsonwebtoken")
 
 const UserSchema=new Schema({
     name:{
@@ -59,6 +60,20 @@ UserSchema.statics.findByCredentials=async(email,password)=>{
         throw new Error("Unable login")
     }
     return user
+}
+
+UserSchema.methods.generateAcessToken=async function(){
+    const user=this
+    const token=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'15m'})
+
+    return token
+}
+
+UserSchema.methods.generateRefreshToken=async function(){
+    const user=this
+    const token=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'30d'})
+
+    return token
 }
 
 const User=mongoose.model("User",UserSchema)

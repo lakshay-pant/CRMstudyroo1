@@ -35,7 +35,9 @@ router.post("/login",async(req,res)=>{
     }
     try{ 
     const user=await User.findByCredentials(email,password)
-    res.status(201).send(user)}
+    const accessToken=await user.generateAcessToken()
+    const refreshToken=await user.generateRefreshToken()
+    res.status(201).send({user,accessToken,refreshToken})}
     catch(e){
         console.log(e)
         res.status(400).json({status:"error",message:error.message})
