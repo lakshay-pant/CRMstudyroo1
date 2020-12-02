@@ -48,6 +48,19 @@ UserSchema.pre("save",async function(next){
     next()  
 })
 
-module.exports={
-    UserSchema:mongoose.model("User",UserSchema)
+UserSchema.statics.findByCredentials=async(email,password)=>{
+    const user=await User.findOne({email})
+
+    if(!user){
+        throw new Error("Unable login")
+    }
+    const ismatch=await bcrypt.compare(password,user.password)
+    if(!ismatch){
+        throw new Error("Unable login")
+    }
+    return user
 }
+
+const User=mongoose.model("User",UserSchema)
+
+    module.exports=User

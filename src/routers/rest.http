@@ -1,0 +1,21 @@
+###User sign up 
+POST http://localhost:3001/v1/user/
+Content-Type: application/json
+
+{
+    "name":"lakshay",
+    "company":"inmmausco",
+    "address":"abcm 100051",
+    "email":"pantlamkshay2377@gmail.com",
+    "phone":"9650755783",
+    "password":"abcsjjslakhhhhvh8h"
+}
+
+###user sign in
+POST http://localhost:3001/v1/user/login
+Content-Type: application/json
+
+{
+    "email":"pantlamkshay2377@gmail.com",
+    "password":"abcsjjslakhhhhvh8h"
+}

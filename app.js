@@ -10,7 +10,7 @@ const morgan=require("morgan")
 const port=process.env.PORT||3001
 
 //API SECURITY
-app.use(helmet())
+//app.use(helmet())
 
 //handle cors error
 app.use(cors())
