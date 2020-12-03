@@ -17,7 +17,9 @@
     "helmet": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.18",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "redis": "^3.0.2",
+    "redis-cli": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"

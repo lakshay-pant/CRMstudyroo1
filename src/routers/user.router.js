@@ -40,7 +40,7 @@ router.post("/login",async(req,res)=>{
     res.status(201).send({user,accessToken,refreshToken})}
     catch(e){
         console.log(e)
-        res.status(400).json({status:"error",message:error.message})
+        res.status(400).json({status:"error",message:e.message})
     }
    
 })

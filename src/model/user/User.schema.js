@@ -2,6 +2,7 @@ const mongoose=require("mongoose")
 const Schema=mongoose.Schema
 const bcrypt=require("bcrypt")
 const jwt =require("jsonwebtoken")
+const {setJWT,getJWT}=require("../../helper/jwt.redis")
 
 const UserSchema=new Schema({
     name:{
@@ -34,7 +35,15 @@ const UserSchema=new Schema({
         maxlength:100,
         minlength:8,
         required:true
-    }
+    } ,
+    refreshT: {
+        token: {
+          type: String,
+          maxlength: 500,
+          default: "",
+        },
+    
+      },
 
      
 
@@ -63,17 +72,25 @@ UserSchema.statics.findByCredentials=async(email,password)=>{
 }
 
 UserSchema.methods.generateAcessToken=async function(){
-    const user=this
-    const token=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'15m'})
+    try{
+        const user=this
+        const accessJWT=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'15m'})
+        await setJWT(accessJWT, user._id.toString())
+        return Promise.resolve(accessJWT)
+    }
+        catch(e){ return Promise.reject(e)}
+    
+    
 
-    return token
+   
 }
 
 UserSchema.methods.generateRefreshToken=async function(){
     const user=this
-    const token=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'30d'})
-
-    return token
+    const refreshJWT=jwt.sign({_id:user._id.toString()},process.env.JWT_ACCESS_SECRET,{expiresIn:'30d'})
+    
+    await user.save()
+    return refreshJWT
 }
 
 const User=mongoose.model("User",UserSchema)
