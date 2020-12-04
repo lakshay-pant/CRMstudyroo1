@@ -3,7 +3,6 @@ const Schema=mongoose.Schema
 const bcrypt=require("bcrypt")
 const jwt =require("jsonwebtoken")
 const {setJWT}=require("../../helper/jwt.redis")
-const {storeUserRefreshJWT,}=require("./User.model")
 const UserSchema=new Schema({
     name:{
         type:String,
