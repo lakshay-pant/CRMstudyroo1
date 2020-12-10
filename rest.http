@@ -1,0 +1,56 @@
+### User sing up endpoint
+POST http://localhost:3001/v1/user
+Content-Type: application/json
+
+{
+    "name": "Prem Acharya",
+    "company": "Company name",
+    "address": "Some address Sydney",
+    "phone": "041000000",
+    "email": "e2@e.com1",
+    "password": "secret123"
+}
+### User sing in endpoint
+POST http://localhost:3001/v1/user/login
+Content-Type: application/json 
+
+{
+    "email": "e2@e.com",
+     "password": "password123"   
+}
+
+### Get a user profile endpoint
+GET  http://localhost:3001/v1/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImUyQGUuY29tIiwiaWF0IjoxNjA0OTc0MTcyLCJleHAiOjE2MDQ5NzUwNzJ9.wvNH_c-yaWd05N6sPx3Y47AtJIIP9dXNCOIyVEjUO88
+
+
+###Token routers
+
+### Get refreshed token
+GET http://localhost:3001/v1/tokens
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImUyQGUuY29tIiwiaWF0IjoxNjA0OTc0MTcyLCJleHAiOjE2MDc1NjYxNzJ9.ancmfcnZW8zcy2zlRsnPE6drWfD2zTFpmbO6cwLzqq8
+
+
+# eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImUyQGUuY29tIiwiaWF0IjoxNjA0OTc0MTcyLCJleHAiOjE2MDQ5NzUwNzJ9.wvNH_c-yaWd05N6sPx3Y47AtJIIP9dXNCOIyVEjUO88
+
+
+#### Password reset request endpoints
+POST http://localhost:3001/v1/user/reset-password
+Content-Type: application/json 
+
+{
+    "email": "e2@e.com"
+}
+#### Update new password endpoint
+PATCH  http://localhost:3001/v1/user/reset-password
+Content-Type: application/json 
+
+{
+    "email": "e2@e.com",
+    "pin": "193288",
+    "newPassword": "password123"
+}
+
+#### user logout endpoint
+DELETE http://localhost:3001/v1/user/logout
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImUyQGUuY29tIiwiaWF0IjoxNjA2NTU0NzM4LCJleHAiOjE2MDY1NTU2Mzh9.djVukgIspM0bAjajetdvHzKKit9o0P-ER8N-7Np914U
