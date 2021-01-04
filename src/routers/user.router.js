@@ -1,5 +1,5 @@
 const express = require("express");
-const { route, post } = require("./ticket.router");
+const { route, post } = require("./student.router");
 const router = express.Router();
 
 const {
@@ -172,6 +172,39 @@ router.patch("/reset-password", updatePassValidation, async (req, res) => {
     message: "Unable to update your password. plz try again later",
   });
 });
+
+//update user 
+
+router.patch("/me",userAuthorization,async(req,res)=>{
+  try{const _id = req.userId;
+    var {name,
+      company,
+      address,
+      phone,
+      email,
+      password}=req.body
+  
+    const userProf = await getUserById(_id);
+    userProf.name=name?name:userProf.name
+    userProf.company=company?company:userProf.company
+    userProf.address=address?address:userProf.address
+    userProf.phone=phone?phone:userProf.phone
+    userProf.email=email?email:userProf.email
+    userProf.password=password?await hashPassword(password):userProf.password
+    
+const result=await insertUser(userProf)
+
+    res.json({ message: "user updated", result })
+  }catch (error) {
+    console.log(error);
+    res.json({ statux: "error", message: error.message });
+  }
+
+  
+  
+
+
+})
 
 // User logout and invalidate jwts
 
