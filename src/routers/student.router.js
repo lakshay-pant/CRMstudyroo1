@@ -101,6 +101,7 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     userProf.nationality=nationality?nationality:userProf.nationality
     userProf.phone=phone?phone:userProf.phone
     userProf.email=email?email:userProf.email
+
     
     
 const result=await insertStudent(userProf)
