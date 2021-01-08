@@ -21,13 +21,13 @@ Content-Type: application/json
 
 ### Update User Record
 
-Patch http://localhost:3001/v1/user
+Patch http://localhost:3001/v1/user/me/
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbnRsYWtzaGF5MkBnbWFpbC5jb20iLCJpYXQiOjE2MDk3NTA4MzgsImV4cCI6MTYwOTc1MTczOH0.nHcj2n_EtqyDV44p2NHchC1LjnuX6pIQuwtjiAnKFEk
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhbnRsYWtzaGF5MkBnbWFpbC5jb20iLCJpYXQiOjE2MDk4MjA3MDEsImV4cCI6MTYwOTgyMTYwMX0.expLaEvvJfzazwS8ofh23i3gWmeVU7SqCvPFc0RhZdM
 {
-    "name": "Lakshay Pant",
+    "name": "Lakshay",
     "company": "Inausco Pvt ltd",
-    "address": "Some address Sydney",
+    "address": "Sydney",
     "phone": "9650756789",
     "email": "pantlakshay2@gmail.com",
     "password": "secretn123"

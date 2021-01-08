@@ -46,17 +46,15 @@ router.get("/", userAuthorization, async (req, res) => {
 
 // Create new user router
 router.post("/", async (req, res) => {
-  const { name, company, address, phone, email, password } = req.body;
+  const { firstName,lastName, email, password } = req.body;
 
   try {
     //hash password
     const hashedPass = await hashPassword(password);
 
     const newUserObj = {
-      name,
-      company,
-      address,
-      phone,
+      firstName,
+      lastName,
       email,
       password: hashedPass,
     };
@@ -66,7 +64,7 @@ router.post("/", async (req, res) => {
     res.json({ message: "New user created", result });
   } catch (error) {
     console.log(error);
-    res.json({ statux: "error", message: error.message });
+    res.json({ status: "error", message: error.message });
   }
 });
 
@@ -85,7 +83,7 @@ router.post("/login", async (req, res) => {
   const passFromDb = user && user._id ? user.password : null;
 
   if (!passFromDb)
-    return res.json({ status: "error", message: "Invalid email or password!" });
+    return res.json({ status: "error", message: "Invalid Email or Password!" });
 
   const result = await comparePassword(password, passFromDb);
 
@@ -177,18 +175,15 @@ router.patch("/reset-password", updatePassValidation, async (req, res) => {
 
 router.patch("/me",userAuthorization,async(req,res)=>{
   try{const _id = req.userId;
-    var {name,
-      company,
-      address,
-      phone,
+    var {firstName,
+      lastName,
+      
       email,
       password}=req.body
   
     const userProf = await getUserById(_id);
-    userProf.name=name?name:userProf.name
-    userProf.company=company?company:userProf.company
-    userProf.address=address?address:userProf.address
-    userProf.phone=phone?phone:userProf.phone
+    userProf.firstName=firstName?firstName:userProf.firstName
+    userProf.lastNameName=lastName?lastName:userProf.lastName
     userProf.email=email?email:userProf.email
     userProf.password=password?await hashPassword(password):userProf.password
     
@@ -197,7 +192,7 @@ const result=await insertUser(userProf)
     res.json({ message: "user updated", result })
   }catch (error) {
     console.log(error);
-    res.json({ statux: "error", message: error.message });
+    res.json({ status: "error", message: error.message });
   }
 
   
