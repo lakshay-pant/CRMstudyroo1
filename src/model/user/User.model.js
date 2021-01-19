@@ -3,10 +3,14 @@ const { UserSchema } = require("./User.schema");
 
 const insertUser = (userObj) => {
   return new Promise((resolve, reject) => {
-    UserSchema(userObj)
+    try{ UserSchema(userObj)
       .save()
       .then((data) => resolve(data))
-      .catch((error) => reject(error));
+      .catch((error) => reject(error));}catch (error) {
+        
+        res.json({ status: "error", message: error.message })
+      }
+   
   });
 };
 

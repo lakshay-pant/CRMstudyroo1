@@ -28,6 +28,8 @@ const { verify } = require("jsonwebtoken");
 
 const { deleteJWT } = require("../helpers/redis.helper");
 
+const {UserSchema}=require("../model/user/User.schema")
+
 router.all("/", (req, res, next) => {
   // res.json({ message: "return form user router" });
 
@@ -47,10 +49,18 @@ router.get("/", userAuthorization, async (req, res) => {
 // Create new user router
 router.post("/", async (req, res) => {
   const { firstName,lastName, email, password } = req.body;
-
+  
+  // Mongoose Model.findOne()
+  UserSchema.findOne({email:email}).then(user=>{
+      if(user){
+          
+          res.json({ status: "error", message:"Email already Exist!!"})
+      }
+  })
   try {
     //hash password
     const hashedPass = await hashPassword(password);
+    
 
     const newUserObj = {
       firstName,
@@ -58,6 +68,7 @@ router.post("/", async (req, res) => {
       email,
       password: hashedPass,
     };
+    
     const result = await insertUser(newUserObj);
     console.log(result);
 
