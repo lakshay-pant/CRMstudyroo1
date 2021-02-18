@@ -5,7 +5,21 @@ const StudentSchema = new Schema({
     clientId: {
         type: Schema.Types.ObjectId,
       },
-  name: {
+  firstName: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
+   middleName: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  }, lastName: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
+  birthday: {
     type: String,
     maxlength: 50,
     required: true,
@@ -15,14 +29,46 @@ const StudentSchema = new Schema({
     maxlength: 50,
     required: true,
   },
+  gender: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },nationality: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
   
-  phone: {
+  onshorePhone: {
     type: Number,
     maxlength: 11,
+  },
+  OffshorePhone: {
+    type: Number,
+    maxlength: 11,
+  },
+  salesPipeline: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
+  salesStatus: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
+  heatLevel: {
+    type: String,
+    maxlength: 50,
+    required: true,
   },
   email: {
     type: String,
     maxlength: 50,
+    required: true,
+  },note: {
+    type: String,
+    maxlength: 100,
     required: true,
   },
 });

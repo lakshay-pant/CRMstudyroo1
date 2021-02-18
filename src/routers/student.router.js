@@ -20,17 +20,15 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { name, nationality, phone, email } = req.body;
+    const { firstName,middleName,lastName,birthday,gender,nationality, email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note } = req.body;
   
     try {
         const userId = req.userId;
   
       const newUserObj = {
         clientId: userId,
-        name,
-        nationality,
-        phone,
-        email
+        firstName,
+        middleName,lastName,birthday,gender,email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note,nationality
       };
       const result = await insertStudent(newUserObj);
       console.log(result);
@@ -90,16 +88,23 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
   try{ const clientId = req.userId;
     const { _id } = req.params;
 
-    var {name,
-      nationality,
-      phone,
-      email,
+    var {firstName,
+      middleName,lastName,birthday,gender,nationality,email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note
       }=req.body
   
     const userProf =  await getStudentById(_id, clientId);
-    userProf.name=name?name:userProf.name
+    userProf.firstName=firstName?firstName:userProf.firstName
+    userProf.middleName=middleName?middleName:userProf.middleName
+    userProf.lastName=lastName?lastName:userProf.lastName
+    userProf.birthday=birthday?birthday:userProf.birthday
+    userProf.gender=gender?gender:userProf.gender
+    userProf.onshorePhone=onshorePhone?onshorePhone:userProf.onshorePhone
+    userProf.offshorePhone=offshorePhone?offshorePhone:userProf.offshorePhone
+    userProf.salesPipeline=salesPipeline?salesPipeline:userProf.salesPipeline
+    userProf.salesStatus=salesStatus?salesStatus:userProf.salesStatus
+    userProf.heatLevel=heatLevel?heatLevel:userProf.heatLevel
+    userProf.note=note?note:userProf.note
     userProf.nationality=nationality?nationality:userProf.nationality
-    userProf.phone=phone?phone:userProf.phone
     userProf.email=email?email:userProf.email
 
     
