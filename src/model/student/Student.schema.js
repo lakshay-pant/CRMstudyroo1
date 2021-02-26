@@ -8,16 +8,16 @@ const StudentSchema = new Schema({
   firstName: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
    middleName: {
     type: String,
     maxlength: 50,
-    required: true,
+  
   }, lastName: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
   birthday: {
     type: String,
