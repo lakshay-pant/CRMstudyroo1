@@ -23,12 +23,15 @@ const { emailProcessor } = require("../helpers/email.helper");
 const {
   resetPassReqValidation,
   updatePassValidation,
+  newUserValidation
 } = require("../middlewares/formValidation.middleware");
 const { verify } = require("jsonwebtoken");
 
 const { deleteJWT } = require("../helpers/redis.helper");
 
 const {UserSchema}=require("../model/user/User.schema")
+
+const verificationURL = "http://localhost:3000/verification/";
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "return form user router" });
@@ -47,7 +50,7 @@ router.get("/", userAuthorization, async (req, res) => {
 });
 
 // Create new user router
-router.post("/", async (req, res) => {
+router.post("/", newUserValidation , async (req, res) => {
   const { firstName,lastName, email, password } = req.body;
   
   // Mongoose Model.findOne()
@@ -70,6 +73,12 @@ router.post("/", async (req, res) => {
     
     const result = await insertUser(newUserObj);
     console.log(result);
+    
+    await emailProcessor({
+      email,
+      type: "new-user-confirmation-required",
+      verificationLink: verificationURL + result._id + "/" + email,
+    });
 
     res.json({status: "success", message: "New user created", result });
   } catch (error) {
