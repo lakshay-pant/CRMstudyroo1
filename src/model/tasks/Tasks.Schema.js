@@ -24,53 +24,23 @@ const taskSchema = new Schema({
     maxlength: 50,
     required: true,
   },
-  Assigner: {
+  assignTo: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  gender: {
+  userGroups: {
     type: String,
     maxlength: 50,
     required: true,
-  },nationality: {
+  },
+  offices: {
     type: String,
     maxlength: 50,
     required: true,
   },
   
-  onshorePhone: {
-    type: Number,
-    maxlength: 11,
-  },
-  OffshorePhone: {
-    type: Number,
-    maxlength: 11,
-  },
-  salesPipeline: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
-  salesStatus: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
-  heatLevel: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
-  email: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },note: {
-    type: String,
-    maxlength: 100,
-    required: true,
-  },
+  
 });
 
 module.exports = {
