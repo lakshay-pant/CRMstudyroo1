@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const express = require("express");
 const app = express();
@@ -6,7 +7,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const port = process.env.PORT || 3001;
-
+console.log("process.env.PORT",process.env.PORT)
 //API security
 // app.use(helmet());
 
@@ -16,14 +17,14 @@ app.use(cors());
 //MongoDB Connection Setup
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect('mongodb://localhost/crm', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
+  useFindAndModify: true,
   useCreateIndex: true,
 });
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.NODE_ENV !== "dev") {
   const mDb = mongoose.connection;
   mDb.on("open", () => {
     console.log("MongoDB is conneted");
@@ -45,11 +46,15 @@ app.use(bodyParser.json());
 //Load routers
 const userRouter = require("./src/routers/user.router");
 const studentRouter = require("./src/routers/student.router");
+const taskRouter = require("./src/routers/task.router");
+
 const tokensRouter = require("./src/routers/tokens.router");
 
 //Use Routers
 app.use("/v1/user", userRouter);
 app.use("/v1/students", studentRouter);
+app.use("/v1/task", taskRouter);
+
 app.use("/v1/tokens", tokensRouter);
 
 //Error handler
