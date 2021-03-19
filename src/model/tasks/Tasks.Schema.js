@@ -18,21 +18,20 @@ const taskSchema = new Schema({
     type: String,
     maxlength: 50,
     
+  },taskDetails: {
+    type: String,
+    maxlength: 50,
+    
   },
   studentAssign: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  assignTo: {
+  userGroup: {
     type: String,
     maxlength: 50,
-    required: true,
-  },
-  userGroups: {
-    type: String,
-    maxlength: 50,
-    required: true,
+    
   },
   offices: {
     type: String,

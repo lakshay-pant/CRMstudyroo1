@@ -20,13 +20,13 @@ router.all("/", (req, res, next) => {
 
 // create new task
 router.post("/",userAuthorization, async (req, res) => {
-    const { taskName,type,dueDate,studentAssign,assignTo,userGroups,offices } = req.body;
+    const { taskName,type,dueDate,studentAssign,taskDetails,userGroup,offices } = req.body;
   
     try {
         const userId = req.userId;
   
       const newUserObj = {
-        clientId: userId,taskName,type,dueDate,studentAssign,assignTo,userGroups,offices
+        clientId: userId,taskName,type,dueDate,taskDetails,studentAssign,userGroup,offices
       };
       const result = await insertTask(newUserObj);
       console.log(result);
@@ -86,15 +86,16 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
   try{ const clientId = req.userId;
     const { _id } = req.params;
 
-    var {taskName,type,dueDate,studentAssign,assignTo,userGroups,offices}=req.body
+    var {taskName,type,dueDate,taskDetails,studentAssign,assignTo,userGroup,offices}=req.body
   
     const taskProf =  await getTaskById(_id, clientId);
     taskProf.taskName=taskName?taskName:taskProf.taskName
     taskProf.type=type?type:taskProf.type
     taskProf.dueDate=dueDate?dueDate:taskProf.dueDate
+    taskProf.taskDetails=taskDetails?taskDetails:taskProf.taskDetails
     taskProf.studentAssign=studentAssign?studentAssign:taskProf.studentAssign
     taskProf.assignTo=assignTo?assignTo:taskProf.assignTo
-    taskProf.userGroups=userGroups?userGroups:taskProf.userGroups
+    taskProf.userGroup=userGroup?userGroup:taskProf.userGroup
     taskProf.offices=offices?offices:taskProf.offices
 
     
