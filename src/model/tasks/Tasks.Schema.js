@@ -28,6 +28,11 @@ const taskSchema = new Schema({
     maxlength: 50,
     required: true,
   },
+  assignTo: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },
   userGroup: {
     type: String,
     maxlength: 50,

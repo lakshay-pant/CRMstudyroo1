@@ -8,6 +8,7 @@ const {
   getUserById,
   updatePassword,
   storeUserRefreshJWT,
+  getAllUsers
 } = require("../model/user/User.model");
 const { hashPassword, comparePassword } = require("../helpers/bcrypt.helper");
 const { crateAccessJWT, crateRefreshJWT } = require("../helpers/jwt.helper");
@@ -49,6 +50,20 @@ router.get("/", userAuthorization, async (req, res) => {
   res.json({ user: userProf });
 });
 
+// Get all users 
+router.get("/all-users", async (req, res) => {
+  try {
+    
+    const result = await getAllUsers();
+
+    return res.json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
 // Create new user router
 router.post("/", newUserValidation , async (req, res) => {
   const { firstName,lastName, email, password } = req.body;

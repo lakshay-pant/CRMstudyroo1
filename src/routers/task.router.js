@@ -20,20 +20,20 @@ router.all("/", (req, res, next) => {
 
 // create new task
 router.post("/",userAuthorization, async (req, res) => {
-    const { taskName,type,dueDate,studentAssign,taskDetails,userGroup,offices } = req.body;
+    const { taskName,type,dueDate,studentAssign,taskDetails,userGroup,offices,assignTo } = req.body;
   
     try {
         const userId = req.userId;
   
       const newUserObj = {
-        clientId: userId,taskName,type,dueDate,taskDetails,studentAssign,userGroup,offices
+        clientId: userId,taskName,type,dueDate,taskDetails,studentAssign,userGroup,offices,assignTo
       };
       const result = await insertTask(newUserObj);
       console.log(result);
   
       if (result._id) {
         return res.json({
-          status: "success",
+          status:"success",
           message: "New task has been added!",
         });
       }
