@@ -5,7 +5,8 @@ const {
   insertStudent,
   getStudents,
   getStudentById,
-  deleteStudent
+  deleteStudent,
+  getAllStudents
   
 } = require("../model/student/Student.model");
 const {
@@ -21,7 +22,7 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note } = req.body;
+    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,addedAt } = req.body;
   
     try {
         const userId = req.userId;
@@ -55,6 +56,21 @@ router.get("/", userAuthorization, async (req, res) => {
   try {
     const userId = req.userId;
     const result = await getStudents(userId);
+
+    return res.json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
+//Get all students
+router.get("/all-students", async (req, res) => {
+  try {
+    
+    const result = await getAllStudents();
 
     return res.json({
       status: "success",

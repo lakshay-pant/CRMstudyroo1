@@ -76,6 +76,10 @@ email: {
     maxlength: 100,
     required: true,
   },
+  addedAt: {
+    type: Date,
+    default: Date.now(),
+  }
 });
 
 module.exports = {
