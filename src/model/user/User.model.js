@@ -14,6 +14,18 @@ const insertUser = (userObj) => {
   });
 };
 
+const getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      UserSchema.find()
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 const getUserByEmail = (email) => {
   return new Promise((resolve, reject) => {
     if (!email) return false;
@@ -100,4 +112,5 @@ module.exports = {
   getUserById,
   storeUserRefreshJWT,
   updatePassword,
+  getAllUsers
 };

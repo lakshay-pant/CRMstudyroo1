@@ -20,20 +20,20 @@ router.all("/", (req, res, next) => {
 
 // create new task
 router.post("/",userAuthorization, async (req, res) => {
-    const {TaskName,cars,DueDate,Taskdetails,student,usergroup,offices} = req.body;
+    const { taskName,type,dueDate,studentAssign,taskDetails,userGroup,offices,assignTo } = req.body;
   
     try {
         const userId = req.userId;
   
       const newUserObj = {
-        clientId: userId,TaskName,cars,DueDate,Taskdetails,student,usergroup,offices
+        clientId: userId,taskName,type,dueDate,taskDetails,studentAssign,userGroup,offices,assignTo
       };
       const result = await insertTask(newUserObj);
       console.log(result);
   
       if (result._id) {
         return res.json({
-          status: "success",
+          status:"success",
           message: "New task has been added!",
         });
       }
@@ -86,15 +86,16 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
   try{ const clientId = req.userId;
     const { _id } = req.params;
 
-    var {TaskName,cars,DueDate,Taskdetails,student,usergroup,offices}=req.body
+    var {taskName,type,dueDate,taskDetails,studentAssign,assignTo,userGroup,offices}=req.body
   
     const taskProf =  await getTaskById(_id, clientId);
-    taskProf.TaskName=TaskName?TaskName:taskProf.TaskName
-    taskProf.cars=cars?cars:taskProf.cars
-    taskProf.DueDate=DueDate?DueDate:taskProf.DueDate
-    taskProf.Taskdetails=Taskdetails?Taskdetails:taskProf.Taskdetails
-    taskProf.student=student?student:taskProf.student
-    taskProf.usergroup=usergroup?usergroup:taskProf.usergroup
+    taskProf.taskName=taskName?taskName:taskProf.taskName
+    taskProf.type=type?type:taskProf.type
+    taskProf.dueDate=dueDate?dueDate:taskProf.dueDate
+    taskProf.taskDetails=taskDetails?taskDetails:taskProf.taskDetails
+    taskProf.studentAssign=studentAssign?studentAssign:taskProf.studentAssign
+    taskProf.assignTo=assignTo?assignTo:taskProf.assignTo
+    taskProf.userGroup=userGroup?userGroup:taskProf.userGroup
     taskProf.offices=offices?offices:taskProf.offices
 
     

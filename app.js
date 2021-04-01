@@ -6,10 +6,15 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const path = require("path");
 const port = process.env.PORT || 3001;
-console.log("process.env.PORT",process.env.PORT)
+console.log("process.env.PORT", process.env.PORT)
 //API security
 // app.use(helmet());
+const multer = require("multer");
+var upload = multer({ dest: 'uploads/' });
+// app.use(express.static(__dirname+"uploads/"));
+
 
 //handle CORS error
 app.use(cors());
@@ -47,27 +52,42 @@ app.use(bodyParser.json());
 const userRouter = require("./src/routers/user.router");
 const studentRouter = require("./src/routers/student.router");
 const taskRouter = require("./src/routers/task.router");
-
 const tokensRouter = require("./src/routers/tokens.router");
-
 //Use Routers
+
 app.use("/v1/user", userRouter);
 app.use("/v1/students", studentRouter);
-app.use("/v1/task", taskRouter);
-
 app.use("/v1/tokens", tokensRouter);
+app.use("/v1/tasks", taskRouter);
 
 //Error handler
-const handleError = require("./src/utils/errorHandler");
+//  const handleError = require("./src/utils/errorHandler");
+//  app.use((req, res, next) => {   const error = new Error("Resources not found!");
+//   error.status = 404;
+//   next(error);
+//  });
+var Storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
 
-app.use((req, res, next) => {
-  const error = new Error("Resources not found!");
-  error.status = 404;
-  next(error);
+  },
+  filename: function (req, file, callback) {
+    callback(null, Date.now() + file.originalname);
+  }
 });
+var upload = multer({
+  storage: Storage
+})
+app.post('/upload', upload.single('file'), (req, res) => {
+  res.send()
 
-app.use((error, req, res, next) => {
-  handleError(error, res);
+  // res.sendFile('upload-file', { title: 'Upload File', success: success });
+})
+// app.use((error, req, res, next) => {
+//   handleError(error, res);
+// });
+app.get('/upload', function (req, res, next) {
+  res.sendFile('upload-file.html', { root: __dirname });
 });
 
 app.listen(port, () => {

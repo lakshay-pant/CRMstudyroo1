@@ -54,4 +54,5 @@ const deleteTask = ({ _id, clientId }) => {
     getTasks,
     getTaskById,
     deleteTask,
+
   };

@@ -1,3 +1,4 @@
+const { string } = require("joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -39,34 +40,38 @@ const StudentSchema = new Schema({
     required: true,
   },
   
-  onshorePhone: {
+onShorePhone: {
     type: Number,
     maxlength: 11,
+    required:true
+
   },
-  OffshorePhone: {
+offShorePhone: {
     type: Number,
     maxlength: 11,
+    
   },
-  salesPipeline: {
+salesPipeline: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  salesStatus: {
+salesStatus: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  heatLevel: {
+heatLevel: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  email: {
+email: {
     type: String,
     maxlength: 50,
     required: true,
-  },note: {
+  },
+  note: {
     type: String,
     maxlength: 100,
     required: true,

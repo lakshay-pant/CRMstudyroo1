@@ -1,40 +1,40 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
-
 const taskSchema = new Schema({
     clientId: {
         type: Schema.Types.ObjectId,
       },
-      TaskName: {
+  taskName: {
     type: String,
     maxlength: 50,
     
   },
-  cars: {
+ dueDate: {
     type: String,
     maxlength: 50,
-  
-  }, DueDate: {
+    
+  },taskDetails: {
     type: String,
     maxlength: 50,
     
   },
-  Taskdetails: {
+  studentAssign: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  student: {
+
+  assignTo: {
     type: String,
     maxlength: 50,
     required: true,
   },
-  usergroup: {
+
+  userGroup: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
   offices: {
     type: String,
@@ -46,5 +46,6 @@ const taskSchema = new Schema({
 });
 
 module.exports = {
-  taskSchema: mongoose.model("tasks", taskSchema),
+
+  taskSchema: mongoose.model("task", taskSchema),
 };

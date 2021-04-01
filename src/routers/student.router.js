@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const {
   insertStudent,
   getStudents,
@@ -20,7 +21,7 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note } = req.body;
+    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note } = req.body;
   
     try {
         const userId = req.userId;
@@ -28,7 +29,7 @@ router.post("/",userAuthorization, async (req, res) => {
       const newUserObj = {
         clientId: userId,
         firstName,
-        middleName,lastName,birthday,gender,email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note,nationality
+        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,nationality
       };
       const result = await insertStudent(newUserObj);
       console.log(result);
@@ -89,7 +90,7 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     const { _id } = req.params;
 
     var {firstName,
-      middleName,lastName,birthday,gender,nationality,email,onshorePhone,offshorePhone,salesPipeline,salesStatus,heatLevel,note
+      middleName,lastName,birthday,gender,nationality,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note
       }=req.body
   
     const userProf =  await getStudentById(_id, clientId);
@@ -98,8 +99,8 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     userProf.lastName=lastName?lastName:userProf.lastName
     userProf.birthday=birthday?birthday:userProf.birthday
     userProf.gender=gender?gender:userProf.gender
-    userProf.onshorePhone=onshorePhone?onshorePhone:userProf.onshorePhone
-    userProf.offshorePhone=offshorePhone?offshorePhone:userProf.offshorePhone
+    userProf.onShorePhone=onShorePhone?onShorePhone:userProf.onShorePhone
+    userProf.offShorePhone=offShorePhone?offShorePhone:userProf.offShorePhone
     userProf.salesPipeline=salesPipeline?salesPipeline:userProf.salesPipeline
     userProf.salesStatus=salesStatus?salesStatus:userProf.salesStatus
     userProf.heatLevel=heatLevel?heatLevel:userProf.heatLevel
