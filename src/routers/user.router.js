@@ -263,4 +263,20 @@ router.delete("/logout", userAuthorization, async (req, res) => {
   });
 });
 
+router.get("/:_id", async (req, res) => {
+  try {
+    const { _id } = req.params;
+
+    
+    const result = await getUserById(_id);
+
+    return res.json({
+      status: "success",
+      result,
+    });
+  } catch (error) {
+    res.json({ status: "error", message: error.message });
+  }
+});
+
 module.exports = router;

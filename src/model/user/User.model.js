@@ -62,6 +62,24 @@ const getUserById = (_id) => {
   });
 };
 
+const getUserNameById = (_id) => {
+  return new Promise((resolve, reject) => {
+    if (!_id) return false;
+
+    try {
+      UserSchema.findOne({ _id }, (error, data) => {
+        if (error) {
+          console.log(error);
+          reject(error);
+        }
+        resolve(data.firstName);
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 const storeUserRefreshJWT = (_id, token) => {
   return new Promise((resolve, reject) => {
     try {
@@ -112,5 +130,6 @@ module.exports = {
   getUserById,
   storeUserRefreshJWT,
   updatePassword,
-  getAllUsers
+  getAllUsers,
+  getUserNameById
 };

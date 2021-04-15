@@ -6,6 +6,12 @@ const StudentSchema = new Schema({
     clientId: {
         type: Schema.Types.ObjectId,
       },
+      
+  userName: {
+    type: String,
+    maxlength: 50,
+    
+  },
   firstName: {
     type: String,
     maxlength: 50,
@@ -43,7 +49,7 @@ const StudentSchema = new Schema({
 onShorePhone: {
     type: Number,
     maxlength: 11,
-    required:true
+    
 
   },
 offShorePhone: {

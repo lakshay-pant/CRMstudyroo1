@@ -13,6 +13,12 @@ const {
   userAuthorization,
 } = require("../middlewares/authorization.middleware");
 
+const {
+  getUserNameById
+} = require("../model/user/User.model");
+
+
+
 
 router.all("/", (req, res, next) => {
   // res.json({ message: "return form ticket router" });
@@ -22,13 +28,15 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,addedAt } = req.body;
+    const { firstName,middleName,lastName,userName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,addedAt } = req.body;
   
     try {
         const userId = req.userId;
+        const userName= await getUserNameById(userId)
   
       const newUserObj = {
         clientId: userId,
+        userName:userName,
         firstName,
         middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,nationality
       };
