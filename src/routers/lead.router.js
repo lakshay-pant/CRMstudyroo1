@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  insertStudent,
-  getStudents,
-  getStudentById,
-  deleteStudent,
-  getAllStudents
+  insertLead,
+  getLeads,
+  getLeadById,
+  deleteLead,
+  getAllLeads
   
-} = require("../model/student/Student.model");
+} = require("../model/leads/Lead.model");
 const {
   userAuthorization,
 } = require("../middlewares/authorization.middleware");
@@ -21,14 +21,14 @@ const {
 
 
 router.all("/", (req, res, next) => {
-  // res.json({ message: "return form ticket router" });
+  // res.json({ message: "return form lead router" });
 
   next();
 });
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource } = req.body;
+    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,heatLevel} = req.body;
   
     try {
         const userId = req.userId;
@@ -38,32 +38,32 @@ router.post("/",userAuthorization, async (req, res) => {
         clientId: userId,
         userName:userName,
         firstName,
-        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,nationality,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource
+        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,heatLevel,nationality
       };
-      const result = await insertStudent(newUserObj);
+      const result = await insertLead(newUserObj);
       console.log(result);
   
       if (result._id) {
         return res.json({
           status: "success",
-          message: "New student has been added!",
+          message: "New Lead has been added!",
         });
       }
 
       res.json({
         status: "error",
-        message: "Unable to add new student , please try again later",
+        message: "Unable to add new Lead , please try again later",
       })
     } catch (error) {
       console.log(error);
       res.json({ status: "error", message: error.message });
     }
   });
-// Get all students 
+// Get all Leads
 router.get("/", userAuthorization, async (req, res) => {
   try {
     const userId = req.userId;
-    const result = await getStudents(userId);
+    const result = await getLeads(userId);
 
     return res.json({
       status: "success",
@@ -74,11 +74,11 @@ router.get("/", userAuthorization, async (req, res) => {
   }
 });
 
-//Get all students
-router.get("/all-students", async (req, res) => {
+//Get all leads
+router.get("/all-leads", async (req, res) => {
   try {
     
-    const result = await getAllStudents();
+    const result = await getAllLeads();
 
     return res.json({
       status: "success",
@@ -95,7 +95,7 @@ router.get("/:_id", userAuthorization, async (req, res) => {
     const { _id } = req.params;
 
     const clientId = req.userId;
-    const result = await getStudentById(_id, clientId);
+    const result = await getLeadById(_id, clientId);
 
     return res.json({
       status: "success",
@@ -106,7 +106,7 @@ router.get("/:_id", userAuthorization, async (req, res) => {
   }
 });
 
-//update student record
+//update Lead record
 
 
 router.patch("/:_id",userAuthorization,async(req,res)=>{
@@ -114,10 +114,10 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     const { _id } = req.params;
 
     var {firstName,
-      middleName,lastName,birthday,gender,nationality,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note
+      middleName,lastName,birthday,gender,nationality,email,onShorePhone,offShorePhone,heatLevel
       }=req.body
   
-    const userProf =  await getStudentById(_id, clientId);
+    const userProf =  await getLeadById(_id, clientId);
     userProf.firstName=firstName?firstName:userProf.firstName
     userProf.middleName=middleName?middleName:userProf.middleName
     userProf.lastName=lastName?lastName:userProf.lastName
@@ -125,18 +125,15 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     userProf.gender=gender?gender:userProf.gender
     userProf.onShorePhone=onShorePhone?onShorePhone:userProf.onShorePhone
     userProf.offShorePhone=offShorePhone?offShorePhone:userProf.offShorePhone
-    userProf.salesPipeline=salesPipeline?salesPipeline:userProf.salesPipeline
-    userProf.salesStatus=salesStatus?salesStatus:userProf.salesStatus
     userProf.heatLevel=heatLevel?heatLevel:userProf.heatLevel
-    userProf.note=note?note:userProf.note
     userProf.nationality=nationality?nationality:userProf.nationality
     userProf.email=email?email:userProf.email
 
     
     
-const result=await insertStudent(userProf)
+const result=await insertLead(userProf)
 
-    res.json({ message: "student updated", result })
+    res.json({ message: "Lead updated", result })
   }catch (error) {
     console.log(error);
     res.json({ status: "error", message: error.message });
@@ -150,17 +147,17 @@ const result=await insertStudent(userProf)
 
 
 
-// Delete a student record
+// Delete a Lead record
 router.delete("/:_id", userAuthorization, async (req, res) => {
   try {
     const { _id } = req.params;
     const clientId = req.userId;
 
-    const result = await deleteStudent({ _id, clientId });
+    const result = await deleteLead({ _id, clientId });
 
     return res.json({
       status: "success",
-      message: "The student record has been deleted",
+      message: "The Lead record has been deleted",
     });
   } catch (error) {
     res.json({ status: "error", message: error.message });
