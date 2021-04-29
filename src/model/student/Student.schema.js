@@ -31,19 +31,14 @@ const StudentSchema = new Schema({
     maxlength: 50,
     required: true,
   },
-  nationality: {
+  nation: {
     type: String,
     maxlength: 50,
-    required: true,
   },
-  gender: {
+  genders: {
     type: String,
     maxlength: 50,
-    required: true,
-  },nationality: {
-    type: String,
-    maxlength: 50,
-    required: true,
+  
   },
   
 onShorePhone: {
@@ -120,12 +115,12 @@ email: {
   city: {
     type: String,
     maxlength: 100,
-    required: true,
+    
   },
   country: {
     type: String,
     maxlength: 100,
-    required: true,
+    
   },
   zipCode: {
     type: String,
@@ -165,7 +160,7 @@ email: {
   },offShoreCountry: {
     type: String,
     maxlength: 100,
-    required: true,
+    
   },offShoreZipCode: {
     type: String,
     maxlength: 100,
@@ -260,7 +255,7 @@ email: {
     type: String,
     maxlength: 100,
     required: true,
-  },status: {
+  },locationStatus: {
     type: String,
     maxlength: 100,
     required: true,

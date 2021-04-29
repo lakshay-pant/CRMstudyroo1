@@ -28,7 +28,7 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource } = req.body;
+    const { firstName,middleName,lastName,birthday,genders,nation, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource } = req.body;
   
     try {
         const userId = req.userId;
@@ -38,7 +38,7 @@ router.post("/",userAuthorization, async (req, res) => {
         clientId: userId,
         userName:userName,
         firstName,
-        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,nationality,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource
+        middleName,lastName,birthday,genders,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,nation,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource
       };
       const result = await insertStudent(newUserObj);
       console.log(result);
@@ -114,7 +114,7 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     const { _id } = req.params;
 
     var {firstName,
-      middleName,lastName,birthday,gender,nationality,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note
+      middleName,lastName,birthday,genders,nation,email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note
       }=req.body
   
     const userProf =  await getStudentById(_id, clientId);
@@ -122,14 +122,14 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     userProf.middleName=middleName?middleName:userProf.middleName
     userProf.lastName=lastName?lastName:userProf.lastName
     userProf.birthday=birthday?birthday:userProf.birthday
-    userProf.gender=gender?gender:userProf.gender
+    userProf.genders=genders?genders:userProf.genders
     userProf.onShorePhone=onShorePhone?onShorePhone:userProf.onShorePhone
     userProf.offShorePhone=offShorePhone?offShorePhone:userProf.offShorePhone
     userProf.salesPipeline=salesPipeline?salesPipeline:userProf.salesPipeline
     userProf.salesStatus=salesStatus?salesStatus:userProf.salesStatus
     userProf.heatLevel=heatLevel?heatLevel:userProf.heatLevel
     userProf.note=note?note:userProf.note
-    userProf.nationality=nationality?nationality:userProf.nationality
+    userProf.nation=nation?nation:userProf.nation
     userProf.email=email?email:userProf.email
 
     
