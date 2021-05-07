@@ -49,6 +49,18 @@ const getStudentById = (_id, clientId) => {
   });
 };
 
+const getStudentAllUsersById = (_id) => {
+  return new Promise((resolve, reject) => {
+    try {
+      StudentSchema.findOne( {_id})
+        .then((data) => resolve(data))
+        .catch((error) => reject(error));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 const deleteStudent = ({ _id, clientId }) => {
     return new Promise((resolve, reject) => {
       try {
@@ -61,10 +73,23 @@ const deleteStudent = ({ _id, clientId }) => {
     });
   };
 
+  const deleteAllUserStudent = ({ _id }) => {
+    return new Promise((resolve, reject) => {
+      try {
+        StudentSchema.findOneAndDelete({ _id })
+          .then((data) => resolve(data))
+          .catch((error) => reject(error));
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
   module.exports = {
     insertStudent,
     getStudents,
     getStudentById,
     deleteStudent,
-    getAllStudents
+    getAllStudents,
+    getStudentAllUsersById,
+    deleteAllUserStudent
   };

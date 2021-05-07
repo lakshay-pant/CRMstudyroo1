@@ -258,7 +258,7 @@ email: {
   },locationStatus: {
     type: String,
     maxlength: 100,
-    required: true,
+    
   },referalSource: {
     type: String,
     maxlength: 100,
