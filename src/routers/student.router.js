@@ -23,16 +23,7 @@ const {
 
 
 
-const storage=multer.diskStorage({
-  dest:(req,file,callback)=>{
-    callback(null,'./uploads')
-  },
-  filename:(req,file,callback)=>{
-    callback(null,file.originalname)
-  }
-})
 
-const upload=multer({storage:storage})
 
 
 
@@ -44,7 +35,7 @@ router.all("/", (req, res, next) => {
 });
 
 // create new student record
-router.post("/",userAuthorization,upload.single("passportImage") ,async (req, res) => {
+router.post("/",userAuthorization ,async (req, res) => {
     const { firstName,middleName,lastName,birthday,genders,nation, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource } = req.body;
 
     try {
@@ -52,7 +43,7 @@ router.post("/",userAuthorization,upload.single("passportImage") ,async (req, re
         const userName= await getUserNameById(userId)
   
       const newUserObj = {
-        passportImage:req.file.originalname,
+        
         clientId: userId,
         userName:userName,
         firstName,
@@ -201,7 +192,7 @@ router.patch("/:_id",async(req,res)=>{
     
 const result=await insertStudent(userProf)
 
-    res.json({ message: "student updated", result })
+    res.json({status: "success", message: "student updated" })
   }catch (error) {
     console.log(error);
     res.json({ status: "error", message: error.message });

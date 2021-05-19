@@ -28,7 +28,7 @@ router.all("/", (req, res, next) => {
 
 // create new student record
 router.post("/",userAuthorization, async (req, res) => {
-    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,heatLevel} = req.body;
+    const { firstName,middleName,lastName,birthday,gender,nationality, email,onShorePhone,offShorePhone,heatLevel,onShoreLocation,OffShoreLocation,refferalSource,shoreStatus} = req.body;
   
     try {
         const userId = req.userId;
@@ -38,7 +38,7 @@ router.post("/",userAuthorization, async (req, res) => {
         clientId: userId,
         userName:userName,
         firstName,
-        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,heatLevel,nationality
+        middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,heatLevel,nationality,onShoreLocation,OffShoreLocation,refferalSource,shoreStatus
       };
       const result = await insertLead(newUserObj);
       console.log(result);
@@ -113,8 +113,9 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
   try{ const clientId = req.userId;
     const { _id } = req.params;
 
-    var {firstName,
-      middleName,lastName,birthday,gender,nationality,email,onShorePhone,offShorePhone,heatLevel
+    var {userName,
+      firstName,
+      middleName,lastName,birthday,gender,email,onShorePhone,offShorePhone,heatLevel,nationality,onShoreLocation,OffShoreLocation,refferalSource,shoreStatus
       }=req.body
   
     const userProf =  await getLeadById(_id, clientId);
@@ -123,11 +124,16 @@ router.patch("/:_id",userAuthorization,async(req,res)=>{
     userProf.lastName=lastName?lastName:userProf.lastName
     userProf.birthday=birthday?birthday:userProf.birthday
     userProf.gender=gender?gender:userProf.gender
+    userProf.email=email?email:userProf.email
     userProf.onShorePhone=onShorePhone?onShorePhone:userProf.onShorePhone
     userProf.offShorePhone=offShorePhone?offShorePhone:userProf.offShorePhone
     userProf.heatLevel=heatLevel?heatLevel:userProf.heatLevel
     userProf.nationality=nationality?nationality:userProf.nationality
-    userProf.email=email?email:userProf.email
+    userProf.userName=userName?userName:userProf.userName
+    userProf.onShoreLocation=onShoreLocation?onShoreLocation:userProf.onShoreLocation
+    userProf.OffShoreLocation=OffShoreLocation?OffShoreLocation:userProf.OffShoreLocation
+    userProf.refferalSource=refferalSource?refferalSource:userProf.refferalSource
+    userProf.shoreStatus=shoreStatus?shoreStatus:userProf.shoreStatus
 
     
     

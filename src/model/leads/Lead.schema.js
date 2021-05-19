@@ -40,10 +40,6 @@ const LeadSchema = new Schema({
     type: String,
     maxlength: 50,
     required: true,
-  },nationality: {
-    type: String,
-    maxlength: 50,
-    required: true,
   },
   
 onShorePhone: {
@@ -63,6 +59,22 @@ heatLevel: {
     required: true,
   },
 email: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },onShoreLocation: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },offShoreLocation: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },shoreStatus: {
+    type: String,
+    maxlength: 50,
+    required: true,
+  },refferalSource: {
     type: String,
     maxlength: 50,
     required: true,
