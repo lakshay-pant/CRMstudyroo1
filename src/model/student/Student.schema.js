@@ -263,6 +263,10 @@ email: {
     type: String,
     maxlength: 100,
     required: true,
+  },passportImage: {
+    type: String,
+    maxlength: 100,
+    required: true,
   },
   addedAt: {
     type: Date,

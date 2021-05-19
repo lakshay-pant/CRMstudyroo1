@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 
 const {
   insertStudent,
@@ -22,6 +23,20 @@ const {
 
 
 
+const storage=multer.diskStorage({
+  dest:(req,file,callback)=>{
+    callback(null,'./uploads')
+  },
+  filename:(req,file,callback)=>{
+    callback(null,file.originalname)
+  }
+})
+
+const upload=multer({storage:storage})
+
+
+
+
 router.all("/", (req, res, next) => {
   // res.json({ message: "return form ticket router" });
 
@@ -29,14 +44,15 @@ router.all("/", (req, res, next) => {
 });
 
 // create new student record
-router.post("/",userAuthorization, async (req, res) => {
+router.post("/",userAuthorization,upload.single("passportImage") ,async (req, res) => {
     const { firstName,middleName,lastName,birthday,genders,nation, email,onShorePhone,offShorePhone,salesPipeline,salesStatus,heatLevel,note,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource } = req.body;
-  
+
     try {
         const userId = req.userId;
         const userName= await getUserNameById(userId)
   
       const newUserObj = {
+        passportImage:req.file.originalname,
         clientId: userId,
         userName:userName,
         firstName,
