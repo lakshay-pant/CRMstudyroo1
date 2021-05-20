@@ -17,6 +17,12 @@ const LeadSchema = new Schema({
     maxlength: 50,
     
   },
+  birthday: {
+    type: String,
+    maxlength: 50,
+    required:true,
+    
+  },
    middleName: {
     type: String,
     maxlength: 50,
@@ -26,20 +32,16 @@ const LeadSchema = new Schema({
     maxlength: 50,
     
   },
-  birthday: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
+  
   nationality: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
   gender: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
   
 onShorePhone: {
@@ -53,31 +55,32 @@ offShorePhone: {
     maxlength: 11,
     
   },
-heatLevel: {
+leadLevel: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },
 email: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },onShoreLocation: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },offShoreLocation: {
     type: String,
     maxlength: 50,
-    required: true,
-  },shoreStatus: {
+    
+  },locationStatus: {
     type: String,
     maxlength: 50,
-    required: true,
+    
   },refferalSource: {
     type: String,
     maxlength: 50,
     required: true,
+    
   },
   addedAt: {
     type: Date,
