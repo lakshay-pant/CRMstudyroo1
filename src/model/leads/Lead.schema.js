@@ -81,7 +81,54 @@ email: {
     maxlength: 50,
     required: true,
     
-  },
+  }, leadTasks: [
+    {
+      statusNote: {
+        type: String,
+        maxlength: 50,
+        required: true,
+        default: "",
+      },
+      taskStaus: {
+        type: String,
+        maxlength: 1000,
+        required: true,
+        default: "",
+      },
+      taskStartDate: {
+        type: String,
+        maxlength: 1000,
+        required: true,
+        default: "",
+      },
+      taskEndDate: {
+        type: String,
+        maxlength: 1000,
+        required: true,
+        default: "",
+      },taskNote: {
+        type: String,
+        maxlength: 1000,
+        required: true,
+        default: "",
+      },assignee: {
+        type: String,
+        maxlength: 1000,
+        required: true,
+        default: "",
+      },taskCompleted: {
+        type: Boolean,
+        default:false,
+    
+      },
+
+      msgAt: {
+        type: Date,
+        required: true,
+        default: Date.now(),
+      },
+    },
+  ],
   addedAt: {
     type: Date,
     default: Date.now(),
