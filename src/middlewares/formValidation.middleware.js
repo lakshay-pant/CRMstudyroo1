@@ -37,6 +37,9 @@ const newUserValidation = (req, res, next) => {
     lastName: shortStr.required(),
     email: shortStr.required(),
     password: shortStr.required(),
+    birthdate: shortStr.required(),
+    tele:shortStr.required(),
+    gender:shortStr.required(),
     
 
   });

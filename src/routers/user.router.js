@@ -6,6 +6,7 @@ const {
   insertUser,
   getUserByEmail,
   getUserById,
+  getAllUsersById,
   updatePassword,
   storeUserRefreshJWT,
   getAllUsers
@@ -30,7 +31,8 @@ const { verify } = require("jsonwebtoken");
 
 const { deleteJWT } = require("../helpers/redis.helper");
 
-const {UserSchema}=require("../model/user/User.schema")
+const { UserSchema } = require("../model/user/User.schema");
+const { date } = require("joi");
 
 const verificationURL = "http://localhost:3000/verification/";
 
@@ -66,7 +68,7 @@ router.get("/all-users", async (req, res) => {
 });
 // Create new user router
 router.post("/", newUserValidation , async (req, res) => {
-  const { firstName,lastName, email, password } = req.body;
+  const { firstName,lastName, email, password,birthdate,tele,gender } = req.body;
   
   // Mongoose Model.findOne()
   UserSchema.findOne({email:email}).then(user=>{
@@ -83,11 +85,14 @@ router.post("/", newUserValidation , async (req, res) => {
       firstName,
       lastName,
       email,
+      birthdate,
+      tele,
+      gender,
       password: hashedPass,
     };
     
     const result = await insertUser(newUserObj);
-    console.log(result);
+    console.log("_____________________________aaaaaaaaaaaaa",result);
     
     await emailProcessor({
       email,
@@ -212,30 +217,36 @@ router.patch("/reset-password", updatePassValidation, async (req, res) => {
 
 //update user 
 
-router.patch("/me",userAuthorization,async(req,res)=>{
-  try{const _id = req.userId;
-    var {firstName,
+
+
+router.patch("/me", userAuthorization, async (req, res) => {
+  try {
+    const _id = req.userId;
+    var { 
+      firstName,
       lastName,
-      
       email,
-      password}=req.body
-  
+      password,
+      birthdate,
+      tele,
+      gender } = req.body
+
     const userProf = await getUserById(_id);
-    userProf.firstName=firstName?firstName:userProf.firstName
-    userProf.lastNameName=lastName?lastName:userProf.lastName
-    userProf.email=email?email:userProf.email
-    userProf.password=password?await hashPassword(password):userProf.password
-    
-const result=await insertUser(userProf)
+    userProf.firstName = firstName ? firstName : userProf.firstName
+    userProf.lastNameName = lastName ? lastName : userProf.lastName
+    userProf.email = email ? email : userProf.email
+    userProf.birthdate = birthdate ? birthdate : userProf.birthdate
+    userProf.tele = tele ? tele : userProf.tele
+    userProf.gender = gender ? gender : userProf.gender
+    userProf.password = password ? await hashPassword(password) : userProf.password
+
+    const result = await insertUser(userProf)
 
     res.json({ message: "user updated", result })
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     res.json({ status: "error", message: error.message });
   }
-
-  
-  
 
 
 })
@@ -267,7 +278,7 @@ router.get("/:_id", async (req, res) => {
   try {
     const { _id } = req.params;
 
-    
+
     const result = await getUserById(_id);
 
     return res.json({

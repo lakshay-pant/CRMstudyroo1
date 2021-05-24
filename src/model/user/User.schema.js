@@ -24,7 +24,24 @@ const UserSchema = new Schema({
     maxlength: 100,
     required: true,
   },
- 
+  birthdate: {
+    type: String,
+    maxlength: 50,
+    required: true,
+
+  },
+  tele: {
+    type: String,
+    maxlength: 50,
+    required: true,
+
+  },
+  gender: {
+    type: String,
+    maxlength: 50,
+    required: true,
+
+  },
   refreshJWT: {
     token: {
       type: String,
