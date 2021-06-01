@@ -70,6 +70,8 @@ const updateLeadTask = ({
 	taskNote,
 	assignee,
 	taskCompleted,
+	taskEndTime,
+	taskStartTime,
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -86,6 +88,8 @@ const updateLeadTask = ({
 							taskNote,
 							assignee,
 							taskCompleted,
+							taskStartTime,
+							taskEndTime,
 						},
 					},
 				},

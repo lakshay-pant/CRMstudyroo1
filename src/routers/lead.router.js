@@ -199,6 +199,8 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskNote,
 			assignee,
 			taskCompleted,
+			taskStartTime,
+			taskEndTime,
 		} = req.body;
 
 		const { _id } = req.params;
@@ -213,6 +215,8 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskNote,
 			assignee,
 			taskCompleted,
+			taskEndTime,
+			taskStartTime,
 		});
 
 		if (result._id) {

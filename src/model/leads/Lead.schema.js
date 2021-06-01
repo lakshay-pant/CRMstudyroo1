@@ -88,6 +88,18 @@ const LeadSchema = new Schema({
 
 				required: true,
 			},
+			taskStartTime: {
+				type: String,
+				maxlength: 1000,
+
+				required: true,
+			},
+			taskEndTime: {
+				type: String,
+				maxlength: 1000,
+
+				required: true,
+			},
 			taskEndDate: {
 				type: String,
 				maxlength: 1000,
