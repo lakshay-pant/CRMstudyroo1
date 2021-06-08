@@ -49,10 +49,10 @@ const getAllUsersLeadById = (_id) => {
 	});
 };
 
-const deleteLead = ({ _id, clientId }) => {
+const deleteLead = ({ _id }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			LeadSchema.findOneAndDelete({ _id, clientId })
+			LeadSchema.findOneAndDelete({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {

@@ -52,7 +52,7 @@ const studentRouter = require('./src/routers/student.router');
 const taskRouter = require('./src/routers/task.router');
 const tokensRouter = require('./src/routers/tokens.router');
 const leadsRouter = require('./src/routers/lead.router');
-
+const leadsTask = require('./src/routers/leadTask.router');
 //Use Routers
 
 app.use('/v1/user', userRouter);
@@ -60,6 +60,7 @@ app.use('/v1/students', studentRouter);
 app.use('/v1/tokens', tokensRouter);
 app.use('/v1/tasks', taskRouter);
 app.use('/v1/leads', leadsRouter);
+app.use('/v1/leadTask', leadsTask);
 
 //Error handler
 const handleError = require('./src/utils/errorHandler');

@@ -235,12 +235,11 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 });
 
 // Delete a Lead record
-router.delete('/:_id', userAuthorization, async (req, res) => {
+router.delete('/:_id', async (req, res) => {
 	try {
 		const { _id } = req.params;
-		const clientId = req.userId;
 
-		const result = await deleteLead({ _id, clientId });
+		const result = await deleteLead({ _id });
 
 		return res.json({
 			status: 'success',
