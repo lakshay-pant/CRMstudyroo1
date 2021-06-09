@@ -103,6 +103,65 @@ const updateLeadTask = ({
 	});
 };
 
+const updateLeadTaskDelete = (id1, id2) => {
+	return new Promise((resolve, reject) => {
+		try {
+			LeadSchema.findByIdAndUpdate(id1, {
+				$pull: {
+					leadTasks: {
+						_id: id2,
+					},
+				},
+			})
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+const updateTaskLead = (
+	id3,
+	{
+		statusNote,
+		taskStatus,
+		taskStartDate,
+		taskStartTime,
+		taskEndTime,
+		taskEndDate,
+		taskNote,
+		assignee,
+		taskCompleted,
+	}
+) => {
+	return new Promise((resolve, reject) => {
+		try {
+			LeadSchema.findOneAndUpdate(
+				{ 'leadTasks._id': id3 },
+				{
+					$set: {
+						'leadTasks.$.statusNote': statusNote,
+						'leadTasks.$.taskStatus': taskStatus,
+						'leadTasks.$.taskStartDate': taskStartDate,
+						'leadTasks.$.taskStartTime': taskStartTime,
+						'leadTasks.$.taskEndTime': taskEndTime,
+						'leadTasks.$.taskEndDate': taskEndDate,
+						'leadTasks.$.taskNote': taskNote,
+						'leadTasks.$.assignee': assignee,
+						'leadTasks.$.taskCompleted': taskCompleted,
+					},
+				},
+				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 module.exports = {
 	insertLead,
 	getLeads,
@@ -110,4 +169,6 @@ module.exports = {
 	getAllLeads,
 	updateLeadTask,
 	getAllUsersLeadById,
+	updateLeadTaskDelete,
+	updateTaskLead,
 };

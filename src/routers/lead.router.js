@@ -8,6 +8,8 @@ const {
 	getAllLeads,
 	updateLeadTask,
 	getAllUsersLeadById,
+	updateLeadTaskDelete,
+	updateTaskLead,
 } = require('../model/leads/Lead.model');
 const {
 	userAuthorization,
@@ -187,6 +189,50 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 	}
 });
 
+//updateLeadTask
+
+router.put('/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		var {
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskStartTime,
+			taskEndTime,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+		} = req.body;
+		const result = await updateTaskLead(color, {
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskStartTime,
+			taskEndTime,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your leadtask message updated',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update your message please try again later',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
 //put leads task
 
 router.put('/:_id', userAuthorization, async (req, res) => {
@@ -223,6 +269,29 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			return res.json({
 				status: 'success',
 				message: 'your message updated',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update your message please try again later',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//delete lead task
+
+router.delete('/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		const result = await updateLeadTaskDelete(name, color);
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your leadtask message deleted',
 			});
 		}
 		res.json({
