@@ -106,13 +106,17 @@ const updateLeadTask = ({
 const updateLeadTaskDelete = (id1, id2) => {
 	return new Promise((resolve, reject) => {
 		try {
-			LeadSchema.findByIdAndUpdate(id1, {
-				$pull: {
-					leadTasks: {
-						_id: id2,
+			LeadSchema.findByIdAndUpdate(
+				id1,
+				{
+					$pull: {
+						leadTasks: {
+							_id: id2,
+						},
 					},
 				},
-			})
+				{ new: true }
+			)
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {

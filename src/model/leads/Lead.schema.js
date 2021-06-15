@@ -7,65 +7,66 @@ const LeadSchema = new Schema({
 		type: Schema.Types.ObjectId,
 	},
 
-	userName: {
+	leadUserName: {
 		type: String,
 		maxlength: 50,
 	},
-	firstName: {
+	leadFirstName: {
 		type: String,
 		maxlength: 50,
 	},
-	birthday: {
+	leadBirthday: {
 		type: String,
 		maxlength: 50,
 	},
-	middleName: {
+	leadMiddleName: {
 		type: String,
 		maxlength: 50,
 	},
-	lastName: {
-		type: String,
-		maxlength: 50,
-	},
-
-	nationality: {
-		type: String,
-		maxlength: 50,
-	},
-	gender: {
+	leadlastName: {
 		type: String,
 		maxlength: 50,
 	},
 
-	onShorePhone: {
+	leadNationality: {
+		type: String,
+		maxlength: 50,
+	},
+	leadGender: {
+		type: String,
+		maxlength: 50,
+	},
+
+	leadOnShorePhone: {
 		type: Number,
 		maxlength: 11,
 	},
-	offShorePhone: {
+	leadOffShorePhone: {
 		type: Number,
 		maxlength: 11,
 	},
 	leadLevel: {
 		type: String,
 		maxlength: 50,
+		required: true,
 	},
-	email: {
+	leadEmail: {
 		type: String,
 		maxlength: 50,
 	},
-	onShoreLocation: {
+	leadOnShoreLocation: {
 		type: String,
 		maxlength: 50,
 	},
-	offShoreLocation: {
+	leadOffShoreLocation: {
 		type: String,
 		maxlength: 50,
 	},
-	locationStatus: {
+	leadLocationStatus: {
 		type: String,
 		maxlength: 50,
 	},
-	refferalSource: {
+	leadRefferalSource: {
 		type: String,
 		maxlength: 50,
 	},

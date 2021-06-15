@@ -25,20 +25,20 @@ router.all('/', (req, res, next) => {
 // create new student record
 router.post('/', userAuthorization, async (req, res) => {
 	const {
-		firstName,
-		middleName,
-		lastName,
-		birthday,
-		gender,
-		nationality,
-		email,
-		onShorePhone,
-		offShorePhone,
+		leadFirstName,
+		leadMiddleName,
+		leadLastName,
+		leadBirthday,
+		leadGender,
+		leadNationality,
+		leadEmail,
+		leadOnShorePhone,
+		leadOffShorePhone,
 		leadLevel,
-		onShoreLocation,
-		OffShoreLocation,
-		refferalSource,
-		locationStatus,
+		leadOnShoreLocation,
+		leadOffShoreLocation,
+		leadRefferalSource,
+		leadLocationStatus,
 	} = req.body;
 
 	try {
@@ -47,21 +47,21 @@ router.post('/', userAuthorization, async (req, res) => {
 
 		const newUserObj = {
 			clientId: userId,
-			userName: userName,
-			firstName,
-			middleName,
-			lastName,
-			birthday,
-			gender,
-			email,
-			onShorePhone,
-			offShorePhone,
+			leadUserName: userName,
+			leadFirstName,
+			leadMiddleName,
+			leadLastName,
+			leadBirthday,
+			leadGender,
+			leadNationality,
+			leadEmail,
+			leadOnShorePhone,
+			leadOffShorePhone,
 			leadLevel,
-			nationality,
-			onShoreLocation,
-			OffShoreLocation,
-			refferalSource,
-			locationStatus,
+			leadOnShoreLocation,
+			leadOffShoreLocation,
+			leadRefferalSource,
+			leadLocationStatus,
 		};
 		const result = await insertLead(newUserObj);
 		console.log(result);
@@ -136,49 +136,57 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 		const { _id } = req.params;
 
 		var {
-			userName,
-			firstName,
-			middleName,
-			lastName,
-			birthday,
-			gender,
-			email,
-			onShorePhone,
-			offShorePhone,
-			heatLevel,
-			nationality,
-			onShoreLocation,
-			OffShoreLocation,
-			refferalSource,
-			shoreStatus,
+			leadUserName,
+			leadFirstName,
+			leadMiddleName,
+			leadLastName,
+			leadBirthday,
+			leadGender,
+			leadNationality,
+			leadEmail,
+			leadOnShorePhone,
+			leadOffShorePhone,
+			leadLevel,
+			leadOnShoreLocation,
+			leadOffShoreLocation,
+			leadRefferalSource,
+			leadLocationStatus,
 		} = req.body;
 
 		const userProf = await getLeadById(_id, clientId);
-		userProf.firstName = firstName ? firstName : userProf.firstName;
-		userProf.middleName = middleName ? middleName : userProf.middleName;
-		userProf.lastName = lastName ? lastName : userProf.lastName;
-		userProf.birthday = birthday ? birthday : userProf.birthday;
-		userProf.gender = gender ? gender : userProf.gender;
-		userProf.email = email ? email : userProf.email;
-		userProf.onShorePhone = onShorePhone ? onShorePhone : userProf.onShorePhone;
-		userProf.offShorePhone = offShorePhone
-			? offShorePhone
-			: userProf.offShorePhone;
+		userProf.leadFirstName = leadFirstName
+			? leadFirstName
+			: userProf.leadFirstName;
+		userProf.leadMiddleName = leadMiddleName
+			? leadMiddleName
+			: userProf.leadMiddleName;
+		userProf.leadLastName = leadLastName ? leadLastName : userProf.leadLastName;
+		userProf.leadBirthday = leadBirthday ? leadBirthday : userProf.leadBirthday;
+		userProf.leadGender = leadGender ? leadGender : userProf.leadGender;
+		userProf.leadEmail = leadEmail ? leadEmail : userProf.leadEmail;
+		userProf.leadOnShorePhone = leadOnShorePhone
+			? leadOnShorePhone
+			: userProf.leadOnShorePhone;
+		userProf.leadOffShorePhone = leadOffShorePhone
+			? leadOffShorePhone
+			: userProf.leadOffShorePhone;
 		userProf.leadLevel = leadLevel ? leadLevel : userProf.leadLevel;
-		userProf.nationality = nationality ? nationality : userProf.nationality;
-		userProf.userName = userName ? userName : userProf.userName;
-		userProf.onShoreLocation = onShoreLocation
-			? onShoreLocation
-			: userProf.onShoreLocation;
-		userProf.OffShoreLocation = OffShoreLocation
-			? OffShoreLocation
-			: userProf.OffShoreLocation;
-		userProf.refferalSource = refferalSource
-			? refferalSource
-			: userProf.refferalSource;
-		userProf.locationStatus = locationStatus
-			? locationStatus
-			: userProf.locationStatus;
+		userProf.leadNationality = leadNationality
+			? leadNationality
+			: userProf.leadNationality;
+		userProf.leadUserName = leadUserName ? leadUserName : userProf.leadUserName;
+		userProf.leadOnShoreLocation = leadOnShoreLocation
+			? leadOnShoreLocation
+			: userProf.leadOnShoreLocation;
+		userProf.leadOffShoreLocation = leadOffShoreLocation
+			? leadOffShoreLocation
+			: userProf.leadOffShoreLocation;
+		userProf.leadRefferalSource = leadRefferalSource
+			? leadRefferalSource
+			: userProf.leadRefferalSource;
+		userProf.leadLocationStatus = leadLocationStatus
+			? leadLocationStatus
+			: userProf.leadLocationStatus;
 
 		const result = await insertLead(userProf);
 

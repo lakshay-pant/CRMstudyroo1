@@ -26,7 +26,6 @@ const StudentSchema = new Schema({
 	birthday: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	nation: {
 		type: String,
@@ -48,62 +47,50 @@ const StudentSchema = new Schema({
 	salesPipeline: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	salesStatus: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	heatLevel: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	email: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	note: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	onShoreCurrentLocation: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreCurrentLocation: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	onShoreAddress: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	onShoreLocation: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	unitNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	streetNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	streetName: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	city: {
 		type: String,
@@ -116,38 +103,31 @@ const StudentSchema = new Schema({
 	zipCode: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 
 	offShoreAdress: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreLocation: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreUnitNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreStreetNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	streetNa: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreCity: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	offShoreCountry: {
 		type: String,
@@ -156,117 +136,94 @@ const StudentSchema = new Schema({
 	offShoreZipCode: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	usi: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	educationLevel: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	instituteName: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	gpa: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	yearLevel: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	schoolCurriculum: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	schoolCurriculumDetails: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	passNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	passNationality: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	passIssueDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	passExpiryDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	passComments: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	grantDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	visaExpiryDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	visaType: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	visaComments: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	insuranceStartDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	insuranceExpiryDate: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	insuranceType: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	insuranceNumber: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	insuranceComment: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	otherComments: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	locationStatus: {
 		type: String,
@@ -275,7 +232,6 @@ const StudentSchema = new Schema({
 	referalSource: {
 		type: String,
 		maxlength: 100,
-		required: true,
 	},
 	addedAt: {
 		type: Date,
