@@ -13,6 +13,7 @@ const {
 } = require('../model/user/User.model');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt.helper');
 const { crateAccessJWT, crateRefreshJWT } = require('../helpers/jwt.helper');
+
 const {
 	userAuthorization,
 } = require('../middlewares/authorization.middleware');
@@ -66,38 +67,50 @@ router.get('/all-users', async (req, res) => {
 	}
 });
 // Create new user router
-router.post('/', newUserValidation, async (req, res) => {
-	const { firstName, lastName, email, password, birthdate, tele, gender } =
-		req.body;
 
-	// Mongoose Model.findOne()
-	UserSchema.findOne({ email: email }).then((user) => {
-		if (user) {
-			res.json({ status: 'error', message: 'Email already Exist!!' });
-		}
-	});
-	try {
-		//hash password
-		const hashedPass = await hashPassword(password);
+router.post("/", newUserValidation , async (req, res) => {
+  const { firstName,lastName, email, password,birthdate,tele,gender } = req.body;
+  
+  // Mongoose Model.findOne()
+  UserSchema.findOne({email:email}).then(user=>{
+      if(user){
+          
+          res.json({ status: "error", message:"Email already Exist!!"})
+      }
+  })
+  try {
+    //hash password
+    const hashedPass = await hashPassword(password);
 
-		const newUserObj = {
-			firstName,
-			lastName,
-			email,
-			birthdate,
-			tele,
-			gender,
-			password: hashedPass,
-		};
+    const newUserObj = {
+      firstName,
+      lastName,
+      email,
+      birthdate,
+      tele,
+      gender,
+      password: hashedPass,
+    };
+    
+    const result = await insertUser(newUserObj);
+    console.log("_____________________________aaaaaaaaaaaaa",result);
+    
+    await emailProcessor({
+      email,
+      type: "new-user-confirmation-required",
+      verificationLink: verificationURL + result._id + "/" + email,
+    });
 
-		const result = await insertUser(newUserObj);
-		console.log('_____________________________aaaaaaaaaaaaa', result);
-
-		res.json({ status: 'success', message: 'New user created', result });
-	} catch (error) {
-		console.log(error);
-		res.json({ status: 'error', message });
-	}
+    res.json({status: "success", message: "New user created", result });
+  } catch (error) {
+    console.log(error);
+    let message =
+      "Unable to create new user at the moment, Please try agin or contact administration!";
+    if (error.message.includes("duplicate key error collection")) {
+      message = "this email already has an account";
+    }
+    res.json({ status: "error", message });
+  }
 });
 
 //User sign in Router
@@ -203,33 +216,42 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
 	});
 });
 
-//update user
 
-router.patch('/me', userAuthorization, async (req, res) => {
-	try {
-		const _id = req.userId;
-		var { firstName, lastName, email, password, birthdate, tele, gender } =
-			req.body;
+//update user 
 
-		const userProf = await getUserById(_id);
-		userProf.firstName = firstName ? firstName : userProf.firstName;
-		userProf.lastNameName = lastName ? lastName : userProf.lastName;
-		userProf.email = email ? email : userProf.email;
-		userProf.birthdate = birthdate ? birthdate : userProf.birthdate;
-		userProf.tele = tele ? tele : userProf.tele;
-		userProf.gender = gender ? gender : userProf.gender;
-		userProf.password = password
-			? await hashPassword(password)
-			: userProf.password;
 
-		const result = await insertUser(userProf);
 
-		res.json({ message: 'user updated', result });
-	} catch (error) {
-		console.log(error);
-		res.json({ status: 'error', message: error.message });
-	}
-});
+router.patch("/me", userAuthorization, async (req, res) => {
+  try {
+    const _id = req.userId;
+    var { 
+      firstName,
+      lastName,
+      email,
+      password,
+      birthdate,
+      tele,
+      gender } = req.body
+
+    const userProf = await getUserById(_id);
+    userProf.firstName = firstName ? firstName : userProf.firstName
+    userProf.lastNameName = lastName ? lastName : userProf.lastName
+    userProf.email = email ? email : userProf.email
+    userProf.birthdate = birthdate ? birthdate : userProf.birthdate
+    userProf.tele = tele ? tele : userProf.tele
+    userProf.gender = gender ? gender : userProf.gender
+    userProf.password = password ? await hashPassword(password) : userProf.password
+
+    const result = await insertUser(userProf)
+
+    res.json({ message: "user updated", result })
+  } catch (error) {
+    console.log(error);
+    res.json({ status: "error", message: error.message });
+  }
+
+
+})
 
 // User logout and invalidate jwts
 
@@ -259,6 +281,7 @@ router.get('/:_id', async (req, res) => {
 		const { _id } = req.params;
 
 		const result = await getUserById(_id);
+
 
 		return res.json({
 			status: 'success',

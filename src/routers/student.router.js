@@ -40,10 +40,11 @@ router.post("/",userAuthorization ,async (req, res) => {
 
     try {
         const userId = req.userId;
-        const userName= await getUserNameById(userId)
+        const userName= await getStudentAllUsersById(userId)
   
       const newUserObj = {
         
+        passportImage:req.file.filename,
         clientId: userId,
         userName:userName,
         firstName,
