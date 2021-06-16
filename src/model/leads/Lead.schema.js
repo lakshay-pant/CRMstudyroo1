@@ -48,7 +48,6 @@ const LeadSchema = new Schema({
 	leadLevel: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	leadEmail: {
 		type: String,
