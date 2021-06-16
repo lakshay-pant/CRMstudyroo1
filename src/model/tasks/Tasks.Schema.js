@@ -24,7 +24,11 @@ const taskSchema = new Schema({
     maxlength: 50,
     required: true,
   },
-
+  taskStatus: {
+    type: String,
+    maxlength: 1000,
+    required: true,
+  },
   assignTo: {
     type: String,
     maxlength: 50,

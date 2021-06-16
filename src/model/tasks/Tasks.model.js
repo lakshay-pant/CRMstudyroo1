@@ -13,10 +13,24 @@ const insertTask = (taskObj) => {
   });
 };
 
-const getTasks = (clientId) => {
+const getTasks = () => {
   return new Promise((resolve, reject) => {
     try {
-      taskSchema.find({ clientId })
+      taskSchema.find()
+        .then((data) => resolve(data))
+        .catch((error) => reject(
+          
+        ));
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+const getTaskById = (_id) => {
+  return new Promise((resolve, reject) => {
+    try {
+      taskSchema.findOne({ _id })
         .then((data) => resolve(data))
         .catch((error) => reject(error));
     } catch (error) {
@@ -25,22 +39,10 @@ const getTasks = (clientId) => {
   });
 };
 
-const getTaskById = (_id, clientId) => {
-  return new Promise((resolve, reject) => {
-    try {
-      taskSchema.findOne({ _id, clientId })
-        .then((data) => resolve(data))
-        .catch((error) => reject(error));
-    } catch (error) {
-      reject(error);
-    }
-  });
-};
-
-const deleteTask = ({ _id, clientId }) => {
+const deleteTask = ( _id ) => {
     return new Promise((resolve, reject) => {
       try {
-        taskSchema.findOneAndDelete({ _id, clientId })
+        taskSchema.findOneAndDelete( _id )
           .then((data) => resolve(data))
           .catch((error) => reject(error));
       } catch (error) {
