@@ -237,6 +237,51 @@ const StudentSchema = new Schema({
 		type: Date,
 		default: Date.now(),
 	},
+	studentTasks: [
+		{
+			taskName: {
+				type: String,
+				maxlength: 50,
+			},
+			dueDate: {
+				type: String,
+				maxlength: 50,
+			},
+			type: {
+				type: String,
+				maxlength: 50,
+			},
+			taskDetails: {
+				type: String,
+				maxlength: 50,
+			},
+			studentAssign: {
+				type: String,
+				maxlength: 50,
+				required: true,
+			},
+			taskStatus: {
+				type: String,
+				maxlength: 1000,
+				required: true,
+			},
+			assignTo: {
+				type: String,
+				maxlength: 50,
+				required: true,
+			},
+
+			userGroup: {
+				type: String,
+				maxlength: 50,
+			},
+			offices: {
+				type: String,
+				maxlength: 50,
+				required: true,
+			},
+		},
+	],
 });
 
 module.exports = {
