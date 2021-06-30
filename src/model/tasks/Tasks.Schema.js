@@ -48,6 +48,11 @@ const taskSchema = new Schema({
 		maxlength: 50,
 		required: true,
 	},
+	type: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
 });
 
 module.exports = {

@@ -267,9 +267,11 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 
 //update Student Task
 
-router.put('/updateTask/:fruitColor', userAuthorization, async (req, res) => {
+router.put('/:fruitName/:fruitColor', async (req, res) => {
 	try {
+		const name = req.params.fruitName;
 		const color = req.params.fruitColor;
+		console.log(color);
 		var {
 			taskName,
 			dueDate,
