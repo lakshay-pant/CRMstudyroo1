@@ -239,6 +239,12 @@ const StudentSchema = new Schema({
 	},
 	studentTasks: [
 		{
+			taskId: {
+				type: String,
+			},
+			studentId: {
+				type: String,
+			},
 			taskName: {
 				type: String,
 				maxlength: 50,

@@ -1,55 +1,55 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema({
-    clientId: {
-        type: Schema.Types.ObjectId,
-      },
-  taskName: {
-    type: String,
-    maxlength: 50,
-    
-  },
- dueDate: {
-    type: String,
-    maxlength: 50,
-    
-  },taskDetails: {
-    type: String,
-    maxlength: 50,
-    
-  },
-  studentAssign: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
-  taskStatus: {
-    type: String,
-    maxlength: 1000,
-    required: true,
-  },
-  assignTo: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
+	clientId: {
+		type: Schema.Types.ObjectId,
+	},
+	taskId: {
+		type: String,
+	},
+	studentId: {
+		type: String,
+	},
+	taskName: {
+		type: String,
+		maxlength: 50,
+	},
+	dueDate: {
+		type: String,
+		maxlength: 50,
+	},
+	taskDetails: {
+		type: String,
+		maxlength: 50,
+	},
+	studentAssign: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
+	taskStatus: {
+		type: String,
+		maxlength: 1000,
+		required: true,
+	},
+	assignTo: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
 
-  userGroup: {
-    type: String,
-    maxlength: 50,
-    
-  },
-  offices: {
-    type: String,
-    maxlength: 50,
-    required: true,
-  },
-  
-  
+	userGroup: {
+		type: String,
+		maxlength: 50,
+	},
+	offices: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
 });
 
 module.exports = {
-
-  taskSchema: mongoose.model("task", taskSchema),
+	taskSchema: mongoose.model('task', taskSchema),
 };

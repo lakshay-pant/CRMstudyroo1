@@ -95,6 +95,8 @@ const updateStudentTask = ({
 	userGroup,
 	offices,
 	type,
+	taskId,
+	studentId,
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -113,6 +115,8 @@ const updateStudentTask = ({
 							userGroup,
 							offices,
 							type,
+							taskId,
+							studentId,
 						},
 					},
 				},
@@ -133,7 +137,7 @@ const updateStudentTaskDelete = (id1, id2) => {
 				{
 					$pull: {
 						studentTasks: {
-							_id: id2,
+							taskId: id2,
 						},
 					},
 				},
@@ -154,7 +158,7 @@ const updateTaskStudent = (
 	return new Promise((resolve, reject) => {
 		try {
 			StudentSchema.findOneAndUpdate(
-				{ 'studentTasks._id': id3 },
+				{ 'studentTasks.taskId': id3 },
 				{
 					$set: {
 						'studentTasks.$.taskName': taskName,
