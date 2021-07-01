@@ -11,6 +11,9 @@ const taskSchema = new Schema({
 	studentId: {
 		type: String,
 	},
+	userId: {
+		type: String,
+	},
 	taskName: {
 		type: String,
 		maxlength: 50,

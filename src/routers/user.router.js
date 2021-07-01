@@ -10,6 +10,9 @@ const {
 	updatePassword,
 	storeUserRefreshJWT,
 	getAllUsers,
+	updateUserStudentTask,
+	updateUserTaskStudent,
+	updateUserStudentTaskDelete,
 } = require('../model/user/User.model');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt.helper');
 const { crateAccessJWT, crateRefreshJWT } = require('../helpers/jwt.helper');
@@ -68,49 +71,49 @@ router.get('/all-users', async (req, res) => {
 });
 // Create new user router
 
-router.post("/", newUserValidation , async (req, res) => {
-  const { firstName,lastName, email, password,birthdate,tele,gender } = req.body;
-  
-  // Mongoose Model.findOne()
-  UserSchema.findOne({email:email}).then(user=>{
-      if(user){
-          
-          res.json({ status: "error", message:"Email already Exist!!"})
-      }
-  })
-  try {
-    //hash password
-    const hashedPass = await hashPassword(password);
+router.post('/', newUserValidation, async (req, res) => {
+	const { firstName, lastName, email, password, birthdate, tele, gender } =
+		req.body;
 
-    const newUserObj = {
-      firstName,
-      lastName,
-      email,
-      birthdate,
-      tele,
-      gender,
-      password: hashedPass,
-    };
-    
-    const result = await insertUser(newUserObj);
-    console.log("_____________________________aaaaaaaaaaaaa",result);
-    
-    await emailProcessor({
-      email,
-      type: "new-user-confirmation-required",
-      verificationLink: verificationURL + result._id + "/" + email,
-    });
+	// Mongoose Model.findOne()
+	UserSchema.findOne({ email: email }).then((user) => {
+		if (user) {
+			res.json({ status: 'error', message: 'Email already Exist!!' });
+		}
+	});
+	try {
+		//hash password
+		const hashedPass = await hashPassword(password);
 
-    res.json({status: "success", message: "New user created", result });
-  } catch (error) {
-    console.log(error);
-    let message =
-      "Unable to create new user at the moment, Please try agin or contact administration!";
-    if (error.message.includes("duplicate key error collection")) {
-      message = "this email already has an account";
-    }
-    res.json({ status: "error", message });
-  }
+		const newUserObj = {
+			firstName,
+			lastName,
+			email,
+			birthdate,
+			tele,
+			gender,
+			password: hashedPass,
+		};
+
+		const result = await insertUser(newUserObj);
+		console.log('_____________________________aaaaaaaaaaaaa', result);
+
+		await emailProcessor({
+			email,
+			type: 'new-user-confirmation-required',
+			verificationLink: verificationURL + result._id + '/' + email,
+		});
+
+		res.json({ status: 'success', message: 'New user created', result });
+	} catch (error) {
+		console.log(error);
+		let message =
+			'Unable to create new user at the moment, Please try agin or contact administration!';
+		if (error.message.includes('duplicate key error collection')) {
+			message = 'this email already has an account';
+		}
+		res.json({ status: 'error', message });
+	}
 });
 
 //User sign in Router
@@ -216,42 +219,33 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
 	});
 });
 
+//update user
 
-//update user 
+router.patch('/me', userAuthorization, async (req, res) => {
+	try {
+		const _id = req.userId;
+		var { firstName, lastName, email, password, birthdate, tele, gender } =
+			req.body;
 
+		const userProf = await getUserById(_id);
+		userProf.firstName = firstName ? firstName : userProf.firstName;
+		userProf.lastNameName = lastName ? lastName : userProf.lastName;
+		userProf.email = email ? email : userProf.email;
+		userProf.birthdate = birthdate ? birthdate : userProf.birthdate;
+		userProf.tele = tele ? tele : userProf.tele;
+		userProf.gender = gender ? gender : userProf.gender;
+		userProf.password = password
+			? await hashPassword(password)
+			: userProf.password;
 
+		const result = await insertUser(userProf);
 
-router.patch("/me", userAuthorization, async (req, res) => {
-  try {
-    const _id = req.userId;
-    var { 
-      firstName,
-      lastName,
-      email,
-      password,
-      birthdate,
-      tele,
-      gender } = req.body
-
-    const userProf = await getUserById(_id);
-    userProf.firstName = firstName ? firstName : userProf.firstName
-    userProf.lastNameName = lastName ? lastName : userProf.lastName
-    userProf.email = email ? email : userProf.email
-    userProf.birthdate = birthdate ? birthdate : userProf.birthdate
-    userProf.tele = tele ? tele : userProf.tele
-    userProf.gender = gender ? gender : userProf.gender
-    userProf.password = password ? await hashPassword(password) : userProf.password
-
-    const result = await insertUser(userProf)
-
-    res.json({ message: "user updated", result })
-  } catch (error) {
-    console.log(error);
-    res.json({ status: "error", message: error.message });
-  }
-
-
-})
+		res.json({ message: 'user updated', result });
+	} catch (error) {
+		console.log(error);
+		res.json({ status: 'error', message: error.message });
+	}
+});
 
 // User logout and invalidate jwts
 
@@ -282,10 +276,128 @@ router.get('/:_id', async (req, res) => {
 
 		const result = await getUserById(_id);
 
-
 		return res.json({
 			status: 'success',
 			result,
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//put student task in user
+
+router.put('/:_id', userAuthorization, async (req, res) => {
+	try {
+		const {
+			taskName,
+			dueDate,
+			taskDetails,
+			studentAssign,
+			type,
+			taskStatus,
+			assignTo,
+			userGroup,
+			offices,
+			taskId,
+			studentId,
+			userId,
+		} = req.body;
+
+		const { _id } = req.params;
+		const clientId = req.userId;
+
+		const result = await updateUserStudentTask({
+			_id,
+			taskName,
+			dueDate,
+			taskDetails,
+			studentAssign,
+			taskStatus,
+			assignTo,
+			userGroup,
+			offices,
+			type,
+			taskId,
+			studentId,
+			userId,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your Student Task has been added to User',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update student task to user',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//update Student Task
+
+router.put('/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		console.log(color);
+		var {
+			taskName,
+			dueDate,
+			taskDetails,
+			type,
+			taskStatus,
+
+			userGroup,
+			offices,
+		} = req.body;
+		const result = await updateUserTaskStudent(color, {
+			taskName,
+			dueDate,
+			taskDetails,
+			type,
+			taskStatus,
+
+			userGroup,
+			offices,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your user Student task has been updated',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update user student task ',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//delete task of student in user
+
+router.delete('/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		const result = await updateUserStudentTaskDelete(name, color);
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'Student task in user has been deleted',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to delete student task from user',
 		});
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });

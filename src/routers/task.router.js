@@ -29,13 +29,14 @@ router.post('/', userAuthorization, async (req, res) => {
 		assignTo,
 		taskId,
 		studentId,
+		userId,
 	} = req.body;
 
 	try {
-		const userId = req.userId;
+		const userid = req.userId;
 
 		const newUserObj = {
-			clientId: userId,
+			clientId: userid,
 			taskName,
 			type,
 			dueDate,
@@ -47,6 +48,7 @@ router.post('/', userAuthorization, async (req, res) => {
 			assignTo,
 			taskId,
 			studentId,
+			userId,
 		};
 		const result = await insertTask(newUserObj);
 		console.log(result);

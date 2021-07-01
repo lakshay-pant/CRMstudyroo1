@@ -230,6 +230,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			offices,
 			taskId,
 			studentId,
+			userId,
 		} = req.body;
 
 		const { _id } = req.params;
@@ -248,6 +249,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			type,
 			taskId,
 			studentId,
+			userId,
 		});
 
 		if (result._id) {
