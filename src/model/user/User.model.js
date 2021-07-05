@@ -223,6 +223,111 @@ const updateUserStudentTaskDelete = (id1, id2) => {
 	});
 };
 
+const updateUserLeadTask = ({
+	_id,
+	statusNote,
+	taskStatus,
+	taskStartDate,
+	taskEndDate,
+	taskNote,
+	assignee,
+	taskCompleted,
+	taskEndTime,
+	taskStartTime,
+}) => {
+	return new Promise((resolve, reject) => {
+		try {
+			UserSchema.findOneAndUpdate(
+				{ _id },
+				{
+					status: 'Pending operator response',
+					$push: {
+						userLeadTasks: {
+							statusNote,
+							taskStatus,
+							taskStartDate,
+							taskEndDate,
+							taskNote,
+							assignee,
+							taskCompleted,
+							taskStartTime,
+							taskEndTime,
+						},
+					},
+				},
+				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+const updateUserTaskLead = (
+	id3,
+	{
+		statusNote,
+		taskStatus,
+		taskStartDate,
+		taskStartTime,
+		taskEndTime,
+		taskEndDate,
+		taskNote,
+		assignee,
+		taskCompleted,
+	}
+) => {
+	return new Promise((resolve, reject) => {
+		try {
+			UserSchema.findOneAndUpdate(
+				{ 'userLeadTasks._id': id3 },
+				{
+					$set: {
+						'userLeadTasks.$.statusNote': statusNote,
+						'userLeadTasks.$.taskStatus': taskStatus,
+						'userLeadTasks.$.taskStartDate': taskStartDate,
+						'userLeadTasks.$.taskStartTime': taskStartTime,
+						'userLeadTasks.$.taskEndTime': taskEndTime,
+						'userLeadTasks.$.taskEndDate': taskEndDate,
+						'userLeadTasks.$.taskNote': taskNote,
+						'userLeadTasks.$.assignee': assignee,
+						'userLeadTasks.$.taskCompleted': taskCompleted,
+					},
+				},
+				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+const updateUserLeadTaskDelete = (id1, id2) => {
+	return new Promise((resolve, reject) => {
+		try {
+			LeadSchema.findByIdAndUpdate(
+				id1,
+				{
+					$pull: {
+						userLeadTasks: {
+							_id: id2,
+						},
+					},
+				},
+				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 module.exports = {
 	insertUser,
 	getUserByEmail,
@@ -234,4 +339,7 @@ module.exports = {
 	updateUserStudentTask,
 	updateUserTaskStudent,
 	updateUserStudentTaskDelete,
+	updateUserLeadTask,
+	updateUserTaskLead,
+	updateUserLeadTaskDelete,
 };

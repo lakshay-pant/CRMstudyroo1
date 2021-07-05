@@ -13,6 +13,9 @@ const {
 	updateUserStudentTask,
 	updateUserTaskStudent,
 	updateUserStudentTaskDelete,
+	updateUserLeadTask,
+	updateUserTaskLead,
+	updateUserLeadTaskDelete,
 } = require('../model/user/User.model');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt.helper');
 const { crateAccessJWT, crateRefreshJWT } = require('../helpers/jwt.helper');
@@ -398,6 +401,120 @@ router.delete('/:fruitName/:fruitColor', async (req, res) => {
 		res.json({
 			status: 'error',
 			message: 'Unable to delete student task from user',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//add lead task in user schema
+
+router.put('leadTask/:_id', userAuthorization, async (req, res) => {
+	try {
+		const {
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+			taskStartTime,
+			taskEndTime,
+		} = req.body;
+
+		const { _id } = req.params;
+		const clientId = req.userId;
+
+		const result = await updateUserLeadTask({
+			_id,
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+			taskEndTime,
+			taskStartTime,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'Lead task has been added into user',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to add lead task into user',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//update user lead task
+
+router.put('leadTask/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		var {
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskStartTime,
+			taskEndTime,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+		} = req.body;
+		const result = await updateUserTaskLead(color, {
+			statusNote,
+			taskStatus,
+			taskStartDate,
+			taskStartTime,
+			taskEndTime,
+			taskEndDate,
+			taskNote,
+			assignee,
+			taskCompleted,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your leadtask of user updated',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update lead task of user',
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+//delete Lead task in user
+
+router.delete('leadTask/:fruitName/:fruitColor', async (req, res) => {
+	try {
+		const name = req.params.fruitName;
+		const color = req.params.fruitColor;
+		const result = await updateUserLeadTaskDelete(name, color);
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your user leadtask message deleted',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to delete user lead task',
 		});
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });

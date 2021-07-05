@@ -70,7 +70,7 @@ router.post('/', userAuthorization, async (req, res) => {
 	}
 });
 // Get all tasks
-router.get('/ge', userAuthorization, async (req, res) => {
+router.get('/', userAuthorization, async (req, res) => {
 	try {
 		const userId = req.userId;
 		const result = await getTasks();
@@ -108,10 +108,6 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 
 	try {
 		const _id = req.params;
-		console.log(
-			'clientIdclientIdclientIdclientIdclientIdclientIdclientIdclientId',
-			_id
-		);
 
 		var {
 			taskName,
