@@ -10,6 +10,7 @@ const {
 	getAllUsersLeadById,
 	updateLeadTaskDelete,
 	updateTaskLead,
+	getLeadById,
 } = require('../model/leads/Lead.model');
 const {
 	userAuthorization,
@@ -153,7 +154,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			leadLocationStatus,
 		} = req.body;
 
-		const userProf = await getLeadById(_id, clientId);
+		const userProf = await getLeadById(_id);
 		userProf.leadFirstName = leadFirstName
 			? leadFirstName
 			: userProf.leadFirstName;
@@ -255,6 +256,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskCompleted,
 			taskStartTime,
 			taskEndTime,
+			leadTaskId,
 		} = req.body;
 
 		const { _id } = req.params;
@@ -271,6 +273,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskCompleted,
 			taskEndTime,
 			taskStartTime,
+			leadTaskId,
 		});
 
 		if (result._id) {

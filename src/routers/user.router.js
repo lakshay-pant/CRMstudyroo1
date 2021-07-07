@@ -290,7 +290,7 @@ router.get('/:_id', async (req, res) => {
 
 //put student task in user
 
-router.put('/:_id', userAuthorization, async (req, res) => {
+router.put('/:_id', async (req, res) => {
 	try {
 		const {
 			taskName,
@@ -306,6 +306,8 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			studentId,
 			userId,
 		} = req.body;
+
+		console.log('hi');
 
 		const { _id } = req.params;
 		const clientId = req.userId;
@@ -401,53 +403,6 @@ router.delete('/:fruitName/:fruitColor', async (req, res) => {
 		res.json({
 			status: 'error',
 			message: 'Unable to delete student task from user',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
-	}
-});
-
-//add lead task in user schema
-
-router.put('leadTask/:_id', userAuthorization, async (req, res) => {
-	try {
-		const {
-			statusNote,
-			taskStatus,
-			taskStartDate,
-			taskEndDate,
-			taskNote,
-			assignee,
-			taskCompleted,
-			taskStartTime,
-			taskEndTime,
-		} = req.body;
-
-		const { _id } = req.params;
-		const clientId = req.userId;
-
-		const result = await updateUserLeadTask({
-			_id,
-			statusNote,
-			taskStatus,
-			taskStartDate,
-			taskEndDate,
-			taskNote,
-			assignee,
-			taskCompleted,
-			taskEndTime,
-			taskStartTime,
-		});
-
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'Lead task has been added into user',
-			});
-		}
-		res.json({
-			status: 'error',
-			message: 'Unable to add lead task into user',
 		});
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });

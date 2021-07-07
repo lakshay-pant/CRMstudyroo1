@@ -72,6 +72,7 @@ const updateLeadTask = ({
 	taskCompleted,
 	taskEndTime,
 	taskStartTime,
+	leadTaskId,
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -90,6 +91,7 @@ const updateLeadTask = ({
 							taskCompleted,
 							taskStartTime,
 							taskEndTime,
+							leadTaskId,
 						},
 					},
 				},
@@ -166,6 +168,18 @@ const updateTaskLead = (
 	});
 };
 
+const getLeadById = (_id) => {
+	return new Promise((resolve, reject) => {
+		try {
+			LeadSchema.findOne({ _id })
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 module.exports = {
 	insertLead,
 	getLeads,
@@ -175,4 +189,5 @@ module.exports = {
 	getAllUsersLeadById,
 	updateLeadTaskDelete,
 	updateTaskLead,
+	getLeadById,
 };

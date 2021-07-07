@@ -122,6 +122,12 @@ const UserSchema = new Schema({
 
 				required: true,
 			},
+			leadTaskUserId: {
+				type: String,
+			},
+			userId: {
+				type: String,
+			},
 			taskStartDate: {
 				type: String,
 				maxlength: 1000,
