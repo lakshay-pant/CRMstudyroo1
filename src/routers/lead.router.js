@@ -99,7 +99,7 @@ router.get('/', userAuthorization, async (req, res) => {
 });
 
 //Get all leads
-router.get('/all-leads', async (req, res) => {
+router.get('/all-leads', userAuthorization, async (req, res) => {
 	try {
 		const result = await getAllLeads();
 
@@ -112,7 +112,7 @@ router.get('/all-leads', async (req, res) => {
 	}
 });
 
-// Get specific student by id of any user
+// Get specific lead by id of any user
 
 router.get('/:_id', async (req, res) => {
 	try {
@@ -200,7 +200,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 
 //updateLeadTask
 
-router.put('/:fruitName/:fruitColor', async (req, res) => {
+router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 	try {
 		const name = req.params.fruitName;
 		const color = req.params.fruitColor;
@@ -212,7 +212,7 @@ router.put('/:fruitName/:fruitColor', async (req, res) => {
 			taskEndTime,
 			taskEndDate,
 			taskNote,
-			assignee,
+
 			taskCompleted,
 		} = req.body;
 		const result = await updateTaskLead(color, {
@@ -223,7 +223,7 @@ router.put('/:fruitName/:fruitColor', async (req, res) => {
 			taskEndTime,
 			taskEndDate,
 			taskNote,
-			assignee,
+
 			taskCompleted,
 		});
 
@@ -256,7 +256,8 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskCompleted,
 			taskStartTime,
 			taskEndTime,
-			leadTaskId,
+			leadTaskUserId,
+			userId,
 		} = req.body;
 
 		const { _id } = req.params;
@@ -273,7 +274,8 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			taskCompleted,
 			taskEndTime,
 			taskStartTime,
-			leadTaskId,
+			leadTaskUserId,
+			userId,
 		});
 
 		if (result._id) {
@@ -293,29 +295,33 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 
 //delete lead task
 
-router.delete('/:fruitName/:fruitColor', async (req, res) => {
-	try {
-		const name = req.params.fruitName;
-		const color = req.params.fruitColor;
-		const result = await updateLeadTaskDelete(name, color);
+router.delete(
+	'/:fruitName/:fruitColor',
+	userAuthorization,
+	async (req, res) => {
+		try {
+			const name = req.params.fruitName;
+			const color = req.params.fruitColor;
+			const result = await updateLeadTaskDelete(name, color);
 
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'your leadtask message deleted',
+			if (result._id) {
+				return res.json({
+					status: 'success',
+					message: 'your leadtask message deleted',
+				});
+			}
+			res.json({
+				status: 'error',
+				message: 'Unable to update your message please try again later',
 			});
+		} catch (error) {
+			res.json({ status: 'error', message: error.message });
 		}
-		res.json({
-			status: 'error',
-			message: 'Unable to update your message please try again later',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
 	}
-});
+);
 
 // Delete a Lead record
-router.delete('/:_id', async (req, res) => {
+router.delete('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 

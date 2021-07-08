@@ -72,7 +72,8 @@ const updateLeadTask = ({
 	taskCompleted,
 	taskEndTime,
 	taskStartTime,
-	leadTaskId,
+	leadTaskUserId,
+	userId,
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -91,7 +92,8 @@ const updateLeadTask = ({
 							taskCompleted,
 							taskStartTime,
 							taskEndTime,
-							leadTaskId,
+							leadTaskUserId,
+							userId,
 						},
 					},
 				},
@@ -137,7 +139,7 @@ const updateTaskLead = (
 		taskEndTime,
 		taskEndDate,
 		taskNote,
-		assignee,
+
 		taskCompleted,
 	}
 ) => {
@@ -154,7 +156,6 @@ const updateTaskLead = (
 						'leadTasks.$.taskEndTime': taskEndTime,
 						'leadTasks.$.taskEndDate': taskEndDate,
 						'leadTasks.$.taskNote': taskNote,
-						'leadTasks.$.assignee': assignee,
 						'leadTasks.$.taskCompleted': taskCompleted,
 					},
 				},

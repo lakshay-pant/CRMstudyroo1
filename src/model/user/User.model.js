@@ -286,7 +286,7 @@ const updateUserTaskLead = (
 	return new Promise((resolve, reject) => {
 		try {
 			UserSchema.findOneAndUpdate(
-				{ 'userLeadTasks._id': id3 },
+				{ 'userLeadTasks.leadTaskUserId': id3 },
 				{
 					$set: {
 						'userLeadTasks.$.statusNote': statusNote,
@@ -312,12 +312,12 @@ const updateUserTaskLead = (
 const updateUserLeadTaskDelete = (id1, id2) => {
 	return new Promise((resolve, reject) => {
 		try {
-			LeadSchema.findByIdAndUpdate(
+			UserSchema.findByIdAndUpdate(
 				id1,
 				{
 					$pull: {
 						userLeadTasks: {
-							_id: id2,
+							leadTaskUserId: id2,
 						},
 					},
 				},

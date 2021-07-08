@@ -82,7 +82,10 @@ const LeadSchema = new Schema({
 
 				required: true,
 			},
-			leadTaskId: {
+			leadTaskUserId: {
+				type: String,
+			},
+			userId: {
 				type: String,
 			},
 			taskStartDate: {

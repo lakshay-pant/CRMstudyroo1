@@ -60,7 +60,7 @@ router.get('/', userAuthorization, async (req, res) => {
 });
 
 // Get all users
-router.get('/all-users', async (req, res) => {
+router.get('/all-users', userAuthorization, async (req, res) => {
 	try {
 		const result = await getAllUsers();
 
@@ -273,7 +273,7 @@ router.delete('/logout', userAuthorization, async (req, res) => {
 	});
 });
 
-router.get('/:_id', async (req, res) => {
+router.get('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 
@@ -290,7 +290,7 @@ router.get('/:_id', async (req, res) => {
 
 //put student task in user
 
-router.put('/:_id', async (req, res) => {
+router.put('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const {
 			taskName,
@@ -345,7 +345,7 @@ router.put('/:_id', async (req, res) => {
 
 //update Student Task
 
-router.put('/:fruitName/:fruitColor', async (req, res) => {
+router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 	try {
 		const name = req.params.fruitName;
 		const color = req.params.fruitColor;
@@ -388,92 +388,29 @@ router.put('/:fruitName/:fruitColor', async (req, res) => {
 
 //delete task of student in user
 
-router.delete('/:fruitName/:fruitColor', async (req, res) => {
-	try {
-		const name = req.params.fruitName;
-		const color = req.params.fruitColor;
-		const result = await updateUserStudentTaskDelete(name, color);
+router.delete(
+	'/:fruitName/:fruitColor',
+	userAuthorization,
+	async (req, res) => {
+		try {
+			const name = req.params.fruitName;
+			const color = req.params.fruitColor;
+			const result = await updateUserStudentTaskDelete(name, color);
 
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'Student task in user has been deleted',
+			if (result._id) {
+				return res.json({
+					status: 'success',
+					message: 'Student task in user has been deleted',
+				});
+			}
+			res.json({
+				status: 'error',
+				message: 'Unable to delete student task from user',
 			});
+		} catch (error) {
+			res.json({ status: 'error', message: error.message });
 		}
-		res.json({
-			status: 'error',
-			message: 'Unable to delete student task from user',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
 	}
-});
-
-//update user lead task
-
-router.put('leadTask/:fruitName/:fruitColor', async (req, res) => {
-	try {
-		const name = req.params.fruitName;
-		const color = req.params.fruitColor;
-		var {
-			statusNote,
-			taskStatus,
-			taskStartDate,
-			taskStartTime,
-			taskEndTime,
-			taskEndDate,
-			taskNote,
-			assignee,
-			taskCompleted,
-		} = req.body;
-		const result = await updateUserTaskLead(color, {
-			statusNote,
-			taskStatus,
-			taskStartDate,
-			taskStartTime,
-			taskEndTime,
-			taskEndDate,
-			taskNote,
-			assignee,
-			taskCompleted,
-		});
-
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'your leadtask of user updated',
-			});
-		}
-		res.json({
-			status: 'error',
-			message: 'Unable to update lead task of user',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
-	}
-});
-
-//delete Lead task in user
-
-router.delete('leadTask/:fruitName/:fruitColor', async (req, res) => {
-	try {
-		const name = req.params.fruitName;
-		const color = req.params.fruitColor;
-		const result = await updateUserLeadTaskDelete(name, color);
-
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'your user leadtask message deleted',
-			});
-		}
-		res.json({
-			status: 'error',
-			message: 'Unable to delete user lead task',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
-	}
-});
+);
 
 module.exports = router;

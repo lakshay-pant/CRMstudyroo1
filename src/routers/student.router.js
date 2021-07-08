@@ -184,7 +184,7 @@ router.get('/', userAuthorization, async (req, res) => {
 });
 
 //Get all students
-router.get('/all-students', async (req, res) => {
+router.get('/all-students', userAuthorization, async (req, res) => {
 	try {
 		const result = await getAllStudents();
 
@@ -269,7 +269,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 
 //update Student Task
 
-router.put('/:fruitName/:fruitColor', async (req, res) => {
+router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 	try {
 		const name = req.params.fruitName;
 		const color = req.params.fruitColor;
@@ -312,7 +312,7 @@ router.put('/:fruitName/:fruitColor', async (req, res) => {
 
 //update all student
 
-router.patch('/:_id', async (req, res) => {
+router.patch('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 
@@ -500,29 +500,33 @@ router.patch('/:_id', async (req, res) => {
 
 //delete Student Task
 
-router.delete('/:fruitName/:fruitColor', async (req, res) => {
-	try {
-		const name = req.params.fruitName;
-		const color = req.params.fruitColor;
-		const result = await updateStudentTaskDelete(name, color);
+router.delete(
+	'/:fruitName/:fruitColor',
+	userAuthorization,
+	async (req, res) => {
+		try {
+			const name = req.params.fruitName;
+			const color = req.params.fruitColor;
+			const result = await updateStudentTaskDelete(name, color);
 
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'Student task has been deleted',
+			if (result._id) {
+				return res.json({
+					status: 'success',
+					message: 'Student task has been deleted',
+				});
+			}
+			res.json({
+				status: 'error',
+				message: 'Unable to delete student task',
 			});
+		} catch (error) {
+			res.json({ status: 'error', message: error.message });
 		}
-		res.json({
-			status: 'error',
-			message: 'Unable to delete student task',
-		});
-	} catch (error) {
-		res.json({ status: 'error', message: error.message });
 	}
-});
+);
 
 // Delete a student record
-router.delete('/:_id', async (req, res) => {
+router.delete('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 

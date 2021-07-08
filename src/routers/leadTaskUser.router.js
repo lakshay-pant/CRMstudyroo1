@@ -123,7 +123,7 @@ router.delete('/:fruitName/:fruitColor', async (req, res) => {
 		if (result._id) {
 			return res.json({
 				status: 'success',
-				message: 'your user leadtask message deleted',
+				message: 'your user leadtask message deletedNKNKK',
 			});
 		}
 		res.json({
