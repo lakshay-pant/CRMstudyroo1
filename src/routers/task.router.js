@@ -5,6 +5,7 @@ const {
 	getTasks,
 	getTaskById,
 	deleteTask,
+	getUserNameById,
 } = require('../model/tasks/Tasks.model');
 const {
 	userAuthorization,
@@ -34,10 +35,12 @@ router.post('/', userAuthorization, async (req, res) => {
 
 	try {
 		const userid = req.userId;
+		const userNameTask = await getUserNameById(userid);
 
 		const newUserObj = {
 			clientId: userid,
 			taskName,
+			userName: userNameTask.firstName + " "+userNameTask.lastName,
 			type,
 			dueDate,
 			taskStatus,
@@ -104,8 +107,6 @@ router.get('/:_id', userAuthorization, async (req, res) => {
 //update task record
 
 router.patch('/:_id', userAuthorization, async (req, res) => {
-	console.log('resresresresresresresresresres', res);
-
 	try {
 		const _id = req.params;
 
@@ -135,12 +136,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 		taskProf.offices = offices ? offices : taskProf.offices;
 		const result = await insertTask(taskProf);
 		res.json({ message: 'task updated', result });
-		console.log(
-			'resultresultresultresultresultresultresultresultresultresultresult',
-			result
-		);
 	} catch (error) {
-		console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', error);
 		res.json({ status: 'error', message: error.message });
 	}
 });
@@ -159,7 +155,6 @@ router.delete('/:_id', userAuthorization, async (req, res) => {
 			result,
 		});
 	} catch (error) {
-		console.log('errorerrorerrorerrorerrorerror', error);
 		res.json({ status: 'error', message: error.message });
 	}
 });

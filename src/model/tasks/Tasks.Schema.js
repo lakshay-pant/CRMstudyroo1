@@ -14,6 +14,10 @@ const taskSchema = new Schema({
 	userId: {
 		type: String,
 	},
+	userName: {
+		type: String,
+		maxlength: 50,
+	},
 	taskName: {
 		type: String,
 		maxlength: 50,

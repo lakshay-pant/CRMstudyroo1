@@ -1,4 +1,5 @@
 const { StudentSchema } = require('./Student.schema');
+const { UserSchema } = require('../user/User.schema');
 
 const insertStudent = (studentObj) => {
 	return new Promise((resolve, reject) => {
@@ -52,7 +53,7 @@ const getStudentById = (_id, clientId) => {
 const getStudentAllUsersById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.findOne({ _id })
+			UserSchema.findOne({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {

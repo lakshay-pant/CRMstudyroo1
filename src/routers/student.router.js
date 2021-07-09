@@ -92,7 +92,7 @@ router.post('/', userAuthorization, async (req, res) => {
 
 		const newUserObj = {
 			clientId: userId,
-			userName: userName,
+			userName: userName.firstName,
 			firstName,
 			middleName,
 			lastName,
