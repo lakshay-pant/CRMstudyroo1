@@ -53,7 +53,7 @@ const getStudentById = (_id, clientId) => {
 const getStudentAllUsersById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
-			UserSchema.findOne({ _id })
+			StudentSchema.findOne({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {
