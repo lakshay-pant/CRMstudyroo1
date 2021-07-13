@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const leadTaskSchema = new Schema({
+const LeadTaskSchema = new Schema({
 	statusNote: {
 		type: String,
 		maxlength: 50,
-		required: true,
+	},
+	clientId: {
+		type: Schema.Types.ObjectId,
 	},
 	taskStatus: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	leadTaskUserId: {
 		type: String,
@@ -22,38 +22,26 @@ const leadTaskSchema = new Schema({
 	taskStartDate: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	taskStartTime: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	taskEndTime: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	taskEndDate: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	taskNote: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	assignee: {
 		type: String,
 		maxlength: 1000,
-
-		required: true,
 	},
 	taskCompleted: {
 		type: Boolean,
@@ -68,5 +56,5 @@ const leadTaskSchema = new Schema({
 });
 
 module.exports = {
-	taskSchema: mongoose.model('leadtask', leadTaskSchema),
+	LeadTaskSchema: mongoose.model('leadtask', LeadTaskSchema),
 };
