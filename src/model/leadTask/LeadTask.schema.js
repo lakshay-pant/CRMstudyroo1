@@ -9,11 +9,15 @@ const LeadTaskSchema = new Schema({
 	clientId: {
 		type: Schema.Types.ObjectId,
 	},
+
 	taskStatus: {
 		type: String,
 		maxlength: 1000,
 	},
 	leadTaskUserId: {
+		type: String,
+	},
+	userName: {
 		type: String,
 	},
 	userId: {

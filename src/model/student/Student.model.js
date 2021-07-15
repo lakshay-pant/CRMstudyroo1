@@ -62,6 +62,18 @@ const getStudentAllUsersById = (_id) => {
 	});
 };
 
+const getUserNameById = (_id) => {
+	return new Promise((resolve, reject) => {
+		try {
+			UserSchema.findOne({ _id })
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 const deleteStudent = ({ _id, clientId }) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -192,4 +204,5 @@ module.exports = {
 	updateStudentTask,
 	updateStudentTaskDelete,
 	updateTaskStudent,
+	getUserNameById,
 };

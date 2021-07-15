@@ -60,6 +60,10 @@ const taskSchema = new Schema({
 		maxlength: 50,
 		required: true,
 	},
+	addedAt: {
+		type: Date,
+		default: Date.now(),
+	},
 });
 
 module.exports = {

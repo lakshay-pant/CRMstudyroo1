@@ -5,6 +5,8 @@ const {
 	getLeadTasks,
 	getLeadTaskById,
 	deleteLeadTask,
+	getUserNameById,
+	deleteAllLeadTask,
 } = require('../model/leadTask/LeadTask.model');
 const {
 	userAuthorization,
@@ -32,10 +34,12 @@ router.post('/', userAuthorization, async (req, res) => {
 
 	try {
 		const userid = req.userId;
+		const userNameTask = await getUserNameById(userid);
 
 		const newUserObj = {
 			clientId: userid,
 			statusNote,
+			userName: userNameTask.firstName + ' ' + userNameTask.lastName,
 			taskStatus,
 			taskStartDate,
 			taskEndDate,
@@ -114,7 +118,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			taskStartTime,
 			taskEndTime,
 		} = req.body;
-		const taskProf = await getLeadTaskById(_id);
+		var taskProf = await getLeadTaskById(_id);
 		taskProf.statusNote = statusNote ? statusNote : taskProf.statusNote;
 		taskProf.taskStartDate = taskStartDate
 			? taskStartDate
@@ -150,6 +154,24 @@ router.delete('/:_id', userAuthorization, async (req, res) => {
 		return res.json({
 			status: 'success',
 			message: 'The Lead task  has been deleted',
+			result,
+		});
+	} catch (error) {
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+// Delete all lead task
+router.delete('/', userAuthorization, async (req, res) => {
+	try {
+		const _id = req.params;
+		// const _id = req.userId;
+
+		const result = await deleteAllLeadTask();
+
+		return res.json({
+			status: 'success',
+			message: 'All Lead task  has been deleted',
 			result,
 		});
 	} catch (error) {

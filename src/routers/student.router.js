@@ -13,12 +13,11 @@ const {
 	updateStudentTask,
 	updateStudentTaskDelete,
 	updateTaskStudent,
+	getUserNameById,
 } = require('../model/student/Student.model');
 const {
 	userAuthorization,
 } = require('../middlewares/authorization.middleware');
-
-const { getUserNameById } = require('../model/user/User.model');
 
 router.all('/', (req, res, next) => {
 	// res.json({ message: "return form ticket router" });
@@ -88,7 +87,7 @@ router.post('/', userAuthorization, async (req, res) => {
 
 	try {
 		const userId = req.userId;
-		const userName = await getStudentAllUsersById(userId);
+		const userName = await getUserNameById(userId);
 
 		const newUserObj = {
 			clientId: userId,
