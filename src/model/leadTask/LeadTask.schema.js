@@ -17,6 +17,9 @@ const LeadTaskSchema = new Schema({
 	leadTaskUserId: {
 		type: String,
 	},
+	leadUserId: {
+		type: String,
+	},
 	userName: {
 		type: String,
 	},

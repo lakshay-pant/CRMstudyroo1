@@ -62,6 +62,18 @@ const deleteAllLeadTask = () => {
 	});
 };
 
+const deleteManyLeadTask = (_id) => {
+	return new Promise((resolve, reject) => {
+		try {
+			LeadTaskSchema.deleteMany({ leadUserId: _id })
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 const getUserNameById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
@@ -81,4 +93,5 @@ module.exports = {
 	deleteLeadTask,
 	getUserNameById,
 	deleteAllLeadTask,
+	deleteManyLeadTask,
 };
