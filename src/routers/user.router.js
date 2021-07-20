@@ -79,11 +79,7 @@ router.post('/', newUserValidation, async (req, res) => {
 		req.body;
 
 	// Mongoose Model.findOne()
-	UserSchema.findOne({ email: email }).then((user) => {
-		if (user) {
-			res.json({ status: 'error', message: 'Email already Exist!!' });
-		}
-	});
+
 	try {
 		//hash password
 		const hashedPass = await hashPassword(password);
@@ -99,23 +95,10 @@ router.post('/', newUserValidation, async (req, res) => {
 		};
 
 		const result = await insertUser(newUserObj);
-		console.log('_____________________________aaaaaaaaaaaaa', result);
-
-		await emailProcessor({
-			email,
-			type: 'new-user-confirmation-required',
-			verificationLink: verificationURL + result._id + '/' + email,
-		});
 
 		res.json({ status: 'success', message: 'New user created', result });
 	} catch (error) {
-		console.log(error);
-		let message =
-			'Unable to create new user at the moment, Please try agin or contact administration!';
-		if (error.message.includes('duplicate key error collection')) {
-			message = 'this email already has an account';
-		}
-		res.json({ status: 'error', message });
+		res.json({ status: 'error', message: error });
 	}
 });
 

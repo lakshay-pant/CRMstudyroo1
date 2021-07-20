@@ -191,7 +191,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 
 		const result = await insertLead(userProf);
 
-		res.json({ message: 'Lead updated', result });
+		res.json({ status: 'success', message: 'Lead updated', result });
 	} catch (error) {
 		console.log(error);
 		res.json({ status: 'error', message: error.message });

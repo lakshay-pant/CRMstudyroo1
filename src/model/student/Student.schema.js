@@ -287,7 +287,6 @@ const StudentSchema = new Schema({
 			offices: {
 				type: String,
 				maxlength: 50,
-				required: true,
 			},
 		},
 	],

@@ -40,7 +40,7 @@ router.post('/', userAuthorization, async (req, res) => {
 		const newUserObj = {
 			clientId: userid,
 			taskName,
-			userName: userNameTask.firstName + " "+userNameTask.lastName,
+			userName: userNameTask.firstName + ' ' + userNameTask.lastName,
 			type,
 			dueDate,
 			taskStatus,
@@ -135,7 +135,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 		taskProf.userGroup = userGroup ? userGroup : taskProf.userGroup;
 		taskProf.offices = offices ? offices : taskProf.offices;
 		const result = await insertTask(taskProf);
-		res.json({ message: 'task updated', result });
+		res.json({ status: 'success', message: 'task updated', result });
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });
 	}

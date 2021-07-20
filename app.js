@@ -25,6 +25,7 @@ mongoose.connect(process.env.MONGO_URL, {
 	useUnifiedTopology: true,
 	useFindAndModify: true,
 	useCreateIndex: true,
+	autoIndex: true,
 });
 
 if (process.env.NODE_ENV !== 'dev') {
