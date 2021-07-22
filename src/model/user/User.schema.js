@@ -51,6 +51,9 @@ const UserSchema = new Schema({
 			default: Date.now(),
 		},
 	},
+	avatar: {
+		type: Buffer,
+	},
 	isVerified: {
 		type: Boolean,
 		required: true,
@@ -178,6 +181,16 @@ const UserSchema = new Schema({
 		},
 	],
 });
+
+UserSchema.methods.toJSON = function () {
+	const user = this;
+	const userObject = user.toObject();
+
+	delete userObject.password;
+	delete userObject.refreshJWT;
+	delete userObject.avatar;
+	return userObject;
+};
 
 module.exports = {
 	UserSchema: mongoose.model('User', UserSchema),

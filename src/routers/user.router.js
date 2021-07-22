@@ -1,5 +1,6 @@
 const express = require('express');
 const { route, post } = require('./student.router');
+const multer = require('multer');
 const router = express.Router();
 
 const {
@@ -40,6 +41,7 @@ const { deleteJWT } = require('../helpers/redis.helper');
 
 const { UserSchema } = require('../model/user/User.schema');
 const { date } = require('joi');
+const sharp = require('sharp');
 
 const verificationURL = 'http://localhost:3000/verification/';
 
@@ -395,5 +397,68 @@ router.delete(
 		}
 	}
 );
+
+const upload = multer({
+	limits: {
+		fileSize: 5000000,
+	},
+	fileFilter(req, file, cb) {
+		if (!file.originalname.match(/.(png|jpg|jpeg)$/)) {
+			return cb(new Error('Please upload an Image'));
+		}
+		cb(undefined, true);
+	},
+});
+
+router.post(
+	'/me/avatar',
+	userAuthorization,
+	upload.single('avatar'),
+	async (req, res) => {
+		const _id = req.userId;
+
+		const userProf = await getUserById(_id);
+		const buffer = await sharp(req.file.buffer)
+			.resize({ width: 150, height: 150 })
+			.png()
+			.toBuffer();
+		userProf.avatar = buffer;
+		await userProf.save();
+		res.send();
+	},
+	(error, req, res, next) => {
+		res.status(400).send({ error: error.message });
+	}
+);
+
+router.delete(
+	'/delete/me/avatar',
+	userAuthorization,
+	async (req, res) => {
+		console.log('heyojjj');
+		const _id = req.userId;
+
+		const userPro = await getUserById(_id);
+		userPro.avatar = undefined;
+		await userPro.save();
+		res.send();
+	},
+	(error, req, res, next) => {
+		res.status(400).send({ error: error.message });
+	}
+);
+
+router.get('/get/:id/avatar', async (req, res) => {
+	try {
+		const user = await getUserById(req.params.id);
+		if (!user || !user.avatar) {
+			throw new Error();
+		}
+		res.set('Content-Type', 'image/png');
+		res.send(user.avatar);
+	} catch (e) {
+		res.status(404).send();
+	}
+});
 
 module.exports = router;
