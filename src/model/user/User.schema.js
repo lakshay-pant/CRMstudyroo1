@@ -188,7 +188,7 @@ UserSchema.methods.toJSON = function () {
 
 	delete userObject.password;
 	delete userObject.refreshJWT;
-	delete userObject.avatar;
+
 	return userObject;
 };
 

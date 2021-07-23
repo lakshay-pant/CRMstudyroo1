@@ -423,11 +423,21 @@ router.post(
 			.png()
 			.toBuffer();
 		userProf.avatar = buffer;
-		await userProf.save();
-		res.send();
+		await userProf
+			.save()
+			.then((doc) => {
+				res.status(201).json({
+					status: 'success',
+					message: 'Profile Image Updated Successfully',
+					results: doc,
+				});
+			})
+			.catch((err) => {
+				res.json({ status: 'error', message: err.message });
+			});
 	},
 	(error, req, res, next) => {
-		res.status(400).send({ error: error.message });
+		res.status(400).send({ status: 'error', error: error.message });
 	}
 );
 
@@ -440,11 +450,21 @@ router.delete(
 
 		const userPro = await getUserById(_id);
 		userPro.avatar = undefined;
-		await userPro.save();
-		res.send();
+		await userPro
+			.save()
+			.then((doc) => {
+				res.status(201).json({
+					status: 'success',
+					message: 'Profile Image deleted Successfully',
+					results: doc,
+				});
+			})
+			.catch((err) => {
+				res.json({ status: 'error', message: err.message });
+			});
 	},
 	(error, req, res, next) => {
-		res.status(400).send({ error: error.message });
+		res.status(400).send({ status: 'error', message: err.message });
 	}
 );
 
@@ -457,7 +477,7 @@ router.get('/get/:id/avatar', async (req, res) => {
 		res.set('Content-Type', 'image/png');
 		res.send(user.avatar);
 	} catch (e) {
-		res.status(404).send();
+		res.status(404).send({ status: 'error', message: e.message });
 	}
 });
 
