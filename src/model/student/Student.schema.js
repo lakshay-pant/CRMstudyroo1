@@ -237,6 +237,12 @@ const StudentSchema = new Schema({
 		type: Date,
 		default: Date.now(),
 	},
+	passPortImage: {
+		type: String,
+	},
+	certificateImage: {
+		type: String,
+	},
 	studentTasks: [
 		{
 			taskId: {

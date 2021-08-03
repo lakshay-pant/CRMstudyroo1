@@ -77,11 +77,21 @@ router.get('/all-users', userAuthorization, async (req, res) => {
 // Create new user router
 
 router.post('/', newUserValidation, async (req, res) => {
-	const { firstName, lastName, email, password, birthdate, tele, gender } =
-		req.body;
+	const {
+		firstName,
+		lastName,
+		email,
+		password,
+		birthdate,
+		tele,
+		gender,
+		groupUser,
+		officeName,
+		position,
+	} = req.body;
 
 	// Mongoose Model.findOne()
-
+	console.log('hey');
 	try {
 		//hash password
 		const hashedPass = await hashPassword(password);
@@ -93,6 +103,9 @@ router.post('/', newUserValidation, async (req, res) => {
 			birthdate,
 			tele,
 			gender,
+			officeName,
+			groupUser,
+			position,
 			password: hashedPass,
 		};
 
@@ -212,8 +225,18 @@ router.patch('/reset-password', updatePassValidation, async (req, res) => {
 router.patch('/me', userAuthorization, async (req, res) => {
 	try {
 		const _id = req.userId;
-		var { firstName, lastName, email, password, birthdate, tele, gender } =
-			req.body;
+		var {
+			firstName,
+			lastName,
+			email,
+			password,
+			birthdate,
+			tele,
+			gender,
+			officeName,
+			position,
+			groupUser,
+		} = req.body;
 
 		const userProf = await getUserById(_id);
 		userProf.firstName = firstName ? firstName : userProf.firstName;
@@ -222,13 +245,16 @@ router.patch('/me', userAuthorization, async (req, res) => {
 		userProf.birthdate = birthdate ? birthdate : userProf.birthdate;
 		userProf.tele = tele ? tele : userProf.tele;
 		userProf.gender = gender ? gender : userProf.gender;
+		userProf.officeName = officeName ? officeName : userProf.officeName;
+		userProf.groupUser = groupUser ? groupUser : userProf.groupUser;
+		userProf.position = position ? position : userProf.position;
 		userProf.password = password
 			? await hashPassword(password)
 			: userProf.password;
 
 		const result = await insertUser(userProf);
 
-		res.json({ message: 'user updated', result });
+		res.json({ status: 'success', message: 'user updated', result });
 	} catch (error) {
 		console.log(error);
 		res.json({ status: 'error', message: error.message });
@@ -445,7 +471,6 @@ router.delete(
 	'/delete/me/avatar',
 	userAuthorization,
 	async (req, res) => {
-		console.log('heyojjj');
 		const _id = req.userId;
 
 		const userPro = await getUserById(_id);

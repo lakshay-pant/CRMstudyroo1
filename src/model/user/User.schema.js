@@ -16,7 +16,6 @@ const UserSchema = new Schema({
 		type: String,
 		maxlength: 50,
 		required: true,
-		unique: true,
 	},
 	password: {
 		type: String,
@@ -30,15 +29,28 @@ const UserSchema = new Schema({
 		required: true,
 	},
 	tele: {
-		type: String,
+		type: Number,
 		maxlength: 50,
 		required: true,
+	},
+	position: {
+		type: String,
+		maxlength: 50,
+	},
+	officeName: {
+		type: String,
+		maxlength: 50,
+	},
+	groupUser: {
+		type: String,
+		maxlength: 50,
 	},
 	gender: {
 		type: String,
 		maxlength: 50,
 		required: true,
 	},
+
 	refreshJWT: {
 		token: {
 			type: String,

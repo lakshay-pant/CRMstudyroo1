@@ -33,7 +33,6 @@ const taskSchema = new Schema({
 	studentAssign: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	taskStatus: {
 		type: String,
@@ -43,7 +42,6 @@ const taskSchema = new Schema({
 	assignTo: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 
 	userGroup: {
@@ -53,7 +51,6 @@ const taskSchema = new Schema({
 	offices: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	type: {
 		type: String,
