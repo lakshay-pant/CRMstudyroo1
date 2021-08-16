@@ -132,8 +132,8 @@ const updateUserStudentTask = ({
 	studentAssign,
 	taskStatus,
 	assignTo,
-	userGroup,
-	offices,
+	userGroupOffice,
+
 	type,
 	taskId,
 	studentId,
@@ -153,8 +153,8 @@ const updateUserStudentTask = ({
 							studentAssign,
 							taskStatus,
 							assignTo,
-							userGroup,
-							offices,
+							userGroupOffice,
+
 							type,
 							taskId,
 							studentId,
@@ -163,6 +163,58 @@ const updateUserStudentTask = ({
 					},
 				},
 				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+const updateOfficeUserStudentTask = ({
+	taskName,
+	dueDate,
+	taskDetails,
+	studentAssign,
+	taskStatus,
+	assignTo,
+	userGroupOffice,
+
+	type,
+	taskId,
+	studentId,
+	userId,
+}) => {
+	return new Promise((resolve, reject) => {
+		try {
+			UserSchema.find(
+				{
+					userStudentTasks: {
+						$elemMatch: { userGroupOffice: userGroupOffice },
+					},
+				},
+
+				{
+					status: 'Pending operator response',
+					$push: {
+						userStudentTasks: {
+							taskName,
+							dueDate,
+							taskDetails,
+							studentAssign,
+							taskStatus,
+							assignTo,
+							userGroupOffice,
+
+							type,
+							taskId,
+							studentId,
+							userId,
+						},
+					},
+				},
+				{ multi: true, upsert: true }
 			)
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
@@ -345,4 +397,5 @@ module.exports = {
 	updateUserLeadTask,
 	updateUserTaskLead,
 	updateUserLeadTaskDelete,
+	updateOfficeUserStudentTask,
 };

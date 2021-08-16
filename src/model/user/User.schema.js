@@ -114,14 +114,9 @@ const UserSchema = new Schema({
 				required: true,
 			},
 
-			userGroup: {
+			userGroupOffice: {
 				type: String,
 				maxlength: 50,
-			},
-			offices: {
-				type: String,
-				maxlength: 50,
-				required: true,
 			},
 		},
 	],

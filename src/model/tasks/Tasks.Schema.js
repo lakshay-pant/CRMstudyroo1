@@ -44,14 +44,11 @@ const taskSchema = new Schema({
 		maxlength: 50,
 	},
 
-	userGroup: {
+	userGroupOffice: {
 		type: String,
 		maxlength: 50,
 	},
-	offices: {
-		type: String,
-		maxlength: 50,
-	},
+
 	type: {
 		type: String,
 		maxlength: 50,

@@ -17,6 +17,7 @@ const {
 	updateUserLeadTask,
 	updateUserTaskLead,
 	updateUserLeadTaskDelete,
+	updateOfficeUserStudentTask,
 } = require('../model/user/User.model');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt.helper');
 const { crateAccessJWT, crateRefreshJWT } = require('../helpers/jwt.helper');
@@ -299,6 +300,52 @@ router.get('/:_id', userAuthorization, async (req, res) => {
 	}
 });
 
+router.put('/gnd', userAuthorization, async (req, res) => {
+	try {
+		const {
+			taskName,
+			dueDate,
+			taskDetails,
+			studentAssign,
+			type,
+			taskStatus,
+			assignTo,
+			userGroupOffice,
+			taskId,
+			studentId,
+			userId,
+		} = req.body;
+
+		const result = await updateOfficeUserStudentTask({
+			taskName,
+			dueDate,
+			taskDetails,
+			studentAssign,
+			taskStatus,
+			assignTo,
+			userGroupOffice,
+			type,
+			taskId,
+			studentId,
+			userId,
+		});
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'your Student Task has been added to User office',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update student task to user office',
+		});
+
+		console.log('hello');
+	} catch (error) {
+		res.json({ status: 'errors', message: error.message });
+	}
+});
+
 //put student task in user
 
 router.put('/:_id', userAuthorization, async (req, res) => {
@@ -311,14 +358,11 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			type,
 			taskStatus,
 			assignTo,
-			userGroup,
-			offices,
+			userGroupOffice,
 			taskId,
 			studentId,
 			userId,
 		} = req.body;
-
-		console.log('hi');
 
 		const { _id } = req.params;
 		const clientId = req.userId;
@@ -331,14 +375,12 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			studentAssign,
 			taskStatus,
 			assignTo,
-			userGroup,
-			offices,
+			userGroupOffice,
 			type,
 			taskId,
 			studentId,
 			userId,
 		});
-
 		if (result._id) {
 			return res.json({
 				status: 'success',
@@ -349,10 +391,14 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			status: 'error',
 			message: 'Unable to update student task to user',
 		});
+
+		console.log('hello');
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });
 	}
 });
+
+//put task in user according to office
 
 //update Student Task
 
@@ -368,8 +414,7 @@ router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 			type,
 			taskStatus,
 
-			userGroup,
-			offices,
+			userGroupOffice,
 		} = req.body;
 		const result = await updateUserTaskStudent(color, {
 			taskName,
@@ -377,9 +422,7 @@ router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 			taskDetails,
 			type,
 			taskStatus,
-
-			userGroup,
-			offices,
+			userGroupOffice,
 		});
 
 		if (result._id) {

@@ -25,8 +25,7 @@ router.post('/', userAuthorization, async (req, res) => {
 		taskStatus,
 		studentAssign,
 		taskDetails,
-		userGroup,
-		offices,
+		userGroupOffice,
 		assignTo,
 		taskId,
 		studentId,
@@ -46,8 +45,7 @@ router.post('/', userAuthorization, async (req, res) => {
 			taskStatus,
 			taskDetails,
 			studentAssign,
-			userGroup,
-			offices,
+			userGroupOffice,
 			assignTo,
 			taskId,
 			studentId,
@@ -118,8 +116,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			taskDetails,
 			studentAssign,
 			assignTo,
-			userGroup,
-			offices,
+			userGroupOffice,
 		} = req.body;
 		const taskProf = await getTaskById(_id);
 		taskProf.taskName = taskName ? taskName : taskProf.taskName;
@@ -132,8 +129,10 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			? studentAssign
 			: taskProf.studentAssign;
 		taskProf.assignTo = assignTo ? assignTo : taskProf.assignTo;
-		taskProf.userGroup = userGroup ? userGroup : taskProf.userGroup;
-		taskProf.offices = offices ? offices : taskProf.offices;
+		taskProf.userGroupOffice = userGroupOffice
+			? userGroupOffice
+			: taskProf.userGroupOffice;
+
 		const result = await insertTask(taskProf);
 		res.json({ status: 'success', message: 'task updated', result });
 	} catch (error) {

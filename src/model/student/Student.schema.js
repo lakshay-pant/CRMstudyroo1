@@ -286,11 +286,7 @@ const StudentSchema = new Schema({
 				required: true,
 			},
 
-			userGroup: {
-				type: String,
-				maxlength: 50,
-			},
-			offices: {
+			userGroupOffice: {
 				type: String,
 				maxlength: 50,
 			},

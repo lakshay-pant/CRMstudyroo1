@@ -258,8 +258,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			type,
 			taskStatus,
 			assignTo,
-			userGroup,
-			offices,
+			userGroupOffice,
 			taskId,
 			studentId,
 			userId,
@@ -276,8 +275,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 			studentAssign,
 			taskStatus,
 			assignTo,
-			userGroup,
-			offices,
+			userGroupOffice,
 			type,
 			taskId,
 			studentId,
@@ -313,8 +311,7 @@ router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 			type,
 			taskStatus,
 
-			userGroup,
-			offices,
+			userGroupOffice,
 		} = req.body;
 		const result = await updateTaskStudent(color, {
 			taskName,
@@ -322,9 +319,7 @@ router.put('/:fruitName/:fruitColor', userAuthorization, async (req, res) => {
 			taskDetails,
 			type,
 			taskStatus,
-
-			userGroup,
-			offices,
+			userGroupOffice,
 		});
 
 		if (result._id) {
