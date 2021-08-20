@@ -38,10 +38,10 @@ const getAllStudents = () => {
 	});
 };
 
-const getStudentById = (_id, clientId) => {
+const getStudentById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.findOne({ _id, clientId })
+			StudentSchema.findOne({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {

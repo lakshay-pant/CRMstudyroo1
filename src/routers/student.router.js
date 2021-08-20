@@ -234,8 +234,7 @@ router.get('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 
-		const clientId = req.userId;
-		const result = await getStudentById(_id, clientId);
+		const result = await getStudentById(_id);
 
 		return res.json({
 			status: 'success',
