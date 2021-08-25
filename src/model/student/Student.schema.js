@@ -37,11 +37,11 @@ const StudentSchema = new Schema({
 	},
 
 	onShorePhone: {
-		type: Number,
+		type: String,
 		maxlength: 11,
 	},
 	offShorePhone: {
-		type: Number,
+		type: String,
 		maxlength: 11,
 	},
 	salesPipeline: {
@@ -273,17 +273,14 @@ const StudentSchema = new Schema({
 			studentAssign: {
 				type: String,
 				maxlength: 50,
-				required: true,
 			},
 			taskStatus: {
 				type: String,
 				maxlength: 1000,
-				required: true,
 			},
 			assignTo: {
 				type: String,
 				maxlength: 50,
-				required: true,
 			},
 
 			userGroupOffice: {
