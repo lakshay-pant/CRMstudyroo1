@@ -188,11 +188,9 @@ const updateOfficeUserStudentTask = ({
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			UserSchema.find(
+			UserSchema.update(
 				{
-					userStudentTasks: {
-						$elemMatch: { userGroupOffice: userGroupOffice },
-					},
+					userGroupOffice,
 				},
 
 				{

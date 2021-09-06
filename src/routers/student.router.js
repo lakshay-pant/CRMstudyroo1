@@ -176,8 +176,6 @@ router.post(
 				otherComments,
 				locationStatus,
 				referalSource,
-				passPortImage: req.file.path,
-				certificateImage: req.file.path,
 			};
 			const result = await insertStudent(newUserObj);
 			console.log(result);
@@ -284,7 +282,7 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 		if (result._id) {
 			return res.json({
 				status: 'success',
-				message: 'your Student Task has been added',
+				message: 'your Student Task has been added....',
 			});
 		}
 		res.json({
@@ -399,9 +397,65 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			otherComments,
 			locationStatus,
 			referalSource,
+			taxId,
+			lastVisited,
+			lastContacted,
+			departureFrom,
+			departureTo,
+			departureBooking,
+			departureBookingRef,
+			departureArrTime,
+			departureDate,
+			departureFlightNo,
+			departureAirline,
+			departureAirport,
+			arrivalDate,
+			arrivalFlightNo,
+			arrivalAirline,
+			arrivalAirport,
 		} = req.body;
 
 		const userProf = await getStudentAllUsersById(_id);
+		userProf.arrivalAirport = arrivalAirport
+			? arrivalAirport
+			: userProf.arrivalAirport;
+		userProf.arrivalAirline = arrivalAirline
+			? arrivalAirline
+			: userProf.arrivalAirline;
+		userProf.arrivalFlightNo = arrivalFlightNo
+			? arrivalFlightNo
+			: userProf.arrivalFlightNo;
+		userProf.arrivalDate = arrivalDate ? arrivalDate : userProf.arrivalDate;
+		userProf.departureAirport = departureAirport
+			? departureAirport
+			: userProf.departureAirport;
+		userProf.departureAirline = departureAirline
+			? departureAirline
+			: userProf.departureAirline;
+		userProf.departureFlightNo = departureFlightNo
+			? departureFlightNo
+			: userProf.departureFlightNo;
+		userProf.departureDate = departureDate
+			? departureDate
+			: userProf.departureDate;
+		userProf.departureArrTime = departureArrTime
+			? departureArrTime
+			: userProf.departureArrTime;
+		userProf.departureBookingRef = departureBookingRef
+			? departureBookingRef
+			: userProf.departureBookingRef;
+		userProf.departureBooking = departureBooking
+			? departureBooking
+			: userProf.departureBooking;
+		userProf.departureTo = departureTo ? departureTo : userProf.departureTo;
+		userProf.departureFrom = departureFrom
+			? departureFrom
+			: userProf.departureFrom;
+		userProf.lastContacted = lastContacted
+			? lastContacted
+			: userProf.lastContacted;
+		userProf.lastVisited = lastVisited ? lastVisited : userProf.lastVisited;
+		userProf.taxId = taxId ? taxId : userProf.taxId;
 		userProf.firstName = firstName ? firstName : userProf.firstName;
 		userProf.userName = userName ? userName : userProf.userName;
 		userProf.middleName = middleName ? middleName : userProf.middleName;

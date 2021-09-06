@@ -5,7 +5,6 @@ const UserSchema = new Schema({
 	firstName: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	lastName: {
 		type: String,

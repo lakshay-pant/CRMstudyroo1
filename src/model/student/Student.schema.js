@@ -243,6 +243,72 @@ const StudentSchema = new Schema({
 	certificateImage: {
 		type: String,
 	},
+	taxId: {
+		type: String,
+		maxlength: 100,
+	},
+	lastVisited: {
+		type: String,
+		maxlength: 50,
+	},
+	lastContacted: {
+		type: String,
+		maxlength: 50,
+	},
+	departureFrom: {
+		type: String,
+		maxlength: 50,
+	},
+	departureTo: {
+		type: String,
+		maxlength: 50,
+	},
+	departureBooking: {
+		type: String,
+		maxlength: 50,
+	},
+	departureBookingRef: {
+		type: String,
+		maxlength: 50,
+	},
+	departureArrTime: {
+		type: String,
+		maxlength: 50,
+	},
+	departureDate: {
+		type: String,
+		maxlength: 50,
+	},
+
+	departureFlightNo: {
+		type: String,
+		maxlength: 50,
+	},
+	departureAirline: {
+		type: String,
+		maxlength: 50,
+	},
+	departureAirport: {
+		type: String,
+		maxlength: 50,
+	},
+	arrivalDate: {
+		type: String,
+		maxlength: 50,
+	},
+	arrivalFlightNo: {
+		type: String,
+		maxlength: 50,
+	},
+	arrivalAirline: {
+		type: String,
+		maxlength: 50,
+	},
+	arrivalAirport: {
+		type: String,
+		maxlength: 50,
+	},
+
 	studentTasks: [
 		{
 			taskId: {
