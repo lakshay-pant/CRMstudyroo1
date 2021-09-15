@@ -105,7 +105,7 @@ const StudentSchema = new Schema({
 		maxlength: 100,
 	},
 
-	offShoreAdress: {
+	offShoreAddress: {
 		type: String,
 		maxlength: 100,
 	},

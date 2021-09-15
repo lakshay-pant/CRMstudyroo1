@@ -80,7 +80,7 @@ router.post(
 			city,
 			country,
 			zipCode,
-			offShoreAdress,
+			offShoreAddress,
 			offShoreLocation,
 			offShoreUnitNumber,
 			offShoreStreetNumber,
@@ -144,7 +144,7 @@ router.post(
 				city,
 				country,
 				zipCode,
-				offShoreAdress,
+				offShoreAddress,
 				offShoreLocation,
 				offShoreUnitNumber,
 				offShoreStreetNumber,
@@ -365,7 +365,7 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 			city,
 			country,
 			zipCode,
-			offShoreAdress,
+			offShoreAddress,
 			offShoreLocation,
 			offShoreUnitNumber,
 			offShoreStreetNumber,
@@ -492,9 +492,9 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 		userProf.city = city ? city : userProf.city;
 		userProf.country = country ? country : userProf.country;
 		userProf.zipCode = zipCode ? zipCode : userProf.zipCode;
-		userProf.offShoreAdress = offShoreAdress
-			? offShoreAdress
-			: userProf.offShoreAdress;
+		userProf.offShoreAddress = offShoreAddress
+			? offShoreAddress
+			: userProf.offShoreAddress;
 		userProf.offShoreLocation = offShoreLocation
 			? offShoreLocation
 			: userProf.offShoreLocation;
