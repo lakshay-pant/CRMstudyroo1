@@ -16,6 +16,16 @@ const UserSchema = new Schema({
 		maxlength: 50,
 		required: true,
 	},
+	officeName: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
+	userGroup: {
+		type: String,
+		maxlength: 50,
+		required: true,
+	},
 	password: {
 		type: String,
 		minlength: 8,
@@ -36,11 +46,7 @@ const UserSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
-	officeName: {
-		type: String,
-		maxlength: 50,
-	},
-	groupUser: {
+	userGroupOffice: {
 		type: String,
 		maxlength: 50,
 	},

@@ -86,13 +86,14 @@ router.post('/', newUserValidation, async (req, res) => {
 		birthdate,
 		tele,
 		gender,
-		groupUser,
-		officeName,
 		position,
+		officeName,
+		userGroup,
+		userGroupOffice,
 	} = req.body;
 
 	// Mongoose Model.findOne()
-	console.log('hey');
+
 	try {
 		//hash password
 		const hashedPass = await hashPassword(password);
@@ -104,9 +105,10 @@ router.post('/', newUserValidation, async (req, res) => {
 			birthdate,
 			tele,
 			gender,
-			officeName,
-			groupUser,
+			userGroupOffice,
 			position,
+			officeName,
+			userGroup,
 			password: hashedPass,
 		};
 

@@ -188,9 +188,9 @@ const updateOfficeUserStudentTask = ({
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			UserSchema.update(
+			UserSchema.updateMany(
 				{
-					userGroupOffice,
+					userGroupOffice: userGroupOffice,
 				},
 
 				{

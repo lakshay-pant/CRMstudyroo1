@@ -40,7 +40,8 @@ const newUserValidation = (req, res, next) => {
 		gender: shortStr.required(),
 		position: shortStr.required(),
 		officeName: shortStr.required(),
-		groupUser: shortStr.required(),
+		userGroup: shortStr.required(),
+		userGroupOffice: shortStr.required(),
 	});
 
 	const value = schema.validate(req.body);
