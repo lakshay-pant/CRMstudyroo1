@@ -37,7 +37,6 @@ const taskSchema = new Schema({
 	taskStatus: {
 		type: String,
 		maxlength: 1000,
-		required: true,
 	},
 	assignTo: {
 		type: String,
@@ -52,7 +51,6 @@ const taskSchema = new Schema({
 	type: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	addedAt: {
 		type: Date,

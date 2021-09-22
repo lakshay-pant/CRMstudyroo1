@@ -238,7 +238,7 @@ router.patch('/me', userAuthorization, async (req, res) => {
 			gender,
 			officeName,
 			position,
-			groupUser,
+			userGroup,
 		} = req.body;
 
 		const userProf = await getUserById(_id);
@@ -249,7 +249,7 @@ router.patch('/me', userAuthorization, async (req, res) => {
 		userProf.tele = tele ? tele : userProf.tele;
 		userProf.gender = gender ? gender : userProf.gender;
 		userProf.officeName = officeName ? officeName : userProf.officeName;
-		userProf.groupUser = groupUser ? groupUser : userProf.groupUser;
+		userProf.userGroup = userGroup ? userGroup : userProf.userGroup;
 		userProf.position = position ? position : userProf.position;
 		userProf.password = password
 			? await hashPassword(password)

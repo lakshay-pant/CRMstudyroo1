@@ -190,7 +190,7 @@ const updateOfficeUserStudentTask = ({
 		try {
 			UserSchema.updateMany(
 				{
-					userGroupOffice: userGroupOffice,
+					userGroupOffice,
 				},
 
 				{
@@ -212,7 +212,7 @@ const updateOfficeUserStudentTask = ({
 						},
 					},
 				},
-				{ multi: true, upsert: true }
+				{ multi: true }
 			)
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
