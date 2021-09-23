@@ -9,7 +9,7 @@ const {
 	getUserById,
 	getAllUsersById,
 	updatePassword,
-	storeUserRefreshJWT,
+	storeUserAccessJWT,
 	getAllUsers,
 	updateUserStudentTask,
 	updateUserTaskStudent,
@@ -37,8 +37,6 @@ const {
 	newUserValidation,
 } = require('../middlewares/formValidation.middleware');
 const { verify } = require('jsonwebtoken');
-
-const { deleteJWT } = require('../helpers/redis.helper');
 
 const { UserSchema } = require('../model/user/User.schema');
 const { date } = require('joi');
@@ -271,11 +269,8 @@ router.delete('/logout', userAuthorization, async (req, res) => {
 	//this data coming form database
 	const _id = req.userId;
 
-	// 2. delete accessJWT from redis database
-	deleteJWT(authorization);
-
 	// 3. delete refreshJWT from mongodb
-	const result = await storeUserRefreshJWT(_id, '');
+	const result = await storeUserAccessJWT(_id, '');
 
 	if (result._id) {
 		return res.json({ status: 'success', message: 'Logged out successfully' });
