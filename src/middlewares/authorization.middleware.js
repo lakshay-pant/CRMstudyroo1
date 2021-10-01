@@ -8,9 +8,14 @@ const userAuthorization = async (req, res, next) => {
 
 	if (decoded.email) {
 		const user = await UserSchema.findOne({
-			_id: decoded._id,
-			'accessJWT.token': authorization,
+			email: decoded.email,
+			'tokens.token': authorization,
 		});
+
+		if (!user) {
+			return res.status(403).json({ message: 'Forbidden' });
+		}
+
 		req.userId = user;
 
 		return next();

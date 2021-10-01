@@ -86,7 +86,7 @@ const storeUserAccessJWT = (_id, token) => {
 			UserSchema.findOneAndUpdate(
 				{ _id },
 				{
-					$set: { 'accessJWT.token': token, 'accessJWT.addedAt': Date.now() },
+					$set: { 'tokens.token': token },
 				},
 				{ new: true }
 			)

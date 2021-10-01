@@ -6,14 +6,13 @@ const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
-const port = process.env.PORT || 3001;
-console.log('process.env.PORT', process.env.PORT);
+
 //API security
 // app.use(helmet());
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 // app.use(express.static(__dirname+"uploads/"));
-
+const port = process.env.PORT || 3001;
 //handle CORS error
 app.use(cors());
 

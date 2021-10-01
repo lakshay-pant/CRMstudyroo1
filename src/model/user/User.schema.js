@@ -55,8 +55,16 @@ const UserSchema = new Schema({
 		maxlength: 50,
 		required: true,
 	},
+	tokens: [
+		{
+			token: {
+				type: String,
+				required: true,
+			},
+		},
+	],
 
-	accessJWT: {
+	refreshJWT: {
 		token: {
 			type: String,
 			maxlength: 500,

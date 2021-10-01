@@ -8,7 +8,6 @@ const crateAccessJWT = async (email, _id) => {
 		const accessJWT = await jwt.sign({ email }, process.env.JWT_ACCESS_SECRET, {
 			expiresIn: '1d',
 		});
-
 		await storeUserAccessJWT(_id, accessJWT);
 
 		return Promise.resolve(accessJWT);

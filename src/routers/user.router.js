@@ -9,6 +9,7 @@ const {
 	getUserById,
 	getAllUsersById,
 	updatePassword,
+	storeUserRefreshJWT,
 	storeUserAccessJWT,
 	getAllUsers,
 	updateUserStudentTask,
@@ -142,13 +143,11 @@ router.post('/login', async (req, res) => {
 	}
 
 	const accessJWT = await crateAccessJWT(user.email, `${user._id}`);
-	const refreshJWT = await crateRefreshJWT(user.email, `${user._id}`);
 
 	res.json({
 		status: 'success',
 		message: 'Login Successfully!',
 		accessJWT,
-		refreshJWT,
 	});
 });
 
