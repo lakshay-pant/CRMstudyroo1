@@ -80,13 +80,13 @@ const getUserNameById = (_id) => {
 	});
 };
 
-const storeUserAccessJWT = (_id, token) => {
+const storeUserRefreshJWT = (_id, token) => {
 	return new Promise((resolve, reject) => {
 		try {
 			UserSchema.findOneAndUpdate(
 				{ _id },
 				{
-					$set: { 'tokens.token': token },
+					$set: { 'refreshJWT.token': token, 'refreshJWT.addedAt': Date.now() },
 				},
 				{ new: true }
 			)
@@ -385,7 +385,7 @@ module.exports = {
 	insertUser,
 	getUserByEmail,
 	getUserById,
-	storeUserAccessJWT,
+	storeUserRefreshJWT,
 	updatePassword,
 	getAllUsers,
 	getUserNameById,

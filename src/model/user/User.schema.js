@@ -45,24 +45,18 @@ const UserSchema = new Schema({
 	position: {
 		type: String,
 		maxlength: 50,
+		required: true,
 	},
 	userGroupOffice: {
 		type: String,
 		maxlength: 50,
+		required: true,
 	},
 	gender: {
 		type: String,
 		maxlength: 50,
 		required: true,
 	},
-	tokens: [
-		{
-			token: {
-				type: String,
-				required: true,
-			},
-		},
-	],
 
 	refreshJWT: {
 		token: {
