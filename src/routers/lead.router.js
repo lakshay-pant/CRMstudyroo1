@@ -328,12 +328,12 @@ router.put('/:_id', userAuthorization, async (req, res) => {
 		if (result._id) {
 			return res.json({
 				status: 'success',
-				message: 'your message updated',
+				message: 'Lead Task has been added',
 			});
 		}
 		res.json({
 			status: 'error',
-			message: 'Unable to update your message please try again later',
+			message: 'Unable to add Lead Task',
 		});
 	} catch (error) {
 		res.json({ status: 'error', message: error.message });
