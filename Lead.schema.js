@@ -11,7 +11,11 @@ const LeadSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
-	leadMessage: {
+	leadFirstName: {
+		type: String,
+		maxlength: 50,
+		 required: true,
+	},leadMessage: {
 		type: String,
 		maxlength: 50,
 	},
@@ -19,26 +23,26 @@ const LeadSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
-	leadFirstName: {
-		type: String,
-		maxlength: 50,
-	},
 	leadBirthday: {
 		type: String,
 		maxlength: 50,
+		 required: true,
 	},
 	leadMiddleName: {
 		type: String,
 		maxlength: 50,
 	},
-	leadlastName: {
+	leadLastName: {
 		type: String,
 		maxlength: 50,
+		 required: true,
+		
 	},
 
 	leadNationality: {
 		type: String,
 		maxlength: 50,
+		 required: true,
 	},
 	leadGender: {
 		type: String,
@@ -48,6 +52,8 @@ const LeadSchema = new Schema({
 	leadOnShorePhone: {
 		type: Number,
 		maxlength: 11,
+		 required: true,
+
 	},
 	leadOffShorePhone: {
 		type: Number,
@@ -60,6 +66,7 @@ const LeadSchema = new Schema({
 	leadEmail: {
 		type: String,
 		maxlength: 50,
+		 required: true,
 	},
 	leadOnShoreLocation: {
 		type: String,
@@ -77,6 +84,16 @@ const LeadSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
+	leadMessage: {
+		type: String,
+		maxlength: 50,
+	},
+	leadService: {
+		type: String,
+		maxlength: 50,
+	},
+
+
 	leadTasks: [
 		{
 			statusNote: {

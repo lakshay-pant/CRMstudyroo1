@@ -23,53 +23,6 @@ router.all('/', (req, res, next) => {
 	next();
 });
 
-// add lead from studyroo website
-router.post('/studyroo', async (req, res) => {
-	const {
-		leadFirstName,
-
-		leadLastName,
-		leadBirthday,
-
-		leadNationality,
-		leadEmail,
-		leadOnShorePhone,
-		leadMessage,
-		leadService,
-	} = req.body;
-
-	try {
-		const newUserObj = {
-			leadFirstName,
-			leadLastName,
-			leadBirthday,
-			leadNationality,
-			leadEmail,
-			leadOnShorePhone,
-			leadMessage,
-			leadService,
-		};
-		console.log('bb', newUserObj);
-		const result = await insertLead(newUserObj);
-		console.log(result);
-
-		if (result._id) {
-			return res.json({
-				status: 'success',
-				message: 'New Lead has been added!',
-			});
-		}
-
-		res.json({
-			status: 'error',
-			message: 'Unable to add new Lead , please try again later',
-		});
-	} catch (error) {
-		console.log(error);
-		res.json({ status: 'error', message: error.message });
-	}
-});
-
 // create new student record
 router.post('/', userAuthorization, async (req, res) => {
 	const {

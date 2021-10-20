@@ -50,6 +50,50 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
 // create new student record
+router.post('/studyroo', async (req, res) => {
+	const {
+		firstName,
+		lastName,
+		birthday,
+		nation,
+		email,
+		onShorePhone,
+		note,
+		services,
+	} = req.body;
+
+	try {
+		const newUserObj = {
+			firstName,
+			lastName,
+			birthday,
+			email,
+			onShorePhone,
+			note,
+			nation,
+			services,
+		};
+		const result = await insertStudent(newUserObj);
+		console.log(result);
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'New student has been added!',
+			});
+		}
+
+		res.json({
+			status: 'error',
+			message: 'Unable to add new student , please try again later',
+		});
+	} catch (error) {
+		console.log(error);
+		res.json({ status: 'error', message: error.message });
+	}
+});
+
+// create new student record
 router.post(
 	'/',
 	upload.single('file'),
