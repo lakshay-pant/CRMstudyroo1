@@ -354,7 +354,7 @@ router.delete(
 			if (result._id) {
 				return res.json({
 					status: 'success',
-					message: 'your leadtask message deleted',
+					message: 'your Lead Task has been deleted',
 				});
 			}
 			res.json({
