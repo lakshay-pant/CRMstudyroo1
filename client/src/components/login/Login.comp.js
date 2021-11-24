@@ -97,7 +97,7 @@ export const Login = ({ formSwitcher }) => {
 												alt="studyroo-logo"
 											></img>
 											<h2>
-												Hellooooo! Welcome to the studyroo <br />
+												Hellooooo! Welcomesssss to the studyroo <br />
 												Education System
 											</h2>
 											{isLoading && (
