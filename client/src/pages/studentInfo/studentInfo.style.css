@@ -1,0 +1,367 @@
+/* -----------------------------   all-student new page ---------------------- */
+a:hover {
+	text-decoration: none;
+}
+.student-all-detail .user-detail h2 {
+	font-weight: 500;
+	font-size: 28px;
+	line-height: 2rem;
+	color: #292b2c;
+}
+.student-all-detail .user-span span,
+.student-all-detail .user-span span a {
+	font-size: 14px;
+	color: #636c72;
+}
+.user-section ul {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding-bottom: 15px;
+}
+.student-all-detail .user-span span::after {
+	content: '|';
+	margin: 0 4px;
+}
+.student-all-detail .user-span span:last-child::after {
+	content: '';
+}
+.student-all-detail .user-detail {
+	padding: 35px 15px;
+}
+.user-section ul li {
+	margin-right: 15px;
+}
+.user-section ul li a {
+	font-size: 0.87525rem;
+	font-weight: 500;
+	padding: 0.8rem 1rem;
+	color: #0000004d;
+	position: relative;
+}
+.user-section ul li a.active {
+	color: #292b2c;
+}
+
+.user-section ul li a:after {
+	content: '';
+	width: 0%;
+	height: 3px;
+	background-color: #f88c04;
+	position: absolute;
+	bottom: -3px;
+	left: 50%;
+	transform: translateX(-50%);
+	transition: all 0.2s ease;
+}
+.user-section ul li a.active:after,
+.user-section ul li:hover a:after {
+	background-color: #f88c04;
+	width: 100%;
+}
+.user-section .students-stepper {
+	padding: 1.5rem 1rem;
+	margin-top: 30px;
+	margin-bottom: 1rem;
+	border-radius: 6px;
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgb(126 142 177 / 12%);
+}
+.user-section .students-stepper .steps-header {
+	display: flex;
+	justify-content: space-between;
+}
+.user-section .steps-header .heading {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1.5rem;
+}
+.user-section .steps-header .sub-head {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.25rem;
+}
+.fade:not(.show) {
+	opacity: 1 !important;
+}
+.stepper-step-block {
+	display: table;
+	width: 100%;
+	margin: 0 auto;
+}
+.stepper-step {
+	cursor: pointer;
+	display: table-cell;
+	position: relative;
+	padding: 24px 8px;
+}
+.stepper-circle {
+	width: 24px;
+	height: 24px;
+	margin: 0 auto;
+	background-color: #9e9e9e;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 20px;
+	font-size: 12px;
+	color: white;
+	border: 2px solid transparent;
+	transition: all 0.2s ease-in-out;
+}
+.stepper-step.step-active .stepper-circle {
+	background-color: #f37e32;
+}
+.stepper-step.step-active .stepper-title {
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.87);
+}
+.stepper-title {
+	font-size: 0.75rem;
+	margin-top: 10px;
+	text-align: center;
+}
+.step-active.step-done .stepper-circle {
+	background-color: #24b314;
+}
+.step-done .stepper-circle:before {
+	font-weight: normal;
+	font-size: 16px;
+	vertical-align: text-bottom;
+	content: '\ea22';
+	font-family: 'Font Awesome 5 Pro';
+}
+.stepper-step .bar-left,
+.stepper-step .bar-right {
+	position: absolute;
+	top: 36px;
+	height: 1px;
+	border-top: 1px solid #bdbdbd;
+}
+.stepper-step .bar-left {
+	left: 0;
+	right: 50%;
+	margin-right: 20px;
+}
+.stepper-step .bar-right {
+	right: 0;
+	left: 50%;
+	margin-left: 20px;
+}
+.stepper-step:first-child .bar-left,
+.stepper-step:last-child .bar-right {
+	display: none;
+}
+.stepper-step .stepper-title,
+.stepper-step .stepper-optional {
+	text-align: center;
+	color: rgba(0, 0, 0, 0.26);
+}
+.students-stepper.visa {
+	display: flex;
+}
+.element-balances {
+	display: flex;
+	justify-content: space-between;
+	grid-template-columns: repeat(4, 1fr);
+	padding: 26px 12px 20px;
+	border-radius: 6px;
+	background-color: #fff;
+	box-shadow: 0px 2px 4px rgb(126 142 177 / 12%);
+}
+.element-balances .balance {
+	padding: 10px 20px;
+}
+.visa {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 2.25rem;
+	color: #636c72;
+}
+.balance-text {
+	font-weight: 500;
+	font-size: 20px;
+	line-height: 1.75rem;
+}
+.visa-nu {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.25rem;
+	margin-top: 5px;
+}
+.balance-link .btn-link {
+	color: #f37e32;
+	text-decoration: none;
+	cursor: pointer;
+	font-size: 14px;
+	margin-top: 10px;
+}
+.balance:first-child {
+	border-left: 0;
+}
+.balance {
+	border-left: 1px solid #ebf0f2;
+	padding: 10px 20px;
+}
+.data-block .students-stepper {
+	padding: 1.5rem;
+}
+.accordion {
+	margin-top: 5px;
+}
+.accordion .card-head h2 {
+	font-size: 18px;
+}
+.accordion .card {
+	border: none;
+	margin-bottom: 20px;
+	box-shadow: none;
+}
+.accordion .card h2:after {
+	content: '\f078';
+	font-family: 'Font Awesome 5 Pro';
+	cursor: pointer;
+	font-size: 18px;
+	position: absolute;
+	right: 0;
+}
+.accordion .card h2.collapsed:after {
+	content: '\f077';
+	font-family: 'Font Awesome 5 Pro';
+	cursor: pointer;
+}
+.accordion .card-body {
+	padding-left: 0;
+	padding-right: 0;
+}
+#accordionUser label {
+	color: rgba(90, 99, 126, 0.49);
+	font-size: 14px;
+	margin-bottom: 0;
+	padding: 0 10px;
+}
+#accordionUser .form-group .form-control {
+	padding: 5px;
+	background: #fff;
+	border-color: #fff;
+	color: #636c72;
+	font-size: 16px;
+}
+#accordionUser .form-control:focus {
+	border-color: #f37e32 !important;
+	box-shadow: none;
+	font-size: 14px;
+}
+#accordionUser .form-control::placeholder {
+	font-size: 16px;
+	color: #636c72;
+}
+#accordionUser .form-control:focus::placeholder {
+	font-size: 14px;
+}
+.stu-notes .stu-head {
+	font-size: 18px;
+	margin-bottom: 20px;
+}
+.stu-notes label {
+	color: rgba(90, 99, 126, 0.49);
+	font-size: 14px;
+}
+.stu-notes textarea {
+	height: auto !important;
+	resize: none;
+}
+
+.stu-notes .activity-list .date {
+	color: #636c72;
+	font-size: 0.875rem;
+	font-weight: 500;
+}
+.stu-notes .activity-list .record {
+	padding-left: 1.5rem;
+	margin-top: 0.875rem;
+	display: flex;
+	margin-bottom: 10px;
+	align-items: flex-start;
+}
+.stu-notes .activity-list .act-records .ta-timestamp {
+	color: #636c72;
+	width: unset;
+	padding-right: 16px;
+}
+.PhoneInputInput {
+	padding: 5px;
+	background: #fff;
+	border-color: #fff;
+	color: #636c72;
+	font-size: 16px;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	height: 38px;
+}
+.PhoneInputInternationalIconPhone {
+	color: rgba(90, 99, 126, 0.49);
+}
+.PhoneInputInput:focus-visible {
+	outline: none;
+	border-color: #f37e32 !important;
+}
+.form-control:focus {
+	box-shadow: none !important;
+}
+#Information label {
+	color: #3e4b5b;
+}
+.balance-link a {
+	text-align: left;
+}
+
+#content {
+	display: none;
+}
+
+#show:checked ~ #content {
+	display: block;
+	padding-left: 20px;
+}
+input[type='checkbox'] {
+	display: inline-block;
+	margin-right: 5px;
+}
+#content .field-checkboxes,
+#content .field-select {
+	display: inline-block;
+}
+.content-checkbox {
+	margin-top: 15px;
+}
+#Documents .upload-area input[type='file'] {
+	display: block;
+}
+#Documents .upload-area .file {
+	opacity: 0;
+	width: 0.1px;
+	height: 0.1px;
+	position: absolute;
+}
+#Documents .upload-area .file-input label {
+	border: dashed 1px #f37e32;
+	display: block;
+	position: relative;
+	width: 100%;
+	border-radius: 10px;
+	background: #fff;
+	display: block;
+	text-align: center;
+	color: #f37e32;
+	font-size: 22px;
+	cursor: pointer;
+	transition: transform 0.2s ease-out;
+	margin: 0 auto;
+	padding: 20px;
+}
+.upload-area img.img-fluid {
+	height: 300px;
+	display: block;
+	margin: 0 auto;
+}
+.maincontent-rightside.all-student {
+	padding: 20px;
+}

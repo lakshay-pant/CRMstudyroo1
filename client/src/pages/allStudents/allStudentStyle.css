@@ -1,0 +1,198 @@
+/*all-student*/
+.add-student .maincontent{
+  padding: 60px 0 60px 0;
+}
+.all-student .maincontent{
+  padding: 60px 0 60px 0;
+}
+.import-from{
+    display: flex;
+    margin-top: 10px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+}
+.import-from p{
+   margin-bottom: 0;
+}
+input#stfile {
+    color: transparent;
+}
+input#stfile:before {
+    content: 'Please Select a file';
+    color: rgb(108, 116, 116, 0.6);
+    display: inline-block;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+    margin-left: 50px;
+} 
+.filter-area{
+  display: flex;
+}
+.filter-area select{
+    box-shadow: 1px 1px 1px #00000014;
+    border: 1px solid #FFFFFF;
+    border-radius: 9px;
+    height: 35px;
+    padding: 5px 12px;
+}
+.filter-area .st-filter p{
+   margin-bottom: 0;
+}
+.student-collection .data-block{
+    height: 286px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    border: solid 1px #fff;
+    margin-bottom: 30px;
+}
+.student-collection .data-block .data-heading p{
+    margin-bottom: 10px;
+    text-align: center;
+}
+.student-collection .data-block .data-heading{
+    background: #EAEBEC;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 10px 10px 0 0;
+}
+.student-collection .data-block .data-heading p.head{
+   font-size: 16px;
+   color: #5C5D5D;
+   text-transform: uppercase;
+   margin-bottom: 0;
+   margin-top: 10px;
+   line-height: 1;
+}
+.student-collection .data-block .data-heading p span{
+   color: #F37E32;
+   font-size: 14px;
+   margin-bottom: 0
+}
+.student-data {
+    margin-top: 30px;
+    padding: 15px;
+}
+.st-filter {
+    padding-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f37e32;
+}
+.st-filter i {
+    padding-right: 5px;
+}
+
+.data-con-box{
+   background: #F9F9FB;
+   border:solid 1px #F9F9FB;
+   border-radius: 5px;
+   padding: 5px 10px;
+   margin-bottom: 15px;
+   color: #6c7474;
+}
+.data-con-box .data-img{
+    display: table-cell;
+    max-width: 55px;
+    max-height: 55px;
+    object-fit:cover;
+    border-radius: 50px;
+    padding-right: 10px;
+}
+.data-con-box .data-img img{
+   border-radius: 50px;
+   border: 2px solid #fafafa;
+   box-shadow: 0px 1px 1px #00000029;
+   object-fit:cover;
+}
+.data-content{
+   overflow-y:scroll;
+   padding: 15px;
+   height: 185px;
+}
+.data-con-box .data-text{
+   display: table-cell;
+   border-left:solid 1px #fff;
+   padding-left: 10px;
+   width: 152px;
+}
+.data-con-box .contact p {
+    margin-bottom: 0;
+}
+.data-con-box .st-number{
+   display: table-cell;
+}
+.data-con-box .st-number p{
+   background: #EAEBEC;
+   border-radius: 2px;
+   text-transform: uppercase;
+   font-size: 16px;
+   color: #5C5D5D;
+   padding: 2px 5px;
+}
+.data-wrap {
+    border-bottom: solid 1px #fff;
+    padding-bottom: 15px;
+    margin-bottom: 5px;
+}
+.data-con-box .post-time i{
+  color: #f37e32;
+  margin-right: 5px;
+}
+.data-con-box .post-time p{
+   font-size: 14px;
+   margin-bottom: 0;
+}
+.data-content .no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #EAEBEC;
+}
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    display: inline-block;
+    padding: 7px 14px;
+    cursor: pointer;
+    margin-left: 10px;
+    color: #5C5D5D;
+    background: #fff;
+    border-radius: 7px;
+}
+.st-file-upload span{
+    padding: 2px 10px;
+    background: transparent linear-gradient(180deg, #EAEAEA 0%, #FFFFFF 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #EAEBEC;
+    border-radius: 50px;
+    font-size: 18px;
+    color: #f37e32;
+    margin-left: 10px;
+}
+.st-file-upload i{
+   padding-right: 5px;
+}
+@media (max-width: 767px){
+  .import-from{
+    display: block;
+  }
+  .custom-file-upload{
+    margin-left: 0;
+    margin-top: 10px;
+  }
+  .filter-area{
+    margin-bottom: 20px;
+  }
+}
+/*all-student*/

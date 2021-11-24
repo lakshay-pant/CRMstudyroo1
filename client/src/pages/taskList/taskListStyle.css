@@ -1,0 +1,160 @@
+/* add-task-list */
+.task-list .student-task {
+    display: flex;
+    align-items:center;
+}
+.task-list .img-wrap {
+    height: 55px;
+    width: 55px;
+    border-radius: 100%;
+}
+.task-list .img-wrap img{
+    object-fit:cover;
+    width: 100%;
+}
+.task-list .number {
+    padding-left: 22px;
+    border-left: solid 1px #eaeaea;
+    height: 60px;
+    flex-direction: flex-end;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.task-list .data{
+    padding-left: 12px;
+    width: 65%;
+}
+.student-task {
+    background: #fff;
+    border: 1px solid #F5F5F5;
+    border-radius: 10px 10px 0px 0px;
+    width: 100%;
+    padding: 10px;
+}
+.add-task-list {
+    margin-top: 35px;
+}
+.task-list{
+   margin-bottom: 10px;
+}
+.task-list p {
+    margin-bottom: 0;
+}
+.task-list.today .img-wrap{
+    background: transparent linear-gradient(0deg, #F48035 0%, #DD5903 100%);
+    border: 5px solid #F4F4F4;
+    width: 30px;
+    height: 30px;
+}
+.task-list.today .data{
+    width: 75%;
+}
+.task-student.today {
+    padding-left: 30px;
+    border-left: 2px solid #EAEBEC;
+}
+@media (max-width: 990px){
+.task-student.today{
+    padding-left: 0;
+    border-left: 0;
+    margin-top: 15px;
+}
+}
+/* add-task-list end */
+
+/*task-list hover icons and popup*/
+.task-list .number{
+    display: block;
+ }
+ .task-list .number p {
+     margin-top: 7px;
+ }
+ .todo-buttons{
+    display: inline-flex;
+ }
+ .todo-buttons .task-btn-done{
+    font-size: 14px;
+     display: inline-block;
+     position: relative;
+     vertical-align: middle;
+     text-decoration: none;
+     color: #F48035;
+ }
+ 
+ .todo-buttons .task-btn-done span {
+     position: absolute;
+     top: -28px;
+     left: 50%;
+     transform: translateX(-50%);
+     white-space: nowrap;
+     padding: 2px 8px;
+     border-radius: 4px;
+     background-color: #6C7474;
+     color: #fff;
+     font-weight: 500;
+     font-size: 0.72rem;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+     visibility: hidden;
+     opacity: 0;
+     transition: all 0.2s ease;
+     display: inline-block;
+     vertical-align: middle;
+ }
+ .todo-buttons .task-btn-done i {
+     text-align: center;
+     padding-right: 6px;
+ }
+ .todo-buttons .task-btn-done:hover span{
+    transform: translate(-50%, 6px);
+     visibility: visible;
+     opacity: 1;
+ }
+ #taskupdate .modal-content {
+     background: #f2f4f8;
+ }
+ #taskupdate .modal-top {
+     background: #e6e8eb;
+     padding: 15px 25px;
+ }
+ #taskupdate .modal-content button.close {
+     background: none;
+     top: 12px;
+     color: #999;
+ }
+ #taskupdate label p {
+     display: inline;
+     color: red;
+ }
+ .update-task .crm-form{
+     margin-bottom: 30px;
+ }
+ .crm-form .radio-inline{
+    margin-right: 10px;
+ }
+ .crm-form .radio-inline input[type="radio"]{
+   margin-right: 5px;
+ }
+ .crm-form a.color{
+    color: #F48035;
+ }
+ .record-message textarea.form-control{
+    height: auto!important;
+ }
+ .todo-buttons {
+     display: inline-flex;
+     visibility: hidden;
+     transition: all 0.5s ease;
+     opacity: 0;
+ }
+ .task-list .student-task:hover .todo-buttons {
+     visibility: visible;
+     opacity: 1;
+ }
+ @media (min-width: 992px){
+ #taskupdate .modal-lg {
+     max-width: 995px;
+ }
+ }
+ /*task-list hover icons and popup end*/

@@ -1,0 +1,294 @@
+.body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto Slab', serif;
+	background-color: #eaebec;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.checkboxdef {
+	background: #e5f0fe 0% 0% no-repeat padding-box;
+	border: 1px solid #eaebec;
+	border-radius: 5px;
+}
+.login-box {
+	max-width: 670px;
+	height: auto;
+	width: 670px;
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 0px 3px 40px #e1e1e1;
+}
+.login-form {
+	padding: 35px 105px;
+}
+.login-form h2 {
+	color: #5c5d5d;
+	font-size: 20px;
+	padding: 15px;
+	text-align: center;
+}
+.resiterlink {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.footersingbtn {
+	background: transparent linear-gradient(180deg, #f4f4f4 0%, #ffffff 100%) 0%
+		0% no-repeat padding-box;
+	border: 1px solid #f1f1f1;
+	border-radius: 14px;
+	opacity: 1;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+	padding: 0px 15px;
+	width: 150px;
+	margin: 0 auto;
+	margin-top: 18px;
+}
+.login-form input.form-control {
+	background: transparent
+		linear-gradient(180deg, #fafafa 0%, var(--unnamed-color-ffffff) 100%) 0% 0%
+		no-repeat padding-box;
+	border: 1px solid var(--unnamed-color-d1ddeb);
+	background: transparent linear-gradient(180deg, #fafafa 0%, #ffffff 100%) 0%
+		0% no-repeat padding-box;
+	border: 1px solid #d1ddeb;
+	border-radius: 5px;
+	opacity: 1;
+}
+.login-form input.form-control:focus {
+	outline: none;
+	outline: none;
+	border-color: none;
+	box-shadow: none;
+}
+.footersingbtn .getin-btn {
+	display: block;
+	text-decoration: none;
+	border: 1px solid #f48035;
+	width: 100%;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	color: #ffffff;
+	background: transparent linear-gradient(99deg, #f48035 0%, #e5b123 100%) 0% 0%
+		no-repeat padding-box;
+	box-shadow: 0px 3px 5px #a2440133;
+	border-radius: 5px;
+	cursor: pointer;
+	padding: 2px 0px;
+}
+.login-form p {
+	text-align: center;
+	margin-bottom: 0px;
+	margin-top: 25px;
+}
+.login-form p a {
+	color: #f48035;
+}
+.footersingbtn .getin-btn:hover {
+	background: transparent;
+	border: 1px solid #f48035;
+	transition: 0.3s all;
+	color: #f48035;
+}
+.text-lb {
+	color: #6c7474;
+	font-size: 15px;
+}
+input.form-control::placeholder {
+	color: #bcc2cb;
+	font-size: 14px;
+	font-family: 'Roboto Slab', serif;
+	font-weight: 400;
+}
+.text-rem,
+.forgettext {
+	font-size: 14px;
+	color: #5c5d5d;
+}
+
+.form-group.resiterlink label {
+	position: relative;
+	cursor: pointer;
+	font-size: 14px;
+	color: #5c5d5d;
+}
+
+.form-group.resiterlink label:before {
+	content: '';
+	-webkit-appearance: none;
+	background: #e5f0fe 0% 0% no-repeat padding-box;
+	border: 1px solid #eaebec;
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+		inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+	padding: 8px;
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+	cursor: pointer;
+	margin-right: 5px;
+}
+input[type='checkbox'] {
+	display: none;
+}
+.form-group.resiterlink input:checked + label:after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 6px;
+	left: 7px;
+	width: 6px;
+	height: 10px;
+	border: solid #5c5d81;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+/*forget pass css*/
+.pass-form {
+	padding: 60px 105px;
+}
+.pas-text {
+	text-align: center;
+}
+.pas-text h2 {
+	color: #f37e32;
+	font-size: 30px;
+}
+.pass-form input.form-control:focus {
+	outline: none;
+	border-color: #ced4da;
+	box-shadow: none;
+}
+.pas-text p {
+	font-size: 20px;
+	color: #5c5d5d;
+	padding: 30px 0px;
+}
+.forget-email {
+	position: relative;
+}
+.forget-email input {
+	padding-left: 40px;
+}
+.forget-email span {
+	position: absolute;
+	left: 9px;
+	top: 0;
+	bottom: 0;
+	margin: 0 auto;
+	/* height: 40px; */
+	display: flex;
+	align-items: center;
+}
+.forget-email span i {
+	font-size: 22px;
+	color: #5c5d5d;
+}
+
+/* custum radio start */
+
+.slctn_rdo [type='radio']:checked,
+.slctn_rdo [type='radio']:not(:checked) {
+	position: absolute;
+	left: -9999px;
+}
+.slctn_rdo [type='radio']:checked + label,
+.slctn_rdo [type='radio']:not(:checked) + label {
+	position: relative;
+	cursor: pointer;
+	line-height: 20px;
+	display: inline-block;
+	color: #666;
+}
+.rdo_inr_con {
+	align-items: center;
+	background: #f9f9fb 0% 0% no-repeat padding-box;
+	padding: 20px;
+	min-height: 96px;
+	display: flex;
+	align-items: center;
+}
+.rdo_inr_con {
+	border: 1px solid transparent;
+}
+
+.slctn_rdo [type='radio']:checked + label .rdo_inr_con {
+	border: 1px solid orange;
+}
+.form-group.slctn_rdo label {
+	width: 100%;
+}
+.rdo_inr_img {
+	margin-right: 10px;
+}
+.rdo_inr_txt span {
+	font-size: 14px;
+	color: #5c5d5d;
+}
+.rdo_inr_txt a {
+	font-size: 14px;
+	color: #5c5d5d;
+}
+
+/* custum radio end */
+
+/*update pass*/
+.pass-form {
+	padding: 60px 105px;
+}
+.passworupdate-box {
+	height: auto;
+	width: 510px;
+	padding: 60px 90px;
+	background: #ffffff 0% 0% no-repeat padding-box;
+	box-shadow: 0px 3px 40px #e1e1e1;
+}
+.passworupdate-box .pas-text p {
+	padding: 6px 0px;
+}
+.field-icon {
+	float: right;
+	margin-left: -25px;
+	margin-top: -42px;
+	position: relative;
+	z-index: 2;
+	margin-right: 10px;
+}
+.field-icon {
+	margin-top: -30px;
+}
+.resiterlink a:hover {
+	text-decoration: none;
+}
+.forgettext {
+	cursor: pointer;
+}
+/*media query start here*/
+@media (max-width: 767px) {
+	.login-box {
+		width: 100%;
+		max-width: 100%;
+	}
+	.login-form {
+		padding: 20px;
+	}
+	.body {
+		display: initial;
+	}
+
+	/*pas-css*/
+	.pass-form {
+		padding: 20px;
+	}
+	.passworupdate-box {
+		width: 100%;
+		padding: 20px;
+	}
+}
