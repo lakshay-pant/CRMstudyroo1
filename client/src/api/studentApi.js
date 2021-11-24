@@ -1,5 +1,5 @@
 import axios from 'axios';
-const addStudentUrl = 'https://crmstudyroo.herokuapp.com/v1/students';
+const addStudentUrl = 'https://studyrooapp.herokuapp.com/v1/students';
 
 export const createNewStudent = (frmData) => {
 	return new Promise(async (resolve, reject) => {
@@ -22,7 +22,7 @@ export const getAllUserSingleStudent = (_id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + _id,
+				'https://studyrooapp.herokuapp.com/v1/students/' + _id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -41,7 +41,7 @@ export const addCertificate = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.post(
-				'https://crmstudyroo.herokuapp.com/v1/students/uploadCertificate',
+				'https://studyrooapp.herokuapp.com/v1/students/uploadCertificate',
 				frmData,
 				{
 					headers: {
@@ -62,7 +62,7 @@ export const getAllStudents = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://crmstudyroo.herokuapp.com/v1/students',
+				'https://studyrooapp.herokuapp.com/v1/students',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -81,7 +81,7 @@ export const getAllUserStudents = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://crmstudyroo.herokuapp.com/v1/students/all-students',
+				'https://studyrooapp.herokuapp.com/v1/students/all-students',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -101,7 +101,7 @@ export const UpdateAllUserStudents = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + id,
+				'https://studyrooapp.herokuapp.com/v1/students/' + id,
 				frmData,
 				{
 					headers: {
@@ -122,7 +122,7 @@ export const DeleteAllUserStudents = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + id,
+				'https://studyrooapp.herokuapp.com/v1/students/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -143,7 +143,7 @@ export const addStudentTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + id,
+				'https://studyrooapp.herokuapp.com/v1/students/' + id,
 				frmData,
 				{
 					headers: {
@@ -164,7 +164,7 @@ export const DeleteAllUserStudentTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/students/' + id1 + '/' + id2,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -185,7 +185,7 @@ export const UpdateStudentTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://crmstudyroo.herokuapp.com/v1/students/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/students/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {

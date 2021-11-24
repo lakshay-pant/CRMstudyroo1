@@ -1,11 +1,11 @@
 import axios from 'axios';
-const addTaskUrl = 'https://crmstudyroo.herokuapp.com/v1/tasks';
+const addTaskUrl = 'https://studyrooapp.herokuapp.com/v1/tasks';
 
 export const getAlltask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://crmstudyroo.herokuapp.com/v1/tasks',
+				'https://studyrooapp.herokuapp.com/v1/tasks',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -41,7 +41,7 @@ export const UpdateAllTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'https://crmstudyroo.herokuapp.com/v1/tasks/' + id,
+				'https://studyrooapp.herokuapp.com/v1/tasks/' + id,
 				frmData,
 				{
 					headers: {
@@ -61,7 +61,7 @@ export const DeleteAlltasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://crmstudyroo.herokuapp.com/v1/tasks/' + id,
+				'https://studyrooapp.herokuapp.com/v1/tasks/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),

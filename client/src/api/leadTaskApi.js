@@ -1,11 +1,11 @@
 import axios from 'axios';
-const addLeadTaskUrl = 'https://crmstudyroo.herokuapp.com/v1/leadTask';
+const addLeadTaskUrl = 'https://studyrooapp.herokuapp.com/v1/leadTask';
 
 export const getAllLeadtask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://crmstudyroo.herokuapp.com/v1/leadTask',
+				'https://studyrooapp.herokuapp.com/v1/leadTask',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -40,7 +40,7 @@ export const UpdateAllLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'https://crmstudyroo.herokuapp.com/v1/leadTask/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leadTask/' + id,
 				frmData,
 				{
 					headers: {
@@ -60,7 +60,7 @@ export const DeleteAllLeadtasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://crmstudyroo.herokuapp.com/v1/leadTask/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leadTask/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -80,7 +80,7 @@ export const DeleteManyLeadTasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://crmstudyroo.herokuapp.com/v1/leadTask/task/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leadTask/task/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
