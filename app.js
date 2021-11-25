@@ -43,7 +43,7 @@ if (process.env.NODE_ENV !== 'dev') {
 
 	mDb.on('error', (error) => {
 		console.log(error);
-		console.log('error');
+		console.log('errors');
 	});
 
 	//Logger
