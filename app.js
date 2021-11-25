@@ -12,7 +12,7 @@ const path = require('path');
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 // app.use(express.static(__dirname+"uploads/"));
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 //handle CORS error
 app.use(cors());
 
