@@ -1,5 +1,5 @@
 import axios from 'axios';
-const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login/';
+const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login';
 const signUpUrl = 'https://studyrooapp.herokuapp.com/v1/user';
 const userProfileUrl = 'https://studyrooapp.herokuapp.com/v1/user';
 const newAccessJWT = 'https://studyrooapp.herokuapp.com/v1/tokens';
