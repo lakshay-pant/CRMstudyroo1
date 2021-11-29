@@ -36,7 +36,7 @@ mongoose.connect(process.env.MONGO_URL, {
 	autoIndex: true,
 });
 
-if (process.env.NODE_ENV !== 'dev') {
+if (process.env.NODE_ENV !== 'development') {
 	const mDb = mongoose.connection;
 	mDb.on('open', () => {
 		console.log('MongoDB is conneted');
