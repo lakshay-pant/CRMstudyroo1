@@ -8,9 +8,6 @@ const morgan = require('morgan');
 const path = require('path');
 
 //API security
-// app.use(helmet());
-const multer = require('multer');
-var upload = multer({ dest: 'uploads/' });
 // app.use(express.static(__dirname+"uploads/"));
 const port = process.env.PORT || 3001;
 app.options('*', cors());
