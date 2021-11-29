@@ -82,28 +82,6 @@ app.use((req, res, next) => {
 	error.status = 404;
 	next(error);
 });
-var Storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'uploads/');
-	},
-	filename: function (req, file, callback) {
-		callback(null, Date.now() + file.originalname);
-	},
-});
-var upload = multer({
-	storage: Storage,
-});
-app.post('/upload', upload.single('file'), (req, res) => {
-	res.send();
-
-	// res.sendFile('upload-file', { title: 'Upload File', success: success });
-});
-// app.use((error, req, res, next) => {
-//   handleError(error, res);
-// });
-app.get('/upload', function (req, res, next) {
-	res.sendFile('upload-file.html', { root: __dirname });
-});
 
 app.listen(port, () => {
 	console.log(`API is ready on http://localhost:${port}`);
