@@ -96,7 +96,7 @@ export const DefaultLayout = ({ children }) => {
 		},
 		{
 			name: 'Courses',
-			to: '/dashboard',
+			to: '/addCourses',
 			icon: '/images/courses.png',
 			subMenuItems: [],
 		},
@@ -260,6 +260,19 @@ export const DefaultLayout = ({ children }) => {
 											</div>
 										);
 
+									case '/addCourses':
+										return (
+											<div class="footersingbtn">
+												<input
+													type="submit"
+													name="submit"
+													class="btn getin-btn"
+													value="<   Go Back"
+													onClick={goToPreviousPath}
+												/>
+											</div>
+										);
+
 									case '/studentInfo/' + _id:
 										return (
 											<div class="footersingbtn">
@@ -341,6 +354,30 @@ export const DefaultLayout = ({ children }) => {
 															</div>
 														</div>
 													)}
+												</div>
+											</form>
+										);
+
+									case '/addCourses':
+										return (
+											<form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+												<div
+													className="input-group"
+													className="flex-container flex-column pos-rel"
+												>
+													<input
+														type="text"
+														className="form-control small"
+														placeholder="Search for..."
+														aria-label="Search"
+														aria-describedby="basic-addon2"
+														autoComplete="off"
+													/>
+													<div className="input-group-append">
+														<button className="btn btn-primary" type="button">
+															<i className="fa fa-search fa-sm"></i>
+														</button>
+													</div>
 												</div>
 											</form>
 										);

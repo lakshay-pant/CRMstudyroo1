@@ -317,265 +317,299 @@ export const TaskList = () => {
 							<div class="col-lg-8 col-12">
 								<div class="task-student today">
 									<div class="headingdiv">Today</div>
-									{task
-										.slice(0)
-										.reverse()
-										.map((item) => (
-											<div class="task-list today" key={item._id}>
-												<div class="student-task">
-													{item.taskStatus === 'In progress' && (
-														<div class="img-wrap">
-															<span></span>
-														</div>
-													)}
-
-													<div class="data">
-														<p>
-															{item.taskName} {item.taskStatus}
-														</p>
-														<p>
-															Assigned to: {item.studentAssign} Created by:
-															{item.userName}{' '}
-														</p>
-													</div>
-													<div class="number">
-														<p>
-															{' '}
-															{Moment(item.dueDate).format('DD')}{' '}
-															{Moment(item.dueDate).format('MMMM')}{' '}
-															{Moment(item.dueDate).format('YYYY')}
-														</p>
-														<div class="todo-buttons">
-															{item.studentId ? (
-																<Link to={'/studentInfo/' + item.studentId}>
-																	{' '}
-																	<a class="task-btn-done">
-																		<span> Go To Student </span>
-																		<i class="fa fa-eye" aria-hidden="true"></i>
-																	</a>
-																</Link>
-															) : (
-																<Link to={'/task-list'}>
-																	{' '}
-																	<a class="task-btn-done">
-																		<span> Go To Student </span>
-																		<i class="fa fa-eye" aria-hidden="true"></i>
-																	</a>
-																</Link>
+									{task.length
+										? task
+												.slice(0)
+												.reverse()
+												.map((item) => (
+													<div class="task-list today" key={item._id}>
+														<div class="student-task">
+															{item.taskStatus === 'In progress' && (
+																<div class="img-wrap">
+																	<span></span>
+																</div>
 															)}
 
-															<a
-																class="task-btn-done"
-																onClick={() => taskCompleted(item)}
-															>
-																<span> Mark as Complete</span>
-																<i class="fa fa-check" aria-hidden="true"></i>
-															</a>
-															<a
-																class="task-btn-done"
-																onClick={() => taskInProgress(item)}
-															>
-																<span>Mark as in Progress</span>
-																<i
-																	class="fa fa-chevron-right"
-																	aria-hidden="true"
-																></i>
-															</a>
+															<div class="data">
+																<p>
+																	{item.taskName} {item.taskStatus}
+																</p>
+																<p>
+																	Assigned to: {item.studentAssign} Created by:
+																	{item.userName}{' '}
+																</p>
+															</div>
+															<div class="number">
+																<p>
+																	{' '}
+																	{Moment(item.dueDate).format('DD')}{' '}
+																	{Moment(item.dueDate).format('MMMM')}{' '}
+																	{Moment(item.dueDate).format('YYYY')}
+																</p>
+																<div class="todo-buttons">
+																	{item.studentId ? (
+																		<Link to={'/studentInfo/' + item.studentId}>
+																			{' '}
+																			<a class="task-btn-done">
+																				<span> Go To Student </span>
+																				<i
+																					class="fa fa-eye"
+																					aria-hidden="true"
+																				></i>
+																			</a>
+																		</Link>
+																	) : (
+																		<Link to={'/task-list'}>
+																			{' '}
+																			<a class="task-btn-done">
+																				<span> Go To Student </span>
+																				<i
+																					class="fa fa-eye"
+																					aria-hidden="true"
+																				></i>
+																			</a>
+																		</Link>
+																	)}
 
-															<a
-																class="task-btn-done"
-																onClick={() => showModal(item)}
-															>
-																<span> Edit </span>
-																<i class="fas fa-pen" aria-hidden="true"></i>
-															</a>
-															<a
-																class="task-btn-done"
-																onClick={() => deleteTaskRecord(item)}
-															>
-																<span> Delete </span>
-																<i class="fa fa-times" aria-hidden="true"></i>
-															</a>
-														</div>
+																	<a
+																		class="task-btn-done"
+																		onClick={() => taskCompleted(item)}
+																	>
+																		<span> Mark as Complete</span>
+																		<i
+																			class="fa fa-check"
+																			aria-hidden="true"
+																		></i>
+																	</a>
+																	<a
+																		class="task-btn-done"
+																		onClick={() => taskInProgress(item)}
+																	>
+																		<span>Mark as in Progress</span>
+																		<i
+																			class="fa fa-chevron-right"
+																			aria-hidden="true"
+																		></i>
+																	</a>
 
-														{/*modal-body--*/}
-														<div
-															class="modal fade filters-modal show"
-															aria-modal="true"
-														>
-															<Modal show={isOpen} onHide={hideModal}>
-																<div id="taskupdate">
-																	<Modal.Body>
-																		<div
-																			class="modal-dialog modal-lg"
-																			role="document"
-																		>
-																			<div class="modal-content">
-																				<div class="modal-top">
-																					<h5>Update Task</h5>
-																					<button
-																						onClick={hideModal}
-																						type="button"
-																						class="close"
-																						data-dismiss="modal"
-																						aria-label="Close"
-																					>
-																						<span aria-hidden="true">
-																							&times;
-																						</span>
-																					</button>
-																				</div>
+																	<a
+																		class="task-btn-done"
+																		onClick={() => showModal(item)}
+																	>
+																		<span> Edit </span>
+																		<i
+																			class="fas fa-pen"
+																			aria-hidden="true"
+																		></i>
+																	</a>
+																	<a
+																		class="task-btn-done"
+																		onClick={() => deleteTaskRecord(item)}
+																	>
+																		<span> Delete </span>
+																		<i
+																			class="fa fa-times"
+																			aria-hidden="true"
+																		></i>
+																	</a>
+																</div>
 
-																				<div class="student-filter-area">
-																					<form onSubmit={handleOnTaskSubmit}>
-																						<div class="row">
-																							<div class="col-lg-8 col-12">
-																								<div class="update-crm update-task">
-																									<div class="crm-form">
-																										<div class="headingdiv">
-																											What is your task about?
-																										</div>
+																{/*modal-body--*/}
+																<div
+																	class="modal fade filters-modal show"
+																	aria-modal="true"
+																>
+																	<Modal show={isOpen} onHide={hideModal}>
+																		<div id="taskupdate">
+																			<Modal.Body>
+																				<div
+																					class="modal-dialog modal-lg"
+																					role="document"
+																				>
+																					<div class="modal-content">
+																						<div class="modal-top">
+																							<h5>Update Task</h5>
+																							<button
+																								onClick={hideModal}
+																								type="button"
+																								class="close"
+																								data-dismiss="modal"
+																								aria-label="Close"
+																							>
+																								<span aria-hidden="true">
+																									&times;
+																								</span>
+																							</button>
+																						</div>
 
-																										<div class="form-row">
-																											<div class="form-group col-md-12">
-																												<label>Task Name</label>
-																												<input
-																													type="text"
-																													class="form-control"
-																													placeholder=""
-																													name="taskName"
-																													value={taskName}
-																													onChange={
-																														handleOnChange
-																													}
-																												/>
+																						<div class="student-filter-area">
+																							<form
+																								onSubmit={handleOnTaskSubmit}
+																							>
+																								<div class="row">
+																									<div class="col-lg-8 col-12">
+																										<div class="update-crm update-task">
+																											<div class="crm-form">
+																												<div class="headingdiv">
+																													What is your task
+																													about?
+																												</div>
+
+																												<div class="form-row">
+																													<div class="form-group col-md-12">
+																														<label>
+																															Task Name
+																														</label>
+																														<input
+																															type="text"
+																															class="form-control"
+																															placeholder=""
+																															name="taskName"
+																															value={taskName}
+																															onChange={
+																																handleOnChange
+																															}
+																														/>
+																													</div>
+																													<div class="form-group col-md-6">
+																														<label>Type</label>
+																														<select
+																															class="form-control"
+																															name="type"
+																															id="cars"
+																															onChange={
+																																handleOnChange
+																															}
+																															value={type}
+																														>
+																															<option>
+																																Call
+																															</option>
+																															<option>
+																																Client Meeting
+																															</option>
+																															<option>
+																																Event
+																															</option>
+																															<option>
+																																Follow up
+																															</option>
+																															<option>
+																																Sale
+																															</option>
+																															<option>
+																																Text Message
+																															</option>
+																														</select>
+																													</div>
+																													<div class="form-group col-md-6">
+																														<label>
+																															Due Date*
+																														</label>
+																														<input
+																															type="date"
+																															class="form-control"
+																															placeholder=""
+																															name="dueDate"
+																															value={dueDate}
+																															onChange={
+																																handleOnChange
+																															}
+																														/>
+																													</div>
+																													<div class="form-group col-md-12">
+																														<label>
+																															Task Details
+																															(comments)
+																														</label>
+																														<textarea
+																															class="form-control"
+																															rows="5"
+																															name="taskDetails"
+																															value={
+																																taskDetails
+																															}
+																															onChange={
+																																handleOnChange
+																															}
+																														></textarea>
+																													</div>
+																												</div>
 																											</div>
-																											<div class="form-group col-md-6">
-																												<label>Type</label>
-																												<select
-																													class="form-control"
-																													name="type"
-																													id="cars"
-																													onChange={
-																														handleOnChange
-																													}
-																													value={type}
-																												>
-																													<option>Call</option>
-																													<option>
-																														Client Meeting
-																													</option>
-																													<option>Event</option>
-																													<option>
-																														Follow up
-																													</option>
-																													<option>Sale</option>
-																													<option>
-																														Text Message
-																													</option>
-																												</select>
-																											</div>
-																											<div class="form-group col-md-6">
-																												<label>Due Date*</label>
-																												<input
-																													type="date"
-																													class="form-control"
-																													placeholder=""
-																													name="dueDate"
-																													value={dueDate}
-																													onChange={
-																														handleOnChange
-																													}
-																												/>
-																											</div>
-																											<div class="form-group col-md-12">
-																												<label>
-																													Task Details
-																													(comments)
-																												</label>
-																												<textarea
-																													class="form-control"
-																													rows="5"
-																													name="taskDetails"
-																													value={taskDetails}
-																													onChange={
-																														handleOnChange
-																													}
-																												></textarea>
-																											</div>
-																										</div>
-																									</div>
 
-																									<div class="crm-form">
-																										<div class="headingdiv">
-																											Current status
-																										</div>
-																										<div class="form-row">
-																											<div class="form-group col-md-12 col-12">
-																												<div class="form-group col-md-6">
-																													<select
-																														class="form-control"
-																														name="taskStatus"
-																														id="taskStatus"
-																														value={taskStatus}
-																														onChange={
-																															handleOnChange
-																														}
-																													>
-																														<option>
-																															Pending
-																														</option>
-																														<option>
-																															In progress
-																														</option>
-																														<option>
-																															Completed
-																														</option>
-																														<option>
-																															Cancelled
-																														</option>
-																													</select>
+																											<div class="crm-form">
+																												<div class="headingdiv">
+																													Current status
+																												</div>
+																												<div class="form-row">
+																													<div class="form-group col-md-12 col-12">
+																														<div class="form-group col-md-6">
+																															<select
+																																class="form-control"
+																																name="taskStatus"
+																																id="taskStatus"
+																																value={
+																																	taskStatus
+																																}
+																																onChange={
+																																	handleOnChange
+																																}
+																															>
+																																<option>
+																																	Pending
+																																</option>
+																																<option>
+																																	In progress
+																																</option>
+																																<option>
+																																	Completed
+																																</option>
+																																<option>
+																																	Cancelled
+																																</option>
+																															</select>
+																														</div>
+																													</div>
 																												</div>
 																											</div>
 																										</div>
 																									</div>
 																								</div>
-																							</div>
+																								<div class="fotercontent">
+																									<div class="footersingbtn">
+																										<input
+																											type="submit"
+																											name="Save"
+																											class="btn getin-btn"
+																											value="Save"
+																										/>
+																									</div>
+																								</div>
+																								{messageEdit && (
+																									<Alert
+																										variant={
+																											statusEdit === 'success'
+																												? 'success'
+																												: 'danger'
+																										}
+																									>
+																										{messageEdit}
+																									</Alert>
+																								)}
+																							</form>
 																						</div>
-																						<div class="fotercontent">
-																							<div class="footersingbtn">
-																								<input
-																									type="submit"
-																									name="Save"
-																									class="btn getin-btn"
-																									value="Save"
-																								/>
-																							</div>
-																						</div>
-																						{messageEdit && (
-																							<Alert
-																								variant={
-																									statusEdit === 'success'
-																										? 'success'
-																										: 'danger'
-																								}
-																							>
-																								{messageEdit}
-																							</Alert>
-																						)}
-																					</form>
+																					</div>
 																				</div>
-																			</div>
+																			</Modal.Body>
 																		</div>
-																	</Modal.Body>
+																	</Modal>
 																</div>
-															</Modal>
+																{/*modal end */}
+															</div>
 														</div>
-														{/*modal end */}
 													</div>
-												</div>
-											</div>
-										))}
+												))
+										: 'no task found'}
 								</div>
 							</div>
 						</div>

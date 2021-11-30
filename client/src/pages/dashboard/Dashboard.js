@@ -263,60 +263,76 @@ const Dashboard = () => {
 
 	var studentNumber = students.length;
 
-	const studentTask = task.filter(function (task) {
-		return task.taskStatus === 'Pending';
-	});
+	const studentTask = task
+		? task.filter(function (task) {
+				return task.taskStatus === 'Pending';
+		  })
+		: [];
 
-	const addStudentFilter = students.filter(function (stud) {
-		//var date1 = new Date(student.addedAt);
-		//date1.setDate(date1.getDate() - 30);
-		//var date2 = new Date(student.addedAt);
-		//date2.setDate(date1.getDate() - 1);
+	const addStudentFilter = students
+		? students.filter(function (stud) {
+				//var date1 = new Date(student.addedAt);
+				//date1.setDate(date1.getDate() - 30);
+				//var date2 = new Date(student.addedAt);
+				//date2.setDate(date1.getDate() - 1);
 
-		var prevMonth = moment().subtract(1, 'months');
-		var nextDay = moment().add(1, 'days');
+				var prevMonth = moment().subtract(1, 'months');
+				var nextDay = moment().add(1, 'days');
 
-		var filteredStudents = moment(stud.addedAt).isBetween(prevMonth, nextDay);
-		fetchAllStudents();
-		return filteredStudents;
-	});
+				var filteredStudents = moment(stud.addedAt).isBetween(
+					prevMonth,
+					nextDay
+				);
+				fetchAllStudents();
+				return filteredStudents;
+		  })
+		: [];
 
-	const addStudentTaskFilter = task.filter(function (ta) {
-		//var date1 = new Date(student.addedAt);
-		//date1.setDate(date1.getDate() - 30);
-		//var date2 = new Date(student.addedAt);
-		//date2.setDate(date1.getDate() - 1);
+	const addStudentTaskFilter = task
+		? task.filter(function (ta) {
+				//var date1 = new Date(student.addedAt);
+				//date1.setDate(date1.getDate() - 30);
+				//var date2 = new Date(student.addedAt);
+				//date2.setDate(date1.getDate() - 1);
 
-		var prevMonth = moment().subtract(1, 'months');
-		var nextDay = moment().add(1, 'days');
+				var prevMonth = moment().subtract(1, 'months');
+				var nextDay = moment().add(1, 'days');
 
-		var filteredStudentTask = moment(ta.addedAt).isBetween(prevMonth, nextDay);
-		fetchAlltask();
-		console.log(filteredStudentTask);
-		return filteredStudentTask;
-	});
+				var filteredStudentTask = moment(ta.addedAt).isBetween(
+					prevMonth,
+					nextDay
+				);
+				fetchAlltask();
+				console.log(filteredStudentTask);
+				return filteredStudentTask;
+		  })
+		: [];
 
-	const addLeadTaskFilter = leadTasks.filter(function (leadTask) {
-		//var date1 = new Date(student.addedAt);
-		//date1.setDate(date1.getDate() - 30);
-		//var date2 = new Date(student.addedAt);
-		//date2.setDate(date1.getDate() - 1);
+	const addLeadTaskFilter = leadTasks
+		? leadTasks.filter(function (leadTask) {
+				//var date1 = new Date(student.addedAt);
+				//date1.setDate(date1.getDate() - 30);
+				//var date2 = new Date(student.addedAt);
+				//date2.setDate(date1.getDate() - 1);
 
-		var prevMonth = moment().subtract(1, 'months');
-		var nextDay = moment().add(1, 'days');
+				var prevMonth = moment().subtract(1, 'months');
+				var nextDay = moment().add(1, 'days');
 
-		var filteredLeadTask = moment(leadTask.addedAt).isBetween(
-			prevMonth,
-			nextDay
-		);
-		fetchAllLeadTaskD();
-		console.log(filteredLeadTask);
-		return filteredLeadTask;
-	});
+				var filteredLeadTask = moment(leadTask.addedAt).isBetween(
+					prevMonth,
+					nextDay
+				);
+				fetchAllLeadTaskD();
+				console.log(filteredLeadTask);
+				return filteredLeadTask;
+		  })
+		: [];
 
-	const leadTask = leadTasks.filter(function (leadTask) {
-		return leadTask.taskCompleted === false;
-	});
+	const leadTask = leadTasks
+		? leadTasks.filter(function (leadTask) {
+				return leadTask.taskCompleted === false;
+		  })
+		: [];
 
 	const deleteTaskRecord = async (item) => {
 		await dispatch(deletetask(item._id));

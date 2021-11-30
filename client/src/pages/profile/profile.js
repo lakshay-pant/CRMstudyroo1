@@ -232,7 +232,7 @@ export const Profile = () => {
 									<div class="profile-img">
 										{user.avatar ? (
 											<img
-												src={`http://localhost:5000/v1/user/get/${user._id}/avatar`}
+												src={`http://localhost:3001/v1/user/get/${user._id}/avatar`}
 												class="img-fluid"
 												alt="profile"
 											/>

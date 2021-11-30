@@ -1,0 +1,112 @@
+.providers_wrpr .maincontent,
+.add_user_section .maincontent {
+	padding-bottom: 30px;
+}
+.provdrs_hdr_chckbx {
+	margin: 50px 0 0;
+}
+.providers_wrpr .import-from > a {
+	color: #fff;
+}
+.modal_prvdr {
+	max-width: 950px;
+}
+.providers_wrpr .import-from,
+.add_user_section .import-from {
+	justify-content: flex-end;
+}
+.cmn_pg_ttl {
+	font-size: 24px;
+	font-weight: 600;
+	color: #212529;
+}
+.provdrs_pg_hdr {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 30px 0 50px;
+}
+a.import_anchor {
+	margin: 0 15px 0 0;
+	color: #f48035;
+}
+a.import_anchor:hover {
+	color: #e56a1a;
+}
+.provdrs_hdr_chckbx ul {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	list-style: none;
+	padding: 0;
+}
+.provdrs_hdr_chckbx ul li {
+	margin: 0 15px;
+}
+.provdrs_hdr_chckbx input.form-check-input {
+	opacity: 0;
+	visibility: hidden;
+	position: absolute;
+}
+.provdrs_hdr_chckbx input.form-check-input + label:before {
+	content: '';
+	position: absolute;
+	height: 20px;
+	width: 20px;
+	background: #ddd;
+	left: 0;
+	border-radius: 4px;
+}
+.provdrs_hdr_chckbx input.form-check-input:checked + label:before {
+	background: #f37e32;
+}
+.provdrs_hdr_chckbx input.form-check-input:checked + label:after {
+	content: '\f00c';
+	font-family: 'Fontawesome';
+	font-weight: 400;
+	font-size: 15px;
+	color: #fff;
+	position: absolute;
+	left: 3px;
+}
+.provdrs_hdr_chckbx label.form-check-label {
+	margin: 0 0 0 12px;
+	line-height: 20px;
+}
+.provdr_lgo img {
+	max-width: 100px;
+}
+.provdrs_table table {
+	width: 100%;
+	border-spacing: 0 7px;
+	border-collapse: separate;
+}
+.provdrs_table table td {
+	background: #fff;
+	padding: 15px;
+	border-right: 1px solid whitesmoke;
+}
+.provdrs_table {
+	margin: 30px 0 0;
+}
+span.provdr_status {
+	color: #fff;
+	background: #00c100;
+	display: inline-block;
+	padding: 3px 10px;
+	border-radius: 4px;
+}
+.provdrs_table table td a {
+	color: #f37e32;
+}
+.provdrs_rcrds {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	max-width: 170px;
+	margin-left: auto;
+}
+.provdrs_rcrds label {
+	margin: 0 15px 0 0;
+}

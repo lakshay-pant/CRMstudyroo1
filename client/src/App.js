@@ -15,6 +15,8 @@ import Leads from './pages/leads/Leads';
 import { Profile } from './pages/profile/profile';
 import { TaskList } from './pages/taskList/taskList';
 import { StudentInfo } from './pages/studentInfo/studentInfo.page';
+import { Addadmin } from './pages/adminUser/addAdminUser';
+import { Providersdash } from './pages/providers/providersDashboard';
 
 function App() {
 	return (
@@ -71,6 +73,12 @@ function App() {
 
 					<PrivateRoute path="/task-list">
 						<TaskList />
+					</PrivateRoute>
+					<PrivateRoute path="/addAdmin">
+						<Addadmin />
+					</PrivateRoute>
+					<PrivateRoute path="/addCourses">
+						<Providersdash />
 					</PrivateRoute>
 				</Switch>
 			</Router>
