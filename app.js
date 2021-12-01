@@ -1,14 +1,26 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+
+var bodyParser = require('body-parser');
+
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
+var timeout = require('connect-timeout');
 
+app.use(timeout('50s'));
+
+app.use(haltOnTimedout);
+
+app.use(haltOnTimedout);
+
+function haltOnTimedout(req, res, next) {
+	if (!req.timedout) next();
+}
 //API security
 
 // app.use(express.static(__dirname+"uploads/"));
