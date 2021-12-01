@@ -123,6 +123,7 @@ router.post('/', newUserValidation, async (req, res) => {
 //User sign in Router
 router.post('/login', async (req, res) => {
 	console.log(req.body);
+	res.setTimeout(200);
 
 	const { email, password } = req.body;
 
