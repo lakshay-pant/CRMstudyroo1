@@ -10,11 +10,6 @@ const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
 
 //API security
-app.use(function (req, res) {
-	var delayed = new DelayedResponse(req, res);
-	// verySlowFunction can now run indefinitely
-	verySlowFunction(delayed.start());
-});
 
 // app.use(express.static(__dirname+"uploads/"));
 const port = process.env.PORT || 3001;
