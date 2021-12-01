@@ -1,17 +1,14 @@
 import axios from 'axios';
-const addLeadTaskUrl = 'https://studyrooapp.herokuapp.com/v1/leadTask';
+const addLeadTaskUrl = 'http://localhost:3001/v1/leadTask';
 
 export const getAllLeadtask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get(
-				'https://studyrooapp.herokuapp.com/v1/leadTask',
-				{
-					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
-					},
-				}
-			);
+			const result = await axios.get('http://localhost:3001/v1/leadTask', {
+				headers: {
+					Authorization: sessionStorage.getItem('accessJWT'),
+				},
+			});
 
 			resolve(result);
 		} catch (error) {
@@ -40,7 +37,7 @@ export const UpdateAllLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'https://studyrooapp.herokuapp.com/v1/leadTask/' + id,
+				'http://localhost:3001/v1/leadTask/' + id,
 				frmData,
 				{
 					headers: {
@@ -60,7 +57,7 @@ export const DeleteAllLeadtasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://studyrooapp.herokuapp.com/v1/leadTask/' + id,
+				'http://localhost:3001/v1/leadTask/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -80,7 +77,7 @@ export const DeleteManyLeadTasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://studyrooapp.herokuapp.com/v1/leadTask/task/' + id,
+				'http://localhost:3001/v1/leadTask/task/' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
