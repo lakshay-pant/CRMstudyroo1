@@ -1,16 +1,14 @@
 import axios from 'axios';
-const addLeadUrl = 'http://localhost:3001/v1/leads';
+const addCourseUrl = 'http://localhost:3001/v1/course';
 
-export const createNewLead = (frmData) => {
-	console.log('from api', frmData);
+export const createNewCourse = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.post(addLeadUrl, frmData, {
+			const result = await axios.post(addCourseUrl, frmData, {
 				headers: {
 					Authorization: sessionStorage.getItem('accessJWT'),
 				},
 			});
-			console.log('bb', result);
 
 			resolve(result.data);
 		} catch (error) {
@@ -20,11 +18,11 @@ export const createNewLead = (frmData) => {
 	});
 };
 
-export const getAllUserLeads = () => {
+export const getAllUserSingleStudent = (_id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'http://localhost:3001/v1/leads/all-leads',
+				'http://localhost:3001/v1/students/' + _id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -39,24 +37,11 @@ export const getAllUserLeads = () => {
 	});
 };
 
-export const getAllUserSingleLead = (_id) => {
+export const addCertificate = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get('http://localhost:3001/v1/leads/' + _id);
-
-			resolve(result);
-		} catch (error) {
-			reject(error);
-		}
-	});
-};
-
-export const addLeadTask = (frmData, id) => {
-	console.log('from api', frmData);
-	return new Promise(async (resolve, reject) => {
-		try {
-			const result = await axios.put(
-				'http://localhost:3001/v1/leads/' + id,
+			const result = await axios.post(
+				'http://localhost:3001/v1/students/uploadCertificate',
 				frmData,
 				{
 					headers: {
@@ -73,11 +58,27 @@ export const addLeadTask = (frmData, id) => {
 	});
 };
 
-export const DeleteAllUserLeads = (id) => {
+export const getAllCourses = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.delete(
-				'http://localhost:3001/v1/leads/' + id,
+			const result = await axios.get('http://localhost:3001/v1/course', {
+				headers: {
+					Authorization: sessionStorage.getItem('accessJWT'),
+				},
+			});
+
+			resolve(result);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const getAllUserStudents = () => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.get(
+				'http://localhost:3001/v1/students/all-students',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -85,62 +86,103 @@ export const DeleteAllUserLeads = (id) => {
 				}
 			);
 
-			resolve(result.data);
+			resolve(result);
 		} catch (error) {
-			console.log(error.message);
 			reject(error);
 		}
 	});
 };
 
-export const DeleteAllUserLeadsTask = (id1, id2) => {
-	return new Promise(async (resolve, reject) => {
-		try {
-			const result = await axios.delete(
-				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
-				{
-					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
-					},
-				}
-			);
-
-			resolve(result.data);
-		} catch (error) {
-			console.log(error.message);
-			reject(error);
-		}
-	});
-};
-
-export const UpdateLeadTask = (frmData, id1, id2) => {
-	console.log('from api', frmData);
-	return new Promise(async (resolve, reject) => {
-		try {
-			const result = await axios.put(
-				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
-				frmData,
-				{
-					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
-					},
-				}
-			);
-
-			resolve(result.data);
-		} catch (error) {
-			console.log(error.message);
-			reject(error);
-		}
-	});
-};
-
-export const UpdateAllUserLeads = (frmData, id) => {
+export const UpdateAllUserStudents = (frmData, id) => {
 	console.log('from api', frmData);
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'http://localhost:3001/v1/leads/' + id,
+				'http://localhost:3001/v1/students/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const DeleteAllUserStudents = (id) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/students/' + id,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const addStudentTask = (frmData, id) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/students/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const DeleteAllUserStudentTask = (id1, id2) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/students/' + id1 + '/' + id2,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const UpdateStudentTask = (frmData, id1, id2) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/students/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {

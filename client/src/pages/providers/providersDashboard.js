@@ -2,11 +2,19 @@ import React from 'react';
 import './providers.css';
 import { Providerslist } from '../../components/providerList/providersList';
 import 'react-tabs/style/react-tabs.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import { addCourse } from './addProviderAction';
+import { fetchAllCourses } from '../../components/providerList/getProvidersAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Providersdash = () => {
+	const dispatch = useDispatch();
 	const [isOpen8, setIsOpen8] = useState(false);
+	const [publicName, setPublicName] = useState('');
+	const [type, setType] = useState('');
+	const [nickName, setNickName] = useState('');
+	const [status, setStatus] = useState('');
 
 	const showModal8 = (item) => {
 		setIsOpen8(true);
@@ -14,6 +22,50 @@ export const Providersdash = () => {
 
 	const hideModal8 = () => {
 		setIsOpen8(false);
+	};
+
+	useEffect(() => {
+		dispatch(fetchAllCourses());
+	}, []);
+
+	const handleOnChange = (e) => {
+		const { name, value } = e.target;
+
+		switch (name) {
+			case 'publicName':
+				setPublicName(value);
+				break;
+
+			case 'type':
+				setType(value);
+				break;
+
+			case 'nickName':
+				setNickName(value);
+				break;
+			case 'status':
+				setStatus(value);
+				break;
+
+			default:
+				break;
+		}
+	};
+
+	const handleOnCourseSubmit = async (e) => {
+		e.preventDefault();
+
+		const newTask = {
+			publicName,
+			status,
+			type,
+			nickName,
+		};
+
+		console.log('ssss', newTask);
+
+		await dispatch(addCourse(newTask));
+		await dispatch(fetchAllCourses);
 	};
 
 	return (
@@ -167,17 +219,29 @@ export const Providersdash = () => {
 								</a>
 							</div>
 							<div className="modal_content">
-								<form>
+								<form onSubmit={handleOnCourseSubmit}>
 									<div className="add_office_frm_sngl">
 										<div className="add_ofc_frm_slf_con">
 											<div className="row">
 												<div className="col-lg-6 form-group">
 													<label>Public name </label>
-													<input type="text" className="form-control"></input>
+													<input
+														type="text"
+														class="form-control"
+														placeholder=""
+														name="publicName"
+														value={publicName}
+														onChange={handleOnChange}
+													/>
 												</div>
 												<div className="col-lg-6 form-group">
 													<label>Status</label>
-													<select className="form-control">
+													<select
+														className="form-control"
+														name="status"
+														value={status}
+														onChange={handleOnChange}
+													>
 														<option>-Nothing selected</option>
 														<option>Visible to agents</option>
 														<option>Invisible to agents</option>
@@ -185,11 +249,22 @@ export const Providersdash = () => {
 												</div>
 												<div className="col-lg-6 form-group">
 													<label>One word alias </label>
-													<input type="text" className="form-control"></input>
+													<input
+														type="text"
+														className="form-control"
+														name="nickName"
+														value={nickName}
+														onChange={handleOnChange}
+													/>
 												</div>
 												<div className="col-lg-6 form-group">
 													<label>Type</label>
-													<select className="form-control">
+													<select
+														className="form-control"
+														name="type"
+														value={type}
+														onChange={handleOnChange}
+													>
 														<option>-Nothing selected</option>
 
 														<option>Ed. provider</option>

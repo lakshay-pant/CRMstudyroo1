@@ -40,6 +40,8 @@ import addOfficeStudentTask from './pages/addTask/addUserOfficeTaskSlice';
 import addDp from './pages/profile/profileDpSlice';
 import getSingleStudent from './components/student-overview/studentOverviewClickStudSlice';
 import studentInfo from './pages/studentInfo/editStudentInfoSlice';
+import addCourse from './pages/providers/addProviderSlice';
+import courseList from './components/providerList/getProvidersSlice';
 
 const store = configureStore({
 	reducer: {
@@ -83,6 +85,8 @@ const store = configureStore({
 		getSingleStudent: getSingleStudent,
 		studentInfo: studentInfo,
 		studentTask: studentTask,
+		addCourse: addCourse,
+		courseList: courseList,
 	},
 });
 
