@@ -10,6 +10,7 @@ const CourseSchema = new Schema({
 	publicName: {
 		type: String,
 		maxlength: 50,
+		required: true,
 	},
 	status: {
 		type: String,

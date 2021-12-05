@@ -26,10 +26,10 @@ const getCourses = (clientId) => {
 	});
 };
 
-const getAllStudents = () => {
+const getAllCourses = () => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.find()
+			CourseSchema.find()
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {
@@ -38,22 +38,10 @@ const getAllStudents = () => {
 	});
 };
 
-const getStudentById = (_id) => {
+const getCourseById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.findOne({ _id })
-				.then((data) => resolve(data))
-				.catch((error) => reject(error));
-		} catch (error) {
-			reject(error);
-		}
-	});
-};
-
-const getStudentAllUsersById = (_id) => {
-	return new Promise((resolve, reject) => {
-		try {
-			StudentSchema.findOne({ _id })
+			CourseSchema.findOne({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {
@@ -86,76 +74,10 @@ const deleteStudent = ({ _id, clientId }) => {
 	});
 };
 
-const deleteAllUserStudent = ({ _id }) => {
+const deleteAllUserCourse = ({ _id }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.findOneAndDelete({ _id })
-				.then((data) => resolve(data))
-				.catch((error) => reject(error));
-		} catch (error) {
-			reject(error);
-		}
-	});
-};
-const updateStudentTask = ({
-	_id,
-	taskName,
-	dueDate,
-	taskDetails,
-	studentAssign,
-	taskStatus,
-	assignTo,
-	userGroup,
-	offices,
-	type,
-	taskId,
-	studentId,
-}) => {
-	return new Promise((resolve, reject) => {
-		try {
-			StudentSchema.findOneAndUpdate(
-				{ _id },
-				{
-					status: 'Pending operator response',
-					$push: {
-						studentTasks: {
-							taskName,
-							dueDate,
-							taskDetails,
-							studentAssign,
-							taskStatus,
-							assignTo,
-							userGroup,
-							offices,
-							type,
-							taskId,
-							studentId,
-						},
-					},
-				},
-				{ new: true }
-			)
-				.then((data) => resolve(data))
-				.catch((error) => reject(error));
-		} catch (error) {
-			reject(error);
-		}
-	});
-};
-const updateStudentTaskDelete = (id1, id2) => {
-	return new Promise((resolve, reject) => {
-		try {
-			StudentSchema.findByIdAndUpdate(
-				id1,
-				{
-					$pull: {
-						studentTasks: {
-							taskId: id2,
-						},
-					},
-				},
-				{ new: true }
-			)
+			CourseSchema.findOneAndDelete({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {
@@ -164,27 +86,10 @@ const updateStudentTaskDelete = (id1, id2) => {
 	});
 };
 
-const updateTaskStudent = (
-	id3,
-	{ taskName, dueDate, taskDetails, taskStatus, userGroup, offices, type }
-) => {
+const getCourseAllUsersById = (_id) => {
 	return new Promise((resolve, reject) => {
 		try {
-			StudentSchema.findOneAndUpdate(
-				{ 'studentTasks.taskId': id3 },
-				{
-					$set: {
-						'studentTasks.$.taskName': taskName,
-						'studentTasks.$.dueDate': dueDate,
-						'studentTasks.$.taskStatus': taskStatus,
-						'studentTasks.$.taskDetails': taskDetails,
-						'studentTasks.$.userGroup': userGroup,
-						'studentTasks.$.offices': offices,
-						'studentTasks.$.type': type,
-					},
-				},
-				{ new: true }
-			)
+			CourseSchema.findOne({ _id })
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
 		} catch (error) {
@@ -196,13 +101,10 @@ const updateTaskStudent = (
 module.exports = {
 	insertCourse,
 	getCourses,
-	getStudentById,
+	getCourseById,
 	deleteStudent,
-	getAllStudents,
-	getStudentAllUsersById,
-	deleteAllUserStudent,
-	updateStudentTask,
-	updateStudentTaskDelete,
-	updateTaskStudent,
+	getAllCourses,
+	deleteAllUserCourse,
 	getUserNameById,
+	getCourseAllUsersById,
 };

@@ -10,17 +10,7 @@ const morgan = require('morgan');
 const path = require('path');
 const multer = require('multer');
 var upload = multer({ dest: 'uploads/' });
-var timeout = require('connect-timeout');
 
-app.use(timeout('50s'));
-
-app.use(haltOnTimedout);
-
-app.use(haltOnTimedout);
-
-function haltOnTimedout(req, res, next) {
-	if (!req.timedout) next();
-}
 //API security
 
 // app.use(express.static(__dirname+"uploads/"));
@@ -76,6 +66,7 @@ const tokensRouter = require('./src/routers/tokens.router');
 const leadsRouter = require('./src/routers/lead.router');
 const leadTaskUserRouter = require('./src/routers/leadTaskUser.router');
 const leadTaskRouter = require('./src/routers/leadTask.router');
+const courseRouter = require('./src/routers/courses.router');
 
 //Use Routers
 
@@ -86,6 +77,7 @@ app.use('/v1/tasks', taskRouter);
 app.use('/v1/leads', leadsRouter);
 app.use('/v1/leadTaskUser', leadTaskUserRouter);
 app.use('/v1/leadTask', leadTaskRouter);
+app.use('/v1/course', courseRouter);
 
 var Storage = multer.diskStorage({
 	destination: function (req, file, cb) {
