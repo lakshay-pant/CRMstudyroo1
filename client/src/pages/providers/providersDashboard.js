@@ -65,7 +65,7 @@ export const Providersdash = () => {
 		console.log('ssss', newTask);
 
 		await dispatch(addCourse(newTask));
-		await dispatch(fetchAllCourses);
+		await dispatch(fetchAllCourses());
 	};
 
 	return (
