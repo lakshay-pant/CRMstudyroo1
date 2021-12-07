@@ -27,10 +27,6 @@ export const userLogin = (frmData) => {
 
 			if (res.data.status === 'success') {
 				sessionStorage.setItem('accessJWT', res.data.accessJWT);
-				localStorage.setItem(
-					'crmSite',
-					JSON.stringify({ refreshJWT: res.data.refreshJWT })
-				);
 			}
 		} catch (error) {
 			reject(error);
@@ -62,15 +58,9 @@ export const UpdateAllUser = (frmData) => {
 export const fetchNewAccessJWT = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const { refreshJWT } = JSON.parse(localStorage.getItem('crmSite'));
-
-			if (!refreshJWT) {
-				reject('Token not found!');
-			}
-
 			const res = await axios.get(newAccessJWT, {
 				headers: {
-					Authorization: refreshJWT,
+					Authorization: sessionStorage.getItem('accessJWT'),
 				},
 			});
 
@@ -81,7 +71,7 @@ export const fetchNewAccessJWT = () => {
 			resolve(true);
 		} catch (error) {
 			if (error.message === 'Request failed with status code 403') {
-				localStorage.removeItem('crmSite');
+				localStorage.removeItem('accessJWT');
 			}
 
 			reject(false);

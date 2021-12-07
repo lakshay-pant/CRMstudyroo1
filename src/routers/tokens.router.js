@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { verifyRefreshJWT, crateAccessJWT } = require('../helpers/jwt.helper');
+const { verifyAccessJWT, crateAccessJWT } = require('../helpers/jwt.helper');
 const { getUserByEmail } = require('../model/user/User.model');
 
 //return refresh jwt
@@ -10,13 +10,13 @@ router.get('/', async (req, res, next) => {
 
 	//TODO
 
-	const decoded = await verifyRefreshJWT(authorization);
+	const decoded = await verifyAccessJWT(authorization);
 	if (decoded.email) {
 		const userProf = await getUserByEmail(decoded.email);
 
 		if (userProf._id) {
-			let tokenExp = userProf.refreshJWT.addedAt;
-			const dBrefreshToken = userProf.refreshJWT.token;
+			let tokenExp = userProf.accessJWT.addedAt;
+			const dBrefreshToken = userProf.access.token;
 
 			tokenExp = tokenExp.setDate(
 				tokenExp.getDate() + +process.env.JWT_REFRESH_SECRET_EXP_DAY

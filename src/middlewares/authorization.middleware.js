@@ -1,5 +1,6 @@
 const { verifyAccessJWT } = require('../helpers/jwt.helper');
-const { getJWT, deleteJWT } = require('../helpers/redis.helper');
+
+const { getUserByEmail } = require('../model/user/User.model');
 
 const userAuthorization = async (req, res, next) => {
 	const { authorization } = req.headers;
@@ -7,18 +8,16 @@ const userAuthorization = async (req, res, next) => {
 	const decoded = await verifyAccessJWT(authorization);
 
 	if (decoded.email) {
-		const userId = await getJWT(authorization);
+		const user = await getUserByEmail(decoded.email);
 
-		if (!userId) {
+		if (!user._id) {
 			return res.status(403).json({ message: 'Forbidden' });
 		}
 
-		req.userId = userId;
+		req.userId = user._id;
 
 		return next();
 	}
-
-	deleteJWT(authorization);
 
 	return res.status(403).json({ message: 'Forbidden' });
 };
