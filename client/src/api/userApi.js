@@ -1,10 +1,10 @@
 import axios from 'axios';
-const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login/';
-const signUpUrl = 'https://studyrooapp.herokuapp.com/v1/user/';
-const userProfileUrl = 'https://studyrooapp.herokuapp.com/v1/user/';
-const newAccessJWT = 'https://studyrooapp.herokuapp.com/v1/tokens/';
-const logoutUrl = 'https://studyrooapp.herokuapp.com/v1/user/logout/';
-const getAllUsers = 'https://studyrooapp.herokuapp.com/v1/user/all-users/';
+const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login';
+const signUpUrl = 'https://studyrooapp.herokuapp.com/v1/user';
+const userProfileUrl = 'https://studyrooapp.herokuapp.com/v1/user';
+const newAccessJWT = 'https://studyrooapp.herokuapp.com/v1/tokens';
+const logoutUrl = 'https://studyrooapp.herokuapp.com/v1/user/logout';
+const getAllUsers = 'https://studyrooapp.herokuapp.com/v1/user/all-users';
 
 export const userSignUp = (frmData) => {
 	return new Promise(async (resolve, reject) => {
