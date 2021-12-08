@@ -1,11 +1,11 @@
 import axios from 'axios';
-const addTaskUrl = 'https://studyrooapp.herokuapp.com/v1/tasks';
+const addTaskUrl = 'https://studyrooapp.herokuapp.com/v1/tasks/';
 
 export const getAlltask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://studyrooapp.herokuapp.com/v1/tasks',
+				'https://studyrooapp.herokuapp.com/v1/tasks/',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),

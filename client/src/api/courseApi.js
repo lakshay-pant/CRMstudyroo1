@@ -1,5 +1,5 @@
 import axios from 'axios';
-const addCourseUrl = 'https://studyrooapp.herokuapp.com/v1/course';
+const addCourseUrl = 'https://studyrooapp.herokuapp.com/v1/course/';
 
 export const createNewCourse = (frmData) => {
 	return new Promise(async (resolve, reject) => {
@@ -41,7 +41,7 @@ export const addCertificate = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.post(
-				'https://studyrooapp.herokuapp.com/v1/students/uploadCertificate',
+				'https://studyrooapp.herokuapp.com/v1/students/uploadCertificate/',
 				frmData,
 				{
 					headers: {
@@ -62,7 +62,7 @@ export const getAllCourses = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://studyrooapp.herokuapp.com/v1/course',
+				'https://studyrooapp.herokuapp.com/v1/course/',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
@@ -81,7 +81,7 @@ export const getAllUserStudents = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'https://studyrooapp.herokuapp.com/v1/students/all-students',
+				'https://studyrooapp.herokuapp.com/v1/students/all-students/',
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
