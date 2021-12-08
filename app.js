@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 var bodyParser = require('body-parser');
-app.disable('etag');
+
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -17,6 +17,7 @@ const port = process.env.PORT || 3001;
 app.options('*', cors());
 //handle CORS error
 app.use(cors());
+app.disable('etag');
 
 //MongoDB Connection Setup
 const mongoose = require('mongoose');
