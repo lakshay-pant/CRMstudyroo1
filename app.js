@@ -17,7 +17,6 @@ const port = process.env.PORT || 3001;
 app.options('*', cors());
 //handle CORS error
 app.use(cors());
-app.disable('etag');
 
 //MongoDB Connection Setup
 const mongoose = require('mongoose');
