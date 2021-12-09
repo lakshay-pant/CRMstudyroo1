@@ -19,6 +19,7 @@ export const getAllLeadtask = () => {
 		}
 	});
 };
+
 export const createNewLeadTask = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
