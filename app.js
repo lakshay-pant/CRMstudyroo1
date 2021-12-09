@@ -27,21 +27,6 @@ mongoose.connect(process.env.MONGO_URL, {
 	autoIndex: true,
 });
 
-if (process.env.NODE_ENV !== 'development') {
-	const mDb = mongoose.connection;
-	mDb.on('open', () => {
-		console.log('MongoDB is conneted');
-	});
-
-	mDb.on('error', (error) => {
-		console.log(error);
-		console.log('errors');
-	});
-
-	//Logger
-	app.use(morgan('tiny'));
-}
-
 // Set body bodyParser
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -67,6 +52,21 @@ app.use('/v1/leads', leadsRouter);
 app.use('/v1/leadTaskUser', leadTaskUserRouter);
 app.use('/v1/leadTask', leadTaskRouter);
 app.use('/v1/course', courseRouter);
+
+if (process.env.NODE_ENV !== 'development') {
+	const mDb = mongoose.connection;
+	mDb.on('open', () => {
+		console.log('MongoDB is conneted');
+	});
+
+	mDb.on('error', (error) => {
+		console.log(error);
+		console.log('errors');
+	});
+
+	//Logger
+	app.use(morgan('tiny'));
+}
 
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
