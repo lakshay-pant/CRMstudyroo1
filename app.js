@@ -103,7 +103,7 @@ app.get('/upload', function (req, res, next) {
 });
 
 //Error handler
-const handleError = require('./src/utils/errorHandler');
+
 app.use((req, res, next) => {
 	const error = new Error('Resources not found!');
 	error.status = 404;
