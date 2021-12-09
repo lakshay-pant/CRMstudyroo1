@@ -27,15 +27,6 @@ mongoose.connect(process.env.MONGO_URL, {
 	autoIndex: true,
 });
 
-if (process.env.NODE_ENV === 'production') {
-	app.use(express.static('client/build'));
-
-	app.get('*', (req, res) => {
-		//res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
-		res.sendFile(path.join(__dirname + 'client', 'build', 'index.html'));
-	});
-}
-
 if (process.env.NODE_ENV !== 'development') {
 	const mDb = mongoose.connection;
 	mDb.on('open', () => {
@@ -76,6 +67,15 @@ app.use('/v1/leads', leadsRouter);
 app.use('/v1/leadTaskUser', leadTaskUserRouter);
 app.use('/v1/leadTask', leadTaskRouter);
 app.use('/v1/course', courseRouter);
+
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		//res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); // relative path
+		res.sendFile(path.join(__dirname + 'client', 'build', 'index.html'));
+	});
+}
 
 //Error handler
 
