@@ -19,6 +19,14 @@ app.use(cors());
 //MongoDB Connection Setup
 const mongoose = require('mongoose');
 
+mongoose.connect(process.env.MONGO_URL, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
+	useFindAndModify: true,
+	useCreateIndex: true,
+	autoIndex: true,
+});
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'));
 
@@ -27,14 +35,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname + 'client', 'build', 'index.html'));
 	});
 }
-
-mongoose.connect(process.env.MONGO_URL, {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-	useFindAndModify: true,
-	useCreateIndex: true,
-	autoIndex: true,
-});
 
 if (process.env.NODE_ENV !== 'development') {
 	const mDb = mongoose.connection;
