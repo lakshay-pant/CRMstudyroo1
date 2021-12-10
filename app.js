@@ -32,12 +32,6 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
-	const error = new Error('Resources not found!');
-	error.status = 404;
-	next(error);
-});
-
 //Load routers
 const userRouter = require('./src/routers/user.router');
 const studentRouter = require('./src/routers/student.router');
@@ -84,6 +78,18 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 //Error handler
+
+const handleError = require('./src/utils/errorHandler');
+
+app.use((req, res, next) => {
+	const error = new Error('Resources not found!');
+	error.status = 404;
+	next(error);
+});
+
+app.use((error, req, res, next) => {
+	handleError(error, res);
+});
 
 app.listen(port, () => {
 	console.log(`API is ready on http://localhost:${port}`);
