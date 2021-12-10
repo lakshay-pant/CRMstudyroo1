@@ -78,9 +78,11 @@ export const Profile = () => {
 		if (uploadedFile) {
 			const formData = new FormData();
 			formData.append('avatar', uploadedFile);
+
 			console.log('ss2', formData);
 
 			await dispatch(addUserDpic(formData));
+			window.location.reload(false);
 		} else {
 			return alert('add profile picture');
 		}
