@@ -1051,26 +1051,12 @@ const Leads = () => {
 							<div class="row">
 								<div class="col-md-6 col-12">
 									<div class="student-lead">
-										<div class="tooltip">
-											<div class="inbox-icon">
-												<i class="fas fa-inbox"></i>
-											</div>
-											<span class="tooltiptext">Inbox</span>
-										</div>
-
-										<div class="tooltip">
-											<div class="inbox-icon">
-												<i class="fas fa-archive"></i>
-											</div>
-											<span class="tooltiptext">Archive</span>
-										</div>
-
-										<select
+										<button
 											class="form-control filter-box"
 											onClick={showModal2}
 										>
-											<option>Add Lead</option>
-										</select>
+											Add Lead
+										</button>
 									</div>
 
 									{/*modal-body--*/}
@@ -1430,6 +1416,7 @@ const Leads = () => {
 														<td>{Moment(item.addedAt).format('DD/MM/YYYY')}</td>
 														<td>{Moment(item.addedAt).format('HH:mm:ss')}</td>
 														<td>{item.leadUserName}</td>
+														<td>JEE</td>
 														<td>
 															<div class="action">
 																<a onClick={() => showModal6(item)}>
