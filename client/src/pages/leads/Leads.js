@@ -1051,10 +1051,7 @@ const Leads = () => {
 							<div class="row">
 								<div class="col-md-6 col-12">
 									<div class="student-lead">
-										<button
-											class="form-control filter-box"
-											onClick={showModal2}
-										>
+										<button class="cmn_btn filter-box" onClick={showModal2}>
 											Add Lead
 										</button>
 									</div>
