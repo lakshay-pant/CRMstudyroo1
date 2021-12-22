@@ -73,6 +73,10 @@ const LeadSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
+	leadFixDate: {
+		type: String,
+		maxlength: 50,
+	},
 	leadRefferalSource: {
 		type: String,
 		maxlength: 50,

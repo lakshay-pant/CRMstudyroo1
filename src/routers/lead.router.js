@@ -24,30 +24,26 @@ router.all('/', (req, res, next) => {
 });
 
 // add lead from studyroo website
-router.post('/studyroo', async (req, res) => {
+router.post('/massage', async (req, res) => {
 	const {
 		leadFirstName,
-
-		leadLastName,
-		leadBirthday,
-
-		leadNationality,
 		leadEmail,
 		leadOnShorePhone,
-		leadMessage,
 		leadService,
+		leadFixDate,
+		leadMessage,
+		leadRefferalSource,
 	} = req.body;
 
 	try {
 		const newUserObj = {
 			leadFirstName,
-			leadLastName,
-			leadBirthday,
-			leadNationality,
 			leadEmail,
 			leadOnShorePhone,
-			leadMessage,
 			leadService,
+			leadFixDate,
+			leadMessage,
+			leadRefferalSource,
 		};
 		console.log('bb', newUserObj);
 		const result = await insertLead(newUserObj);
@@ -56,7 +52,7 @@ router.post('/studyroo', async (req, res) => {
 		if (result._id) {
 			return res.json({
 				status: 'success',
-				message: 'New Lead has been added!',
+				message: 'New  Massage Lead  has been added!',
 			});
 		}
 
