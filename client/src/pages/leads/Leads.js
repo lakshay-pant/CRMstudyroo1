@@ -1379,6 +1379,7 @@ const Leads = () => {
 												<th>Gender</th>
 												<th>Nationality</th>
 												<th>Location Status</th>
+												<th>Fix Date</th>
 												<th>PHONE</th>
 												<th>Email</th>
 												<th>Birthday</th>
@@ -1402,6 +1403,7 @@ const Leads = () => {
 														<td>{item.leadGender}</td>
 														<td>{item.leadNationality}</td>
 														<td>{item.leadLocationStatus}</td>
+														<td>{item.leadFixDate}</td>
 														<td>
 															onShoreNO:-{item.leadOnShorePhone}
 															<br />
