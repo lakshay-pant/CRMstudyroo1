@@ -52,7 +52,7 @@ router.post('/massage', async (req, res) => {
 		if (result._id) {
 			return res.json({
 				status: 'success',
-				message: 'New  Massage Lead  has been added!',
+				message: `New  Massage Lead  has been added!${leadFirstName},${leadEmail}`,
 			});
 		}
 
