@@ -13,11 +13,11 @@ const LeadSchema = new Schema({
 	},
 	leadMessage: {
 		type: String,
-		maxlength: 50,
+		maxlength: 100,
 	},
 	leadService: {
 		type: String,
-		maxlength: 50,
+		maxlength: 100,
 	},
 	leadFirstName: {
 		type: String,
@@ -47,11 +47,11 @@ const LeadSchema = new Schema({
 
 	leadOnShorePhone: {
 		type: Number,
-		maxlength: 11,
+		maxlength: 50,
 	},
 	leadOffShorePhone: {
 		type: Number,
-		maxlength: 11,
+		maxlength: 50,
 	},
 	leadLevel: {
 		type: String,
