@@ -1413,7 +1413,7 @@ const Leads = () => {
 														<td>{Moment(item.addedAt).format('DD/MM/YYYY')}</td>
 														<td>{Moment(item.addedAt).format('HH:mm:ss')}</td>
 														<td>{item.leadUserName}</td>
-														<td>JEE</td>
+														<td>{item.leadRefferalSource}</td>
 														<td>
 															<div class="action">
 																<a onClick={() => showModal6(item)}>
