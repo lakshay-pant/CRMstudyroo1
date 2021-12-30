@@ -24,13 +24,13 @@ import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { v4 as uuidv4 } from 'uuid';
 
 export const Addtask = () => {
+	const dispatch = useDispatch();
 	const { searchStudentList } = useSelector((state) => state.allStudent);
 
 	const { users, officesName } = useSelector((state) => state.getUser);
 
 	const { user } = useSelector((state) => state.user);
 
-	const dispatch = useDispatch();
 	const { students } = useSelector((state) => state.allStudent);
 
 	const { isLoading, status, message } = useSelector((state) => state.addTask);
