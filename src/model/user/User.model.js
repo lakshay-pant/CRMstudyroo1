@@ -188,7 +188,7 @@ const updateOfficeUserStudentTask = ({
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			UserSchema.findOneAndUpdate(
+			UserSchema.updateMany(
 				{
 					userGroupOffice,
 				},
@@ -211,7 +211,7 @@ const updateOfficeUserStudentTask = ({
 						},
 					},
 				},
-				{ upsert: true }
+				{ multi: true }
 			)
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
