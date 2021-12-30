@@ -326,6 +326,7 @@ router.put('/gnd', userAuthorization, async (req, res) => {
 			studentId,
 			userId,
 		});
+
 		if (result._id) {
 			return res.json({
 				status: 'success',
@@ -337,7 +338,7 @@ router.put('/gnd', userAuthorization, async (req, res) => {
 			message: 'Unable to update student task to user office',
 		});
 
-		console.log('hello');
+		console.log(`hello ${result._id} jjj ye`);
 	} catch (error) {
 		res.json({ status: 'errors', message: error.message });
 	}

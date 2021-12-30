@@ -188,13 +188,12 @@ const updateOfficeUserStudentTask = ({
 }) => {
 	return new Promise((resolve, reject) => {
 		try {
-			UserSchema.updateMany(
+			UserSchema.findOneAndUpdate(
 				{
 					userGroupOffice,
 				},
 
 				{
-					status: 'Pending operator response',
 					$push: {
 						userStudentTasks: {
 							taskName,
@@ -212,7 +211,7 @@ const updateOfficeUserStudentTask = ({
 						},
 					},
 				},
-				{ multi: true }
+				{ upsert: true }
 			)
 				.then((data) => resolve(data))
 				.catch((error) => reject(error));
