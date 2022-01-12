@@ -380,6 +380,56 @@ const updateUserLeadTaskDelete = (id1, id2) => {
 	});
 };
 
+const addUserOffice = ({
+	_id,
+	officeName,
+	officePhone,
+	officeEmail,
+	officeAddress,
+	officeStreetNumber,
+	officeStreetName,
+	officeCity,
+	officeCountry,
+	officeZipcode,
+	officeLegalName,
+	officeCorporationId,
+	officeCurrency,
+	officeStudentStatus,
+}) => {
+	return new Promise((resolve, reject) => {
+		try {
+			UserSchema.findByIdAndUpdate(
+				_id,
+				{
+					status: 'Pending operator response',
+					$push: {
+						office: {
+							officeName,
+							officePhone,
+							officeEmail,
+							officeAddress,
+							officeStreetNumber,
+							officeStreetName,
+							officeCity,
+							officeCountry,
+							officeZipcode,
+							officeLegalName,
+							officeCorporationId,
+							officeCurrency,
+							officeStudentStatus,
+						},
+					},
+				},
+				{ new: true }
+			)
+				.then((data) => resolve(data))
+				.catch((error) => reject(error));
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
 module.exports = {
 	insertUser,
 	getUserByEmail,
@@ -395,4 +445,5 @@ module.exports = {
 	updateUserTaskLead,
 	updateUserLeadTaskDelete,
 	updateOfficeUserStudentTask,
+	addUserOffice,
 };

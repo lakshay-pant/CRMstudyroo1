@@ -176,6 +176,68 @@ const UserSchema = new Schema({
 			},
 		},
 	],
+	office: [
+		{
+			officeName: {
+				type: String,
+				maxlength: 50,
+				required: true,
+			},
+			officePhone: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeEmail: {
+				type: String,
+			},
+			officeAddress: {
+				type: String,
+			},
+			officeStreetNumber: {
+				type: String,
+				maxlength: 1000,
+			},
+
+			officeStreetName: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeCity: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeCountry: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeZipcode: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeLegalName: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeCorporationId: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeCurrency: {
+				type: String,
+				maxlength: 1000,
+			},
+			officeStudentStatus: {
+				type: String,
+				maxlength: 1000,
+			},
+
+			msgAt: {
+				type: Date,
+
+				default: Date.now(),
+			},
+		},
+	],
 });
 
 module.exports = {

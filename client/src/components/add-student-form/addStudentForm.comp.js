@@ -62,7 +62,7 @@ export const AddStudentForm = () => {
 		form.append('middleName', user.middleName ? user.middleName : '');
 		form.append('lastName', user.lastName ? user.lastName : '');
 		form.append('email', user.email ? user.email : '');
-		form.append('file', user.passPortImage ? user.passPortImage : '');
+
 		form.append('birthday', user.birthday);
 		form.append('genders', user.genders);
 		form.append('nation', user.nation ? user.nation.label : '');
@@ -173,6 +173,7 @@ export const AddStudentForm = () => {
 			user.locationStatus ? user.locationStatus : ''
 		);
 		form.append('referalSource', user.referalSource ? user.referalSource : '');
+		console.log('student', form);
 
 		const config = {
 			headers: {

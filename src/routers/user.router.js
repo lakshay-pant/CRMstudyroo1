@@ -18,6 +18,7 @@ const {
 	updateUserTaskLead,
 	updateUserLeadTaskDelete,
 	updateOfficeUserStudentTask,
+	addUserOffice,
 } = require('../model/user/User.model');
 const { hashPassword, comparePassword } = require('../helpers/bcrypt.helper');
 const { crateAccessJWT, crateRefreshJWT } = require('../helpers/jwt.helper');
@@ -336,6 +337,62 @@ router.put('/gnd', userAuthorization, async (req, res) => {
 		res.json({
 			status: 'error',
 			message: 'Unable to update student task to user office',
+		});
+
+		console.log(`hello ${result._id} jjj ye`);
+	} catch (error) {
+		res.json({ status: 'errors', message: error.message });
+	}
+});
+
+//put offices in user
+
+router.put('/addOffice', userAuthorization, async (req, res) => {
+	try {
+		const {
+			officeName,
+			officePhone,
+			officeEmail,
+			officeAddress,
+			officeStreetNumber,
+			officeStreetName,
+			officeCity,
+			officeCountry,
+			officeZipcode,
+			officeLegalName,
+			officeCorporationId,
+			officeCurrency,
+			officeStudentStatus,
+		} = req.body;
+
+		const _id = req.userId;
+
+		const result = await addUserOffice({
+			_id,
+			officeName,
+			officePhone,
+			officeEmail,
+			officeAddress,
+			officeStreetNumber,
+			officeStreetName,
+			officeCity,
+			officeCountry,
+			officeZipcode,
+			officeLegalName,
+			officeCorporationId,
+			officeCurrency,
+			officeStudentStatus,
+		});
+
+		if (result._id) {
+			return res.json({
+				status: 'success',
+				message: 'Office has been added to admin',
+			});
+		}
+		res.json({
+			status: 'error',
+			message: 'Unable to update office to admin',
 		});
 
 		console.log(`hello ${result._id} jjj ye`);

@@ -432,10 +432,19 @@ export const DefaultLayout = ({ children }) => {
 											Settings
 										</a>
 
+										<Link to="/addAdmin">
+											{' '}
+											<a className="dropdown-item">
+												<i className="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+												Add User
+											</a>
+										</Link>
+
 										<a className="dropdown-item" href="/#">
 											<i className="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
 											Activity Log
 										</a>
+
 										<a
 											className="dropdown-item"
 											href="/#"
