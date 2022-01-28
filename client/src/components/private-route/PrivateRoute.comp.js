@@ -21,15 +21,21 @@ export const PrivateRoute = ({ children, ...rest }) => {
 
 		!user._id && dispatch(getUserProfile());
 
-		!sessionStorage.getItem('accessJWT') && updateAccessJWT();
+		!localStorage.getItem('accessJWT') && updateAccessJWT();
 
-		!isAuth && sessionStorage.getItem('accessJWT') && dispatch(loginSuccess());
+		!isAuth && localStorage.getItem('accessJWT') && dispatch(loginSuccess());
 	}, [dispatch, isAuth, user._id]);
 
 	return (
 		<Route
 			{...rest}
-			render={() => (isAuth ? <DefaultLayout>{children}</DefaultLayout> : null)}
+			render={() =>
+				isAuth ? (
+					<DefaultLayout>{children}</DefaultLayout>
+				) : (
+					<h1>you are not logged in</h1>
+				)
+			}
 		/>
 	);
 };

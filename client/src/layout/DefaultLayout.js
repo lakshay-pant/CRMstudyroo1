@@ -159,8 +159,8 @@ export const DefaultLayout = ({ children }) => {
 		menu: 'Roboto Slab',
 	};
 	const logMeOut = () => {
-		sessionStorage.removeItem('accessJWT');
-		localStorage.removeItem('crmSite');
+		localStorage.removeItem('accessJWT');
+
 		userLogout();
 		history.push('/');
 	};

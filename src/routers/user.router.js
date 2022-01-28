@@ -2,6 +2,7 @@ const express = require('express');
 const { route, post } = require('./student.router');
 const multer = require('multer');
 const router = express.Router();
+const { getUserNameById } = require('../model/student/Student.model');
 
 const {
 	insertUser,
@@ -89,6 +90,9 @@ router.post('/', newUserValidation, async (req, res) => {
 		officeName,
 		userGroup,
 		userGroupOffice,
+		kind,
+		asigneeAdmin,
+		userRoles,
 	} = req.body;
 
 	// Mongoose Model.findOne()
@@ -109,6 +113,65 @@ router.post('/', newUserValidation, async (req, res) => {
 			officeName,
 			userGroup,
 			password: hashedPass,
+			kind,
+			asigneeAdmin,
+			userRoles,
+		};
+
+		const result = await insertUser(newUserObj);
+
+		res.json({ status: 'success', message: 'New user created', result });
+	} catch (error) {
+		res.json({ status: 'error', message: error });
+	}
+});
+
+//add new user by Admin
+
+router.post('/addAdminUser', userAuthorization, async (req, res) => {
+	const {
+		firstName,
+		lastName,
+		email,
+		password,
+		birthdate,
+		tele,
+		gender,
+		position,
+		officeName,
+		userGroup,
+		userGroupOffice,
+		kind,
+		asigneeAdmin,
+		userRoles,
+	} = req.body;
+
+	// Mongoose Model.findOne()
+
+	try {
+		//hash password
+		const userId = req.userId;
+		const userName = await getUserNameById(userId);
+
+		const hashedPass = await hashPassword(password);
+
+		const newUserObj = {
+			adminId: userId,
+			assigneeAdmin: userName.firstName,
+			firstName,
+			lastName,
+			email,
+			birthdate,
+			tele,
+			gender,
+			userGroupOffice,
+			position,
+			officeName,
+			userGroup,
+			password: hashedPass,
+			kind,
+			asigneeAdmin,
+			userRoles,
 		};
 
 		const result = await insertUser(newUserObj);
@@ -350,7 +413,7 @@ router.put('/gnd', userAuthorization, async (req, res) => {
 router.put('/addOffice', userAuthorization, async (req, res) => {
 	try {
 		const {
-			officeName,
+			officename,
 			officePhone,
 			officeEmail,
 			officeAddress,
@@ -369,7 +432,7 @@ router.put('/addOffice', userAuthorization, async (req, res) => {
 
 		const result = await addUserOffice({
 			_id,
-			officeName,
+			officename,
 			officePhone,
 			officeEmail,
 			officeAddress,

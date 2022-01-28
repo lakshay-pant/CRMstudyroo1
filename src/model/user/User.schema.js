@@ -6,56 +6,62 @@ const UserSchema = new Schema({
 		type: String,
 		maxlength: 50,
 	},
+	kind: {
+		type: String,
+		maxlength: 50,
+	},
+	assigneeAdmin: {
+		type: String,
+		maxlength: 50,
+	},
+	adminId: {
+		type: Schema.Types.ObjectId,
+	},
+
 	lastName: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	email: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	officeName: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	userGroup: {
 		type: String,
 		maxlength: 50,
-		required: true,
+	},
+	userRoles: {
+		type: String,
+		maxlength: 50,
 	},
 	password: {
 		type: String,
 		minlength: 8,
 		maxlength: 100,
-		required: true,
 	},
 	birthdate: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	tele: {
 		type: Number,
 		maxlength: 50,
-		required: true,
 	},
 	position: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	userGroupOffice: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 	gender: {
 		type: String,
 		maxlength: 50,
-		required: true,
 	},
 
 	accessJWT: {
@@ -66,7 +72,7 @@ const UserSchema = new Schema({
 		},
 		addedAt: {
 			type: Date,
-			required: true,
+
 			default: Date.now(),
 		},
 	},
@@ -75,7 +81,7 @@ const UserSchema = new Schema({
 	},
 	isVerified: {
 		type: Boolean,
-		required: true,
+
 		default: false,
 	},
 	userStudentTasks: [
@@ -178,10 +184,9 @@ const UserSchema = new Schema({
 	],
 	office: [
 		{
-			officeName: {
+			officename: {
 				type: String,
 				maxlength: 50,
-				required: true,
 			},
 			officePhone: {
 				type: String,

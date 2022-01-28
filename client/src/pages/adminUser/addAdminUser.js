@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Modal from 'react-bootstrap/Modal';
 import { addOffice } from './addOfficeAction';
+import { addUserAdmin } from './addAdminUserAction';
 import { addOfficeResetMessage } from './addOfficeSlice';
 import { Spinner, Alert } from 'react-bootstrap';
 
@@ -15,7 +16,7 @@ export const Addadmin = () => {
 	const [showAddAdmin, setshowAddAdmin] = useState(false);
 	const [user, setUser] = useState({});
 
-	const [officeName, setOfficeName] = useState('');
+	const [officename, setOfficename] = useState('');
 	const [officePhone, setOfficePhone] = useState('');
 	const [officeAddress, setOfficeAddress] = useState('');
 	const [officeEmail, setOfficeEmail] = useState('');
@@ -28,11 +29,23 @@ export const Addadmin = () => {
 	const [officeCurrency, setOfficeCurrency] = useState('');
 	const [officeLegalName, setOfficeLegalName] = useState('');
 	const [officeStudentStatus, setOfficeStudentStatus] = useState('');
+	const [officeName, setOfficeName] = useState('');
+	const [firstName, setfirstName] = useState('');
+	const [lastName, setLastName] = useState('');
+	const [tele, setTele] = useState('');
+	const [email, setEmail] = useState('');
+	const [userRoles, setUserRoles] = useState('');
+	const [userGroup, setUserGroup] = useState('');
+	const [password, setPassword] = useState('');
 
 	const handleOnChange = (e) => {
 		const { name, value } = e.target;
 
 		switch (name) {
+			case 'officename':
+				setOfficename(value);
+				break;
+
 			case 'officeName':
 				setOfficeName(value);
 				break;
@@ -89,6 +102,34 @@ export const Addadmin = () => {
 				setOfficeStudentStatus(value);
 				break;
 
+			case 'firstName':
+				setfirstName(value);
+				break;
+
+			case 'lastName':
+				setLastName(value);
+				break;
+
+			case 'tele':
+				setTele(value);
+				break;
+
+			case 'email':
+				setEmail(value);
+				break;
+
+			case 'userRoles':
+				setUserRoles(value);
+				break;
+
+			case 'userGroup':
+				setUserGroup(value);
+				break;
+
+			case 'password':
+				setPassword(value);
+				break;
+
 			default:
 				break;
 		}
@@ -108,7 +149,7 @@ export const Addadmin = () => {
 		e.preventDefault();
 
 		const officeDetails = {
-			officeName,
+			officename,
 			officePhone,
 			officeStreetName,
 			officeStreetNumber,
@@ -125,6 +166,24 @@ export const Addadmin = () => {
 		await dispatch(addOffice(officeDetails));
 	};
 
+	const handleOnUserSubmit = async (e) => {
+		e.preventDefault();
+
+		const officeDetails = {
+			firstName,
+			lastName,
+			email,
+			tele,
+			officeName,
+			password,
+			userRoles,
+			userGroup,
+			kind: 'user',
+		};
+
+		await dispatch(addUserAdmin(officeDetails));
+	};
+
 	const addNewAdmin = () => {
 		if (showAddAdmin == false) {
 			setshowAddAdmin(true);
@@ -135,13 +194,22 @@ export const Addadmin = () => {
 	};
 
 	const [isOpen7, setIsOpen7] = useState(false);
+	const [isOpen1, setIsOpen1] = useState(false);
 
-	const showModal7 = (item) => {
+	const showModal7 = () => {
 		setIsOpen7(true);
 	};
 
 	const hideModal7 = () => {
 		setIsOpen7(false);
+	};
+
+	const showModal1 = () => {
+		setIsOpen1(true);
+	};
+
+	const hideModal1 = () => {
+		setIsOpen1(false);
 	};
 
 	return (
@@ -187,13 +255,13 @@ export const Addadmin = () => {
 							<div className="add_usr_pop_ttl">Choose one</div>
 							<ul>
 								<li>
-									<a href="#" onClick={showModal7}>
+									<a onClick={showModal7}>
 										<i className="fas fa-building"></i>
 										<strong>Office</strong>
 									</a>
 								</li>
 								<li>
-									<a href="#">
+									<a onClick={showModal1}>
 										<i className="fas fa-building"></i>
 										<strong>Office</strong>
 									</a>
@@ -301,8 +369,8 @@ export const Addadmin = () => {
 												<input
 													type="text"
 													className="form-control"
-													name="officeName"
-													value={officeName}
+													name="officename"
+													value={officename}
 													onChange={handleOnChange}
 												></input>
 											</div>
@@ -452,6 +520,133 @@ export const Addadmin = () => {
 										</div>
 									</div>
 								</div>
+								<div class="footersingbtn">
+									<input
+										type="submit"
+										name="Save"
+										class="btn getin-btn"
+										value="Save"
+									/>
+								</div>
+							</form>
+						</div>
+					</Modal.Body>
+				</Modal>
+			</div>
+
+			<div
+				className="modal fade filters-modal show "
+				id="leadsFilter"
+				aria-modal="true"
+			>
+				<Modal show={isOpen1} onHide={hideModal1} className="modal_otr">
+					<Modal.Body className="add_office_pop">
+						<div className="modal_hdr">
+							<div className="modal_title">Add User</div>
+							<a onClick={hideModal1}>
+								<i className="fa fa-times-circle"></i>
+							</a>
+						</div>
+						<div className="modal_content">
+							<form onSubmit={handleOnUserSubmit}>
+								<div className="add_office_frm_sngl">
+									<div className="add_ofc_fmr_slf_ttl">Name & contacts</div>
+									<div className="add_ofc_frm_slf_con">
+										<div className="row">
+											<div className="col-lg-6 form-group">
+												<label>First Name </label>
+												<input
+													type="text"
+													className="form-control"
+													name="firstName"
+													value={firstName}
+													onChange={handleOnChange}
+												></input>
+											</div>
+											<div className="col-lg-6 form-group">
+												<label>Last Name</label>
+												<input
+													type="text"
+													className="form-control"
+													name="lastName"
+													value={lastName}
+													onChange={handleOnChange}
+												></input>
+											</div>
+											<div className="col-lg-12 form-group">
+												<label>Email</label>
+												<input
+													type="text"
+													className="form-control"
+													name="email"
+													value={email}
+													onChange={handleOnChange}
+												></input>
+											</div>
+											<div className="col-lg-12 form-group">
+												<label>Password</label>
+												<input
+													type="text"
+													className="form-control"
+													name="password"
+													value={password}
+													onChange={handleOnChange}
+												></input>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="add_office_frm_sngl">
+									<div className="add_ofc_frm_slf_con">
+										<div className="row">
+											<div className="col-lg-12 form-group">
+												<label>Phone number </label>
+												<input
+													type="text"
+													className="form-control"
+													name="tele"
+													value={tele}
+													onChange={handleOnChange}
+												></input>
+											</div>
+											<div className="col-lg-4 form-group">
+												<label>office </label>
+												<input
+													type="text"
+													className="form-control"
+													name="officeName"
+													value={officeName}
+													onChange={handleOnChange}
+												></input>
+											</div>
+											<div className="col-lg-8 form-group">
+												<label>Roles</label>
+												<select
+													className="form-control"
+													name="userRoles"
+													value={userRoles}
+													onChange={handleOnChange}
+												>
+													<option>admin</option>
+													<option>rupees</option>
+												</select>
+											</div>
+											<div className="col-lg-4 form-group">
+												<label>Groups</label>
+												<select
+													className="form-control"
+													name="userGroup"
+													value={userGroup}
+													onChange={handleOnChange}
+												>
+													<option>dollar</option>
+													<option>rupees</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
 								<div class="footersingbtn">
 									<input
 										type="submit"

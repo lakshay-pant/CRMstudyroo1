@@ -1,15 +1,32 @@
 import axios from 'axios';
-const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login';
-const signUpUrl = 'https://studyrooapp.herokuapp.com/v1/user';
-const userProfileUrl = 'https://studyrooapp.herokuapp.com/v1/user';
-const newAccessJWT = 'https://studyrooapp.herokuapp.com/v1/tokens';
-const logoutUrl = 'https://studyrooapp.herokuapp.com/v1/user/logout';
-const getAllUsers = 'https://studyrooapp.herokuapp.com/v1/user/all-users';
+const loginUrl = 'http://localhost:3001/v1/user/login';
+const signUpUrl = 'http://localhost:3001/v1/user';
+const userProfileUrl = 'http://localhost:3001/v1/user';
+const newAccessJWT = 'http://localhost:3001/v1/tokens';
+const logoutUrl = 'http://localhost:3001/v1/user/logout';
+const getAllUsers = 'http://localhost:3001/v1/user/all-users';
+const addUserbyAdminUrl = 'http://localhost:3001/v1/user/addAdminUser';
 
 export const userSignUp = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const res = await axios.post(signUpUrl, frmData);
+
+			resolve(res.data);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const addUserByAdmin = (frmData) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await axios.post(addUserbyAdminUrl, frmData, {
+				headers: {
+					Authorization: localStorage.getItem('accessJWT'),
+				},
+			});
 
 			resolve(res.data);
 		} catch (error) {
@@ -26,7 +43,7 @@ export const userLogin = (frmData) => {
 			resolve(res.data);
 
 			if (res.data.status === 'success') {
-				sessionStorage.setItem('accessJWT', res.data.accessJWT);
+				localStorage.setItem('accessJWT', res.data.accessJWT);
 			}
 		} catch (error) {
 			reject(error);
@@ -39,11 +56,11 @@ export const UpdateAllUser = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'https://studyrooapp.herokuapp.com/v1/user/me',
+				'http://localhost:3001/v1/user/me',
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -60,12 +77,12 @@ export const fetchNewAccessJWT = () => {
 		try {
 			const res = await axios.get(newAccessJWT, {
 				headers: {
-					Authorization: sessionStorage.getItem('accessJWT'),
+					Authorization: localStorage.getItem('accessJWT'),
 				},
 			});
 
 			if (res.data.status === 'success') {
-				sessionStorage.setItem('accessJWT', res.data.accessJWT);
+				localStorage.setItem('accessJWT', res.data.accessJWT);
 			}
 
 			resolve(true);
@@ -81,7 +98,7 @@ export const fetchNewAccessJWT = () => {
 export const fetchUser = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const accessJWT = sessionStorage.getItem('accessJWT');
+			const accessJWT = localStorage.getItem('accessJWT');
 
 			if (!accessJWT) {
 				reject('Token not found!');
@@ -105,7 +122,7 @@ export const userLogout = async () => {
 	try {
 		await axios.delete(logoutUrl, {
 			headers: {
-				Authorization: sessionStorage.getItem('accessJWT'),
+				Authorization: localStorage.getItem('accessJWT'),
 			},
 		});
 	} catch (error) {
@@ -118,7 +135,7 @@ export const getAllUser = () => {
 		try {
 			const result = await axios.get(getAllUsers, {
 				headers: {
-					Authorization: sessionStorage.getItem('accessJWT'),
+					Authorization: localStorage.getItem('accessJWT'),
 				},
 			});
 
@@ -134,11 +151,11 @@ export const addUserStudentTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/user/' + id,
+				'http://localhost:3001/v1/user/' + id,
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -156,11 +173,11 @@ export const addUserStudentOfficeTask = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/user/gnd',
+				'http://localhost:3001/v1/user/gnd',
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -177,10 +194,10 @@ export const DeleteUserStudentTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://studyrooapp.herokuapp.com/v1/user/' + id1 + '/' + id2,
+				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -198,11 +215,11 @@ export const UpdateUserStudentTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/user/' + id1 + '/' + id2,
+				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -221,11 +238,11 @@ export const addUserLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id,
+				'http://localhost:3001/v1/leadTaskUser/' + id,
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -243,11 +260,11 @@ export const UpdateUserLeadTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id1 + '/' + id2,
+				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -264,7 +281,7 @@ export const DeleteUserLeadsTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id1 + '/' + id2
+				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2
 			);
 
 			resolve(result.data);
@@ -279,11 +296,11 @@ export const addUserDp = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.post(
-				'https://studyrooapp.herokuapp.com/v1/user/me/avatar',
+				'http://localhost:3001/v1/user/me/avatar',
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);
@@ -300,11 +317,11 @@ export const addOfficeToUser = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'https://studyrooapp.herokuapp.com/v1/user/addOffice',
+				'http://localhost:3001/v1/user/addOffice',
 				frmData,
 				{
 					headers: {
-						Authorization: sessionStorage.getItem('accessJWT'),
+						Authorization: localStorage.getItem('accessJWT'),
 					},
 				}
 			);

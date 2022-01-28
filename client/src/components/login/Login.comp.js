@@ -20,7 +20,7 @@ export const Login = ({ formSwitcher }) => {
 	const { isLoading, isAuth, error } = useSelector((state) => state.login);
 
 	useEffect(() => {
-		sessionStorage.getItem('accessJWT') && history.push('/dashboard');
+		localStorage.getItem('accessJWT') && history.push('/dashboard');
 	}, [history, isAuth]);
 
 	useEffect(() => {
