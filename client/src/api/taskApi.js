@@ -1,14 +1,17 @@
 import axios from 'axios';
-const addTaskUrl = 'http://localhost:3001/v1/tasks';
+const addTaskUrl = 'https://studyrooapp.herokuapp.com/v1/tasks';
 
 export const getAlltask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get('http://localhost:3001/v1/tasks', {
-				headers: {
-					Authorization: localStorage.getItem('accessJWT'),
-				},
-			});
+			const result = await axios.get(
+				'https://studyrooapp.herokuapp.com/v1/tasks',
+				{
+					headers: {
+						Authorization: localStorage.getItem('accessJWT'),
+					},
+				}
+			);
 
 			resolve(result);
 		} catch (error) {
@@ -38,7 +41,7 @@ export const UpdateAllTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'http://localhost:3001/v1/tasks/' + id,
+				'https://studyrooapp.herokuapp.com/v1/tasks/' + id,
 				frmData,
 				{
 					headers: {
@@ -58,7 +61,7 @@ export const DeleteAlltasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/tasks/' + id,
+				'https://studyrooapp.herokuapp.com/v1/tasks/' + id,
 				{
 					headers: {
 						Authorization: localStorage.getItem('accessJWT'),

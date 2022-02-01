@@ -1,5 +1,5 @@
 import axios from 'axios';
-const addLeadUrl = 'http://localhost:3001/v1/leads';
+const addLeadUrl = 'https://studyrooapp.herokuapp.com/v1/leads';
 
 export const createNewLead = (frmData) => {
 	console.log('from api', frmData);
@@ -24,7 +24,7 @@ export const getAllUserLeads = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'http://localhost:3001/v1/leads/all-leads',
+				'https://studyrooapp.herokuapp.com/v1/leads/all-leads',
 				{
 					headers: {
 						Authorization: localStorage.getItem('accessJWT'),
@@ -42,7 +42,9 @@ export const getAllUserLeads = () => {
 export const getAllUserSingleLead = (_id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get('http://localhost:3001/v1/leads/' + _id);
+			const result = await axios.get(
+				'https://studyrooapp.herokuapp.com/v1/leads/' + _id
+			);
 
 			resolve(result);
 		} catch (error) {
@@ -56,7 +58,7 @@ export const addLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/leads/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leads/' + id,
 				frmData,
 				{
 					headers: {
@@ -77,7 +79,7 @@ export const DeleteAllUserLeads = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/leads/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leads/' + id,
 				{
 					headers: {
 						Authorization: localStorage.getItem('accessJWT'),
@@ -97,7 +99,7 @@ export const DeleteAllUserLeadsTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/leads/' + id1 + '/' + id2,
 				{
 					headers: {
 						Authorization: localStorage.getItem('accessJWT'),
@@ -118,7 +120,7 @@ export const UpdateLeadTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/leads/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {
@@ -140,7 +142,7 @@ export const UpdateAllUserLeads = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'http://localhost:3001/v1/leads/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leads/' + id,
 				frmData,
 				{
 					headers: {

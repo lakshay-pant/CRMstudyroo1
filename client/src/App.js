@@ -17,6 +17,7 @@ import { TaskList } from './pages/taskList/taskList';
 import { StudentInfo } from './pages/studentInfo/studentInfo.page';
 import { Addadmin } from './pages/adminUser/addAdminUser';
 import { Providersdash } from './pages/providers/providersDashboard';
+import { Editcourses } from './pages/providers/providersEdit';
 
 function App() {
 	return (
@@ -79,6 +80,9 @@ function App() {
 					</PrivateRoute>
 					<PrivateRoute path="/addCourses">
 						<Providersdash />
+					</PrivateRoute>
+					<PrivateRoute path="/editCourses">
+						<Editcourses />
 					</PrivateRoute>
 				</Switch>
 			</Router>

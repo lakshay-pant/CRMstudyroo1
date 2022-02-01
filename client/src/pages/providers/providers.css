@@ -110,3 +110,234 @@ span.provdr_status {
 .provdrs_rcrds label {
 	margin: 0 15px 0 0;
 }
+
+/* edit providers css start */
+.edit_prvdrs_tab_sec ul.react-tabs__tab-list li.react-tabs__tab {
+	font-size: 20px;
+	color: #c5c5c5;
+}
+.edit_prvdrs_tab_sec
+	ul.react-tabs__tab-list
+	li.react-tabs__tab.react-tabs__tab--selected {
+	background: transparent;
+	border: none;
+	border-bottom: 3px solid #f48035;
+	color: #1e1e1e;
+}
+.edt_prvdrs_cmn_nbrs ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+.edt_prvdrs_cmn_nbrs ul li {
+	text-align: center;
+	font-size: 18px;
+	color: #a7a7a7;
+	padding: 0 15px;
+	width: 25%;
+}
+.edt_prvdrs_li_sngl {
+	background: #fff;
+	border-radius: 4px;
+	text-align: center;
+	padding: 20px;
+}
+.edt_prvdrs_cmn_nbrs ul li strong {
+	font-size: 34px;
+	display: block;
+	color: #1e1e1e;
+	text-align: center;
+}
+section.edit_prvdrs_tab_sec {
+	padding: 30px 0 0;
+}
+.edt_prvdrs_cmn_nbrs {
+	margin: 40px 0 30px;
+}
+.stts_form {
+	padding: 0 15px;
+}
+.mrktng_info_con {
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 30px;
+}
+.prvdrs_edt_cmn_hdng strong {
+	font-size: 22px;
+	display: block;
+	color: #1e1e1e;
+	margin: 0 0 10px;
+	font-weight: 500;
+}
+.prvdrs_edt_cmn_hdng {
+	font-size: 16px;
+	color: #bfbfbf;
+	font-weight: 300;
+	margin: 0 0 30px;
+}
+.pvdr_edt_dvdr:after {
+	content: '';
+	height: 1px;
+	width: 100%;
+	background: #dfdfdf;
+	position: absolute;
+	top: 11px;
+	margin-left: 10px;
+}
+.pvdr_edt_dvdr {
+	position: relative;
+	overflow: hidden;
+	margin: 20px 0 20px;
+	color: #eb7e30;
+}
+select.form-control,
+textarea.form-control {
+	background: transparent linear-gradient(180deg, #fafafa 0%, #ffffff 100%) 0%
+		0% no-repeat padding-box;
+	border: 1px solid #eaebec;
+}
+.dlt_prvdr_sngl {
+	padding: 20px;
+	background: #fff;
+	border-radius: 8px;
+}
+.dlt_prvdr_ttl {
+	color: #ff4153;
+	font-weight: 400;
+	font-size: 18px;
+	margin: 0 0 10px;
+}
+.dlt_prvdr_sngl a.cmn_btn {
+	color: #fff;
+	background: #ff4153;
+}
+.dlt_prvdr_sngl a.cmn_btn:hover {
+	background: #fff;
+	color: #ff4153;
+	border-color: #ff4153;
+}
+.stts_nmstts .accordion {
+	margin: 0;
+}
+
+.prdcts_tb_sdbr ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.pvdr_prdct_updts_sngl {
+	padding: 12px 15px;
+	background: #fff;
+	position: relative;
+	margin: 0 0 15px;
+	border: 2px solid #fff;
+	display: inline-block;
+	width: 100%;
+	border-radius: 10px;
+	box-shadow: 0px 5px 15px rgb(0 0 0 / 5%);
+	transition: all 0.4s;
+}
+.pvdr_prdct_updts_sngl:hover {
+	border-color: #f48035;
+}
+.pvdr_prdct_ttl {
+	color: #1e1e1e;
+	font-weight: 500;
+	font-size: 16px;
+	margin: 0 0 6px;
+}
+span.pvdr_prdct_sub_txt {
+	color: #b5b5b5;
+}
+span.pvdr_prdct_dot {
+	height: 12px;
+	width: 12px;
+	background: #71c21a;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	border-radius: 100px;
+}
+.cmn_btn_dngr {
+	color: #fff;
+	background: #ff4153;
+}
+.cmn_btn_dngr:hover {
+	border-color: #ff4153;
+	color: #ff4153;
+}
+.stts_sbmt_save {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.prdcts_tb_rt_con ul.react-tabs__tab-list {
+	margin: 0 0 30px;
+}
+.actns_adfre a {
+	margin: 10px 0 0;
+}
+.prdct_fee_ul ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+.prdct_fee_ul ul li {
+	padding: 0 20px 0 0;
+}
+.edt_prvdr_fs .card-body {
+	padding: 20px 15px 5px;
+}
+.est_prth_cmps > strong {
+	font-size: 20px;
+	margin: 30px 0 20px;
+	display: inline-block;
+	width: 100%;
+}
+.est_prth_cmps ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.est_prth_cmps ul li {
+	margin: 0 10px;
+}
+.est_prth_cmps ul li a {
+	font-size: 16px;
+	color: #9d9d9d;
+	background: #ecf0f1;
+	display: inline-block;
+	padding: 20px;
+	border-radius: 4px;
+	text-align: center;
+}
+.est_prth_cmps ul li a strong {
+	display: inline-block;
+	width: 100%;
+	font-size: 30px;
+	text-align: center;
+	color: #545454;
+}
+
+/* edit providers css end */
+
+.fees_apld_table table {
+	width: 100%;
+}
+.fees_apld_table table th {
+	text-align: center;
+	border: 1px solid #e9e9e9;
+	padding: 10px 15px;
+	font-size: 14px;
+}
+.fees_apld_table table td {
+	border: 1px solid #e9e9e9;
+	padding: 10px 15px;
+}

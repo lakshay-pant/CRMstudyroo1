@@ -227,7 +227,7 @@ const Sidebar = (props) => {
 						<div class="image">
 							{user.avatar ? (
 								<img
-									src={`http://localhost:3001/v1/user/get/${user._id}/avatar`}
+									src={`https://studyrooapp.herokuapp.com/v1/user/get/${user._id}/avatar`}
 									class="img-fluid"
 									alt="profile"
 								/>
@@ -261,7 +261,7 @@ const Sidebar = (props) => {
 						<div class="image">
 							{user.avatar ? (
 								<img
-									src={`http://localhost:3001/v1/user/get/${user._id}/avatar`}
+									src={`https://studyrooapp.herokuapp.com/v1/user/get/${user._id}/avatar`}
 									class="img-fluid"
 									alt="profile"
 								/>

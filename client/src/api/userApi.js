@@ -1,11 +1,12 @@
 import axios from 'axios';
-const loginUrl = 'http://localhost:3001/v1/user/login';
-const signUpUrl = 'http://localhost:3001/v1/user';
-const userProfileUrl = 'http://localhost:3001/v1/user';
-const newAccessJWT = 'http://localhost:3001/v1/tokens';
-const logoutUrl = 'http://localhost:3001/v1/user/logout';
-const getAllUsers = 'http://localhost:3001/v1/user/all-users';
-const addUserbyAdminUrl = 'http://localhost:3001/v1/user/addAdminUser';
+const loginUrl = 'https://studyrooapp.herokuapp.com/v1/user/login';
+const signUpUrl = 'https://studyrooapp.herokuapp.com/v1/user';
+const userProfileUrl = 'https://studyrooapp.herokuapp.com/v1/user';
+const newAccessJWT = 'https://studyrooapp.herokuapp.com/v1/tokens';
+const logoutUrl = 'https://studyrooapp.herokuapp.com/v1/user/logout';
+const getAllUsers = 'https://studyrooapp.herokuapp.com/v1/user/all-users';
+const addUserbyAdminUrl =
+	'https://studyrooapp.herokuapp.com/v1/user/addAdminUser';
 
 export const userSignUp = (frmData) => {
 	return new Promise(async (resolve, reject) => {
@@ -56,7 +57,7 @@ export const UpdateAllUser = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'http://localhost:3001/v1/user/me',
+				'https://studyrooapp.herokuapp.com/v1/user/me',
 				frmData,
 				{
 					headers: {
@@ -151,7 +152,7 @@ export const addUserStudentTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/user/' + id,
+				'https://studyrooapp.herokuapp.com/v1/user/' + id,
 				frmData,
 				{
 					headers: {
@@ -173,7 +174,7 @@ export const addUserStudentOfficeTask = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/user/gnd',
+				'https://studyrooapp.herokuapp.com/v1/user/gnd',
 				frmData,
 				{
 					headers: {
@@ -194,7 +195,7 @@ export const DeleteUserStudentTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/user/' + id1 + '/' + id2,
 				{
 					headers: {
 						Authorization: localStorage.getItem('accessJWT'),
@@ -215,7 +216,7 @@ export const UpdateUserStudentTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/user/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {
@@ -238,7 +239,7 @@ export const addUserLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/leadTaskUser/' + id,
+				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id,
 				frmData,
 				{
 					headers: {
@@ -260,7 +261,7 @@ export const UpdateUserLeadTask = (frmData, id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2,
+				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id1 + '/' + id2,
 				frmData,
 				{
 					headers: {
@@ -281,7 +282,7 @@ export const DeleteUserLeadsTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2
+				'https://studyrooapp.herokuapp.com/v1/leadTaskUser/' + id1 + '/' + id2
 			);
 
 			resolve(result.data);
@@ -296,7 +297,7 @@ export const addUserDp = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.post(
-				'http://localhost:3001/v1/user/me/avatar',
+				'https://studyrooapp.herokuapp.com/v1/user/me/avatar',
 				frmData,
 				{
 					headers: {
@@ -317,7 +318,7 @@ export const addOfficeToUser = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/user/addOffice',
+				'https://studyrooapp.herokuapp.com/v1/user/addOffice',
 				frmData,
 				{
 					headers: {
