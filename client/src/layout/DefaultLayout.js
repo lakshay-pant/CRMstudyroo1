@@ -100,58 +100,6 @@ export const DefaultLayout = ({ children }) => {
 			icon: '/images/courses.png',
 			subMenuItems: [],
 		},
-		{
-			name: 'Insurance',
-			to: '/dashboard',
-			icon: '/images/insurance.png',
-			subMenuItems: [
-				{ name: 'Quote and Buy', to: '' },
-				{ name: 'Students', to: '' },
-				{ name: 'Agent Voices', to: '' },
-				{ name: 'Commission and Invoices', to: '' },
-				{ name: 'Credit and Card Payments', to: '' },
-			],
-		},
-		{
-			name: 'Enroll & Book',
-			to: '',
-			icon: '/images/Enroll.png',
-			subMenuItems: [],
-		},
-		{
-			name: 'Accounting',
-			to: '',
-			icon: '/images/Accounting.png',
-			subMenuItems: [
-				{ name: 'Payments', to: '' },
-				{ name: 'Invoices', to: '' },
-				{ name: 'Refunds', to: '' },
-				{ name: 'Sub-Agents', to: '' },
-				{ name: 'Intl. Transfer', to: '' },
-				{ name: 'Credit Card Payouts', to: '' },
-			],
-		},
-		{
-			name: 'Marketing',
-			to: '',
-			icon: '/images/Marketing.png',
-			subMenuItems: [
-				{ name: 'Payments', to: '' },
-				{ name: 'Forms', to: '' },
-				{ name: 'Templates', to: '' },
-				{ name: 'Automation', to: '' },
-				{ name: 'Website', to: '' },
-				{ name: 'Goals', to: '' },
-				{ name: 'Segments', to: '' },
-			],
-		},
-		{ name: 'Reports', to: '', icon: '/images/reports.png', subMenuItems: [] },
-		{
-			name: 'Analytics',
-			to: '',
-			icon: '/images/analytics.png',
-			subMenuItems: [],
-		},
 	];
 
 	const fonts = {
