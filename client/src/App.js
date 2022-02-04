@@ -31,10 +31,10 @@ function App() {
 						<Registration />
 					</Route>
 
-					<PrivateRoute path={'/dashboard'}>
+					<PrivateRoute path="/dashboard">
 						<Dashboard />
 					</PrivateRoute>
-					<PrivateRoute path={'/all-student'}>
+					<PrivateRoute path="/all-student">
 						<StudentOverview />
 					</PrivateRoute>
 
