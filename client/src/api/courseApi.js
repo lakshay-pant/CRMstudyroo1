@@ -201,3 +201,22 @@ export const UpdateStudentTask = (frmData, id1, id2) => {
 		}
 	});
 };
+
+export const getSingleProvider = (_id) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.get(
+				'https://studyrooapp.herokuapp.com/v1/course/' + _id,
+				{
+					headers: {
+						Authorization: localStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};

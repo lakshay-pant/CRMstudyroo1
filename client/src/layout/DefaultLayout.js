@@ -78,9 +78,9 @@ export const DefaultLayout = ({ children }) => {
 		},
 		{
 			name: 'Students',
-			to: '/dashboard',
+			to: '/all-student',
 			icon: '/images/student.png',
-			subMenuItems: [{ name: 'All Students', to: '/all-student' }],
+			subMenuItems: [],
 		},
 		{
 			name: 'Leads',
@@ -95,7 +95,7 @@ export const DefaultLayout = ({ children }) => {
 			subMenuItems: [],
 		},
 		{
-			name: 'Courses',
+			name: 'Providers',
 			to: '/addCourses',
 			icon: '/images/courses.png',
 			subMenuItems: [],
@@ -157,7 +157,7 @@ export const DefaultLayout = ({ children }) => {
 											</div>
 										);
 
-									case '/dashboard/all-student':
+									case '/all-student':
 										return (
 											<div class="footersingbtn">
 												<input
@@ -241,7 +241,7 @@ export const DefaultLayout = ({ children }) => {
 
 							{(() => {
 								switch (location.pathname) {
-									case '/dashboard/all-student':
+									case '/all-student':
 										return (
 											<form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
 												<div

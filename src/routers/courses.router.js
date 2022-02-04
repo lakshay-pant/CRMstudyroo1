@@ -35,6 +35,7 @@ router.post('/', userAuthorization, async (req, res) => {
 			nickName,
 			type,
 		};
+		console.log('yooo', newUserObj);
 		const result = await insertCourse(newUserObj);
 		console.log(result);
 
@@ -106,13 +107,48 @@ router.patch('/:_id', userAuthorization, async (req, res) => {
 	try {
 		const { _id } = req.params;
 
-		var { publicName, status, nickName, type } = req.body;
+		var {
+			publicName,
+			status,
+			nickName,
+			type,
+			code,
+			slogan,
+			sloganLanguage,
+			aboutUsContent,
+			aboutUsLanguage,
+			websiteUrl,
+			facebookUrl,
+			youtubeUrl,
+			instagramUrl,
+			skypeId,
+			averageAge,
+			since,
+		} = req.body;
 
 		const userProf = await getCourseAllUsersById(_id);
 		userProf.publicName = publicName ? publicName : userProf.publicName;
 		userProf.status = status ? status : userProf.status;
 		userProf.nickName = nickName ? nickName : userProf.nickName;
 		userProf.type = type ? type : userProf.type;
+		userProf.code = code ? code : userProf.code;
+		userProf.slogan = slogan ? slogan : userProf.slogan;
+		userProf.sloganLanguage = sloganLanguage
+			? sloganLanguage
+			: userProf.sloganLanguage;
+		userProf.aboutUsContent = aboutUsContent
+			? aboutUsContent
+			: userProf.aboutUsContent;
+		userProf.aboutUsLanguage = aboutUsLanguage
+			? aboutUsLanguage
+			: userProf.aboutUsLanguage;
+		userProf.websiteUrl = websiteUrl ? websiteUrl : userProf.websiteUrl;
+		userProf.facebookUrl = facebookUrl ? facebookUrl : userProf.facebookUrl;
+		userProf.youtubeUrl = youtubeUrl ? youtubeUrl : userProf.youtubeUrl;
+		userProf.instagramUrl = instagramUrl ? instagramUrl : userProf.instagramUrl;
+		userProf.skypeId = skypeId ? skypeId : userProf.skypeId;
+		userProf.averageAge = averageAge ? averageAge : userProf.averageAge;
+		userProf.since = since ? since : userProf.since;
 
 		const result = await insertCourse(userProf);
 

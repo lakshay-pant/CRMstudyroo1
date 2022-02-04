@@ -31,21 +31,12 @@ function App() {
 						<Registration />
 					</Route>
 
-					<Route
-						path="/dashboard"
-						render={({ match: { url } }) => {
-							return (
-								<>
-									<PrivateRoute path={`${url}/`} exact>
-										<Dashboard />
-									</PrivateRoute>
-									<PrivateRoute path={`${url}/all-student`}>
-										<StudentOverview />
-									</PrivateRoute>
-								</>
-							);
-						}}
-					/>
+					<PrivateRoute path={'/dashboard'}>
+						<Dashboard />
+					</PrivateRoute>
+					<PrivateRoute path={'/all-student'}>
+						<StudentOverview />
+					</PrivateRoute>
 
 					<PrivateRoute path="/studentInfo/:_id">
 						<StudentInfo />
@@ -81,7 +72,7 @@ function App() {
 					<PrivateRoute path="/addCourses">
 						<Providersdash />
 					</PrivateRoute>
-					<PrivateRoute path="/editCourses">
+					<PrivateRoute path="/editCourses/:_id">
 						<Editcourses />
 					</PrivateRoute>
 				</Switch>

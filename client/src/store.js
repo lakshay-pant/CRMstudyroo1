@@ -44,6 +44,7 @@ import addCourse from './pages/providers/addProviderSlice';
 import courseList from './components/providerList/getProvidersSlice';
 import addOffice from './pages/adminUser/addOfficeSlice';
 import addAdminUser from './pages/adminUser/addAdminUserSlice';
+import getSingleProvider from './pages/providers/singleProviderSlice';
 
 const store = configureStore({
 	reducer: {
@@ -91,6 +92,7 @@ const store = configureStore({
 		courseList: courseList,
 		addOffice: addOffice,
 		addAdminUser: addAdminUser,
+		getSingleProvider: getSingleProvider,
 	},
 });
 

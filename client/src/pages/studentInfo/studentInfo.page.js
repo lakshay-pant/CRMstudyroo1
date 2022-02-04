@@ -14,13 +14,13 @@ import { editCrmStudentInfo } from './editCrmStudentInfoAction';
 import { fetchAllStudents } from '../allStudents/allStudentAction';
 export const StudentInfo = () => {
 	const { student } = useSelector((state) => state.getSingleStudent);
-	const { students } = useSelector((state) => state.allStudent);
+
 	const { _id } = useParams();
 	const dispatch = useDispatch();
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (!student.length) {
-			dispatch(fetchSingleStudent(_id));
+			await dispatch(fetchSingleStudent(_id));
 		}
 	}, [_id]);
 

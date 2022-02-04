@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllCourses } from './getProvidersAction';
+import { Link, useHistory, Route, useLocation } from 'react-router-dom';
 
 export const Providerslist = () => {
 	const { course, isLoadingShowcourse, error, searchCourseList } = useSelector(
@@ -53,9 +54,11 @@ export const Providerslist = () => {
 								</td>
 								<td>4 months ago</td>
 								<td>
-									<a href="#">
-										Edit &nbsp;<i className="fas fa-pen"></i>
-									</a>
+									<Link to={'/editCourses/' + item._id}>
+										<a>
+											Edit &nbsp;<i className="fas fa-pen"></i>
+										</a>
+									</Link>
 								</td>
 							</tr>
 						))}

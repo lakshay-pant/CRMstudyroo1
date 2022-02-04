@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import './providers.css';
 import 'react-tabs/style/react-tabs.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import Modal from 'react-bootstrap/Modal';
+import { fetchSingleProvider } from './singleProviderAction';
 
 export const Editcourses = () => {
+	const { provider } = useSelector((state) => state.getSingleProvider);
+	const { _id } = useParams();
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		if (!provider.length) {
+			dispatch(fetchSingleProvider(_id));
+		}
+	}, [_id]);
+
+	const [publicName, setPublicName] = useState('');
+
+	const [nickName, setNickName] = useState('');
+
+	useEffect(() => {
+		setPublicName(provider.publicName);
+		setNickName(provider.nickName);
+	}, [provider.publicName, provider.nickName]);
+
+	const handleOnChange = (e) => {
+		const { name, value } = e.target;
+
+		switch (name) {
+			case 'publicName':
+				setPublicName(value);
+				break;
+
+			case 'nickName':
+				setNickName(value);
+				break;
+
+			default:
+				break;
+		}
+	};
+
 	return (
 		<>
 			<div className="providers_wrpr">
@@ -19,7 +58,7 @@ export const Editcourses = () => {
 												<i className="fa fa-tasks"></i>
 											</span>
 										</div>
-										<small>Global College Australasia</small>
+										<small>{provider.publicName}</small>
 									</div>
 								</div>
 							</div>
@@ -128,7 +167,9 @@ export const Editcourses = () => {
 																									<input
 																										className="form-control"
 																										type="text"
-																										value="Global College Australasia"
+																										name="publicName"
+																										value={publicName}
+																										onChange={handleOnChange}
 																									/>
 																								</div>
 																								<div className="form-group col-lg-12">
@@ -136,7 +177,9 @@ export const Editcourses = () => {
 																									<input
 																										className="form-control"
 																										type="text"
-																										value="global college"
+																										name="nickName"
+																										value={nickName}
+																										onChange={handleOnChange}
 																									/>
 																								</div>
 																								<div className="form-group col-lg-12">
